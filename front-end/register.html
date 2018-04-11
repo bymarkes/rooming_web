@@ -37,8 +37,7 @@
         <!-- Color Panel -->
         <link rel="stylesheet" href="css/jquery.colorpanel.css">
     </head>
-    
-    
+     
     <body id="main-homepage">
     
         <!--====== LOADER =====-->
@@ -56,7 +55,7 @@
                         <div id="links">
                             <ul class="list-unstyled list-inline">
                                 <li><a href="login.html"><span><i class="fa fa-lock"></i></span>Login</a></li>
-                                <li><a href="registration.html"><span><i class="fa fa-plus"></i></span>Sign Up</a></li>
+                                <li><a href="register.html"><span><i class="fa fa-plus"></i></span>Sign Up</a></li>
                             </ul>
                         </div><!-- end links -->
                     </div><!-- end columns -->				
@@ -80,7 +79,7 @@
                 
                 <div class="collapse navbar-collapse" id="myNavbar1">
                     <ul class="nav navbar-nav navbar-right">
-                        <li class="active"><a href="#">Home<span></span></a>		
+                        <li class="active"><a href="#">Inici<span></span></a>		
                         </li>
                         <li class="dropdown"><a href="#">Categories<span></span></a>		
                         </li>
@@ -89,7 +88,83 @@
                     </ul>
                 </div><!-- end navbar collapse -->
             </div><!-- end container -->
-        </nav><!-- end navbar -->                     
+        </nav><!-- end navbar -->  
+
+         <!--==== INNERPAGE-WRAPPER =====-->  
+        <section class="innerpage-wrapper" style="background-color: #f1f2f2;">
+            <div id="login" class="innerpage-section-padding">
+                <div class="container">
+                    <div class="row">
+                      <div class=" col-sm-3" ></div>
+                        <div class=" col-sm-6">
+                        
+                            <div class="flex-content">
+                                <div class="custom-form custom-form-fields" style="background-color: #fafafa;">
+                                    <h3>Crea el teu usuari</h3>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                                    <form>
+                                            
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <input type="text" class="form-control" placeholder="Nom"  required/>
+                                                    <span><i class="fa fa-user"></i></span>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <input type="text" class="form-control" placeholder="Cognom"  required/>
+                                                    <span><i class="fa fa-user"></i></span>
+                                                </div>        
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" placeholder="Nom usuari"  required/>
+                                            <span><i class="fa fa-user"></i></span>
+                                        </div>
+        
+                                        <div class="form-group">
+                                             <input type="email" class="form-control" placeholder="Correu Electronic"  required/>
+                                             <span><i class="fa fa-envelope"></i></span>
+                                        </div>
+
+                                        <div class="form-group">
+                                                <input type="text" class="form-control dpd1" placeholder="Any neixament" required/>
+                                                <span></span><i class="fa fa-calendar"></i></span>      
+                                        </div>
+
+
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" placeholder="Població"  required/>
+                                            <span><i class="fa fa-map-marker"></i></span>
+                                        </div>
+                                            
+                                        <div class="form-group">
+                                             <input type="password" class="form-control" placeholder="Contrasenya"  required/>
+                                             <span><i class="fa fa-lock"></i></span>
+                                        </div>
+        
+                                        <div class="form-group">
+                                             <input type="password" class="form-control" placeholder="Confirma Contrasenya"  required/>
+                                             <span><i class="fa fa-lock"></i></span>
+                                        </div>
+                                        
+                                        <button class="btn btn-orange btn-block">Crear Compte</button>
+                                    </form>
+                                    
+                                    <div class="other-links">
+                                        <p class="link-line">Ja tens usuari? <a href="#">Inicia sessió</a></p>
+                                    </div><!-- end other-links -->
+                                </div><!-- end custom-form -->     
+                              
+                            </div><!-- end form-content -->
+                            
+                        </div><!-- end columns -->
+                    </div><!-- end row -->
+                </div><!-- end container -->         
+            </div><!-- end login -->
+        </section><!-- end innerpage-wrapper -->                   
         
         <!--======================= FOOTER =======================-->
         <section id="footer" class="ftr-heading-o ftr-heading-mgn-1">
@@ -112,8 +187,7 @@
                 </div><!-- end container -->
             </div><!-- end footer-bottom -->
             
-        </section><!-- end footer -->
-        
+        </section><!-- end footer -->       
                                 
         <!-- Page Scripts Starts -->
         <script src="js/jquery.min.js"></script>
