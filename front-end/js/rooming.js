@@ -255,7 +255,7 @@ function getEstablimentGps(id){ // GET GPS from Establiment
 	httpRequest.send();
 }
 
-function postEstablimentGps(id){ // GET GPS from Establiment
+function postEstablimentGps(id, JSON){ // GET GPS from Establiment
 
 	var httpRequest = new XMLHttpRequest();
 
@@ -271,10 +271,10 @@ function postEstablimentGps(id){ // GET GPS from Establiment
 
 	httpRequest.open('POST', URL+"establiment/"+id+"/gps", true);
 
-	httpRequest.send();
+	httpRequest.send(JSON);
 }
 
-function putEstablimentGps(idEstabliment, idGPS){ // PUT GPS from Establiment
+function putEstablimentGps(idEstabliment, idGPS, JSON){ // PUT GPS from Establiment
 
 	var httpRequest = new XMLHttpRequest();
 
@@ -290,7 +290,7 @@ function putEstablimentGps(idEstabliment, idGPS){ // PUT GPS from Establiment
 
 	httpRequest.open('PUT', URL+"establiment/"+idEstabliment+"/gps/"+idGPS, true);
 
-	httpRequest.send();
+	httpRequest.send(JSON);
 }
 
 function deleteEstablimentGps(idEstabliment, idGPS){ // DELETE GPS from Establiment
@@ -427,7 +427,7 @@ function deleteFoto(id){ // DELETE FOTO show
 
 	httpRequest.open('DELETE', URL+"foto/"+id, true);
 
-	httpRequest.send(JSON);
+	httpRequest.send();
 }
 
 /** END FOTO **/
@@ -460,7 +460,7 @@ function getAllRoom(){ //GET ALL ROOMS
 	httpRequest.send();
 }
 
-function postRoom(){ //POST ROOM
+function postRoom(JSON){ //POST ROOM
 
 	var httpRequest = new XMLHttpRequest();
 
@@ -476,7 +476,7 @@ function postRoom(){ //POST ROOM
 
 	httpRequest.open('POST', URL+"room", true);
 
-	httpRequest.send();
+	httpRequest.send(JSON);
 }
 
 function getRoom(id){ // GET ROOM ID
@@ -512,7 +512,7 @@ function putRoom(id, JSON){
 
 	};
 
-	httpRequest.open('GET', URL+"room/"+id, true);
+	httpRequest.open('PUT', URL+"room/"+id, true);
 
 	httpRequest.send(JSON);
 }
@@ -612,7 +612,7 @@ function putRoomComentari(idRoom, idComentari, JSON){ //PUT id COMENTARI from RO
 	httpRequest.send(JSON);
 }
 
-function putRoomComentari(idRoom, idComentari){ //DELETE id COMENTARI from ROOM
+function deleteRoomComentari(idRoom, idComentari){ //DELETE id COMENTARI from ROOM
 
 	var httpRequest = new XMLHttpRequest();
 
@@ -670,7 +670,7 @@ function getRoomAllHorari(id){ //GET ALL HORARI from ROOM
 }
 
 
-function postRoomHorari(id){ //POST HORARI from ROOM
+function postRoomHorari(id, JSON){ //POST HORARI from ROOM
 
 	var httpRequest = new XMLHttpRequest();
 
@@ -686,7 +686,7 @@ function postRoomHorari(id){ //POST HORARI from ROOM
 
 	httpRequest.open('POST', URL+"room/"+id+"/horari", true);
 
-	httpRequest.send();
+	httpRequest.send(JSON);
 }
 
 function getRoomHorari(idRoom, idHorari){ //GET id HORARI from ROOM
@@ -727,7 +727,7 @@ function putRoomHorari(idRoom, idHorari, JSON){ //PUT id HORARI from ROOM
 	httpRequest.send(JSON);
 }
 
-function getRoomHorari(idRoom, idHorari){ //DELETE id HORARI from ROOM
+function deleteRoomHorari(idRoom, idHorari){ //DELETE id HORARI from ROOM
 
 	var httpRequest = new XMLHttpRequest();
 
@@ -746,5 +746,294 @@ function getRoomHorari(idRoom, idHorari){ //DELETE id HORARI from ROOM
 	httpRequest.send();
 }
 
+function postRoomOferta(id ,JSON){ //POST OFERTA from ROOM
 
+	var httpRequest = new XMLHttpRequest();
+
+	httpRequest.onreadystatechange = function (){
+
+		if (httpRequest.readyState == 4 && httpRequest.status == 200 ) {
+
+			var jsonParsed = JSON.parse(httpRequest.responseText);
+			return jsonParsed;
+		}
+
+	};
+
+	httpRequest.open('POST', URL+"room/"+id+"/oferta", true);
+
+	httpRequest.send(JSON);
+}
+
+function getRoomAllOferta(id){ //GET ALL OFERTES from ROOM
+
+	var httpRequest = new XMLHttpRequest();
+
+	httpRequest.onreadystatechange = function (){
+
+		if (httpRequest.readyState == 4 && httpRequest.status == 200 ) {
+
+			var jsonParsed = JSON.parse(httpRequest.responseText);
+			return jsonParsed;
+		}
+
+	};
+
+	httpRequest.open('GET', URL+"room/"+id+"/oferta", true);
+
+	httpRequest.send();
+}
+
+function putRoomOferta(idRoom, idOferta, JSON){ //PUT OFERTA from ROOM
+
+	var httpRequest = new XMLHttpRequest();
+
+	httpRequest.onreadystatechange = function (){
+
+		if (httpRequest.readyState == 4 && httpRequest.status == 200 ) {
+
+			var jsonParsed = JSON.parse(httpRequest.responseText);
+			return jsonParsed;
+		}
+
+	};
+
+	httpRequest.open('PUT', URL+"room/"+idRoom+"/oferta/"+idOferta, true);
+
+	httpRequest.send(JSON);
+}
+
+function getRoomOferta(idRoom, idOferta){ //GET id OFERTA from ROOM
+
+	var httpRequest = new XMLHttpRequest();
+
+	httpRequest.onreadystatechange = function (){
+
+		if (httpRequest.readyState == 4 && httpRequest.status == 200 ) {
+
+			var jsonParsed = JSON.parse(httpRequest.responseText);
+			return jsonParsed;
+		}
+
+	};
+
+	httpRequest.open('GET', URL+"room/"+idRoom+"/oferta/"+idOferta, true);
+
+	httpRequest.send();
+}
+
+function deleteRoomOferta(idRoom, idOferta){ //DELETE OFERTA from ROOM
+
+	var httpRequest = new XMLHttpRequest();
+
+	httpRequest.onreadystatechange = function (){
+
+		if (httpRequest.readyState == 4 && httpRequest.status == 200 ) {
+
+			var jsonParsed = JSON.parse(httpRequest.responseText);
+			return jsonParsed;
+		}
+
+	};
+
+	httpRequest.open('DELETE', URL+"room/"+idRoom+"/oferta/"+idOferta, true);
+
+	httpRequest.send();
+}
+
+function postRoomReserva(id ,JSON){ //POST RESERVA from ROOM
+
+	var httpRequest = new XMLHttpRequest();
+
+	httpRequest.onreadystatechange = function (){
+
+		if (httpRequest.readyState == 4 && httpRequest.status == 200 ) {
+
+			var jsonParsed = JSON.parse(httpRequest.responseText);
+			return jsonParsed;
+		}
+
+	};
+
+	httpRequest.open('POST', URL+"room/"+id+"/reserva", true);
+
+	httpRequest.send(JSON);
+}
+
+function getRoomAllReserva(id){ //GET ALL RESERVA from ROOM
+
+	var httpRequest = new XMLHttpRequest();
+
+	httpRequest.onreadystatechange = function (){
+
+		if (httpRequest.readyState == 4 && httpRequest.status == 200 ) {
+
+			var jsonParsed = JSON.parse(httpRequest.responseText);
+			return jsonParsed;
+		}
+
+	};
+
+	httpRequest.open('GET', URL+"room/"+id+"/reserva", true);
+
+	httpRequest.send();
+}
+
+function putRoomReserva(idRoom, idReserva, JSON){ //PUT RESERVA from ROOM
+
+	var httpRequest = new XMLHttpRequest();
+
+	httpRequest.onreadystatechange = function (){
+
+		if (httpRequest.readyState == 4 && httpRequest.status == 200 ) {
+
+			var jsonParsed = JSON.parse(httpRequest.responseText);
+			return jsonParsed;
+		}
+
+	};
+
+	httpRequest.open('PUT', URL+"room/"+idRoom+"/reserva/"+idReserva, true);
+
+	httpRequest.send(JSON);
+}
+
+function getRoomReserva(idRoom, idReserva){ //GET id reserva from ROOM
+
+	var httpRequest = new XMLHttpRequest();
+
+	httpRequest.onreadystatechange = function (){
+
+		if (httpRequest.readyState == 4 && httpRequest.status == 200 ) {
+
+			var jsonParsed = JSON.parse(httpRequest.responseText);
+			return jsonParsed;
+		}
+
+	};
+
+	httpRequest.open('GET', URL+"room/"+idRoom+"/reserva/"+idReserva, true);
+
+	httpRequest.send();
+}
+
+function deleteRoomReserva(idRoom, idReserva){ //DELETE reserva from ROOM
+
+	var httpRequest = new XMLHttpRequest();
+
+	httpRequest.onreadystatechange = function (){
+
+		if (httpRequest.readyState == 4 && httpRequest.status == 200 ) {
+
+			var jsonParsed = JSON.parse(httpRequest.responseText);
+			return jsonParsed;
+		}
+
+	};
+
+	httpRequest.open('DELETE', URL+"room/"+idRoom+"/reserva/"+idReserva, true);
+
+	httpRequest.send();
+}
 /** END ROOM **/
+
+/** USUARI **/
+
+function postUsuari(JSON){ // POST usuari
+
+	var httpRequest = new XMLHttpRequest();
+
+	httpRequest.onreadystatechange = function (){
+
+		if (httpRequest.readyState == 4 && httpRequest.status == 200 ) {
+
+			var jsonParsed = JSON.parse(httpRequest.responseText);
+			return jsonParsed;
+		}
+
+	};
+
+	httpRequest.open('POST', URL+"usuari", true);
+
+	httpRequest.send(JSON);
+}
+
+function getAllUsuari(){ // GET ALL usuari
+
+	var httpRequest = new XMLHttpRequest();
+
+	httpRequest.onreadystatechange = function (){
+
+		if (httpRequest.readyState == 4 && httpRequest.status == 200 ) {
+
+			var jsonParsed = JSON.parse(httpRequest.responseText);
+			return jsonParsed;
+		}
+
+	};
+
+	httpRequest.open('GET', URL+"usuari", true);
+
+	httpRequest.send();
+}
+
+function putusuari(id, JSON){ // PUT usuari
+
+	var httpRequest = new XMLHttpRequest();
+
+	httpRequest.onreadystatechange = function (){
+
+		if (httpRequest.readyState == 4 && httpRequest.status == 200 ) {
+
+			var jsonParsed = JSON.parse(httpRequest.responseText);
+			return jsonParsed;
+		}
+
+	};
+
+	httpRequest.open('PUT', URL+"usuari/"+id, true);
+
+	httpRequest.send(JSON);
+}
+
+function getusuari(id){ //GET id Usuari
+
+	var httpRequest = new XMLHttpRequest();
+
+	httpRequest.onreadystatechange = function (){
+
+		if (httpRequest.readyState == 4 && httpRequest.status == 200 ) {
+
+			var jsonParsed = JSON.parse(httpRequest.responseText);
+			return jsonParsed;
+		}
+
+	};
+
+	httpRequest.open('GET', URL+"usuari/"+id, true);
+
+	httpRequest.send();
+}
+
+function deleteUsuari(id){ //DELETE Usuari
+
+	var httpRequest = new XMLHttpRequest();
+
+	httpRequest.onreadystatechange = function (){
+
+		if (httpRequest.readyState == 4 && httpRequest.status == 200 ) {
+
+			var jsonParsed = JSON.parse(httpRequest.responseText);
+			return jsonParsed;
+		}
+
+	};
+
+	httpRequest.open('DELETE', URL+"usuari/"+id, true);
+
+	httpRequest.send();
+}
+
+
+
+/** END USUARI **/
