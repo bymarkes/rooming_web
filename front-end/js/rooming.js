@@ -11,7 +11,7 @@ function postCategoria(JSON){ // POST
 
 	httpRequest.onreadystatechange = function (){
 
-		if (httpRequest.readyState == 4 && httpRequest.status == 200 ) {
+		if (httpRequest.readyState == 4 && httpRequest.status == 201 ) {
 
 			var jsonParsed = JSON.parse(httpRequest.responseText);
 			return jsonParsed;
@@ -87,7 +87,7 @@ function deleteCategoria(id){ //DELETE
 
 	httpRequest.onreadystatechange = function (){
 
-		if (httpRequest.readyState == 4 && httpRequest.status == 200 ) {
+		if (httpRequest.readyState == 4 && httpRequest.status == 204 ) {
 
 			var jsonParsed = JSON.parse(httpRequest.responseText);
 			return jsonParsed;
@@ -147,7 +147,7 @@ function postEstabliment(JSON){ // POST
 
 	httpRequest.onreadystatechange = function (){
 
-		if (httpRequest.readyState == 4 && httpRequest.status == 200 ) {
+		if (httpRequest.readyState == 4 && httpRequest.status == 201 ) {
 
 			var jsonParsed = JSON.parse(httpRequest.responseText);
 			return jsonParsed;
@@ -204,7 +204,7 @@ function deleteEstabliment(id){ // DELETE
 
 	httpRequest.onreadystatechange = function (){
 
-		if (httpRequest.readyState == 4 && httpRequest.status == 200 ) {
+		if (httpRequest.readyState == 4 && httpRequest.status == 204 ) {
 
 			var jsonParsed = JSON.parse(httpRequest.responseText);
 			return jsonParsed;
@@ -261,7 +261,7 @@ function postEstablimentGps(id, JSON){ // GET GPS from Establiment
 
 	httpRequest.onreadystatechange = function (){
 
-		if (httpRequest.readyState == 4 && httpRequest.status == 200 ) {
+		if (httpRequest.readyState == 4 && httpRequest.status == 201 ) {
 
 			var jsonParsed = JSON.parse(httpRequest.responseText);
 			return jsonParsed;
@@ -299,7 +299,7 @@ function deleteEstablimentGps(idEstabliment, idGPS){ // DELETE GPS from Establim
 
 	httpRequest.onreadystatechange = function (){
 
-		if (httpRequest.readyState == 4 && httpRequest.status == 200 ) {
+		if (httpRequest.readyState == 4 && httpRequest.status == 204 ) {
 
 			var jsonParsed = JSON.parse(httpRequest.responseText);
 			return jsonParsed;
@@ -360,7 +360,7 @@ function postFoto(JSON){ // POST FOTO
 
 	httpRequest.onreadystatechange = function (){
 
-		if (httpRequest.readyState == 4 && httpRequest.status == 200 ) {
+		if (httpRequest.readyState == 4 && httpRequest.status == 201 ) {
 
 			var jsonParsed = JSON.parse(httpRequest.responseText);
 			return jsonParsed;
@@ -417,7 +417,7 @@ function deleteFoto(id){ // DELETE FOTO show
 
 	httpRequest.onreadystatechange = function (){
 
-		if (httpRequest.readyState == 4 && httpRequest.status == 200 ) {
+		if (httpRequest.readyState == 4 && httpRequest.status == 204 ) {
 
 			var jsonParsed = JSON.parse(httpRequest.responseText);
 			return jsonParsed;
@@ -466,7 +466,7 @@ function postRoom(JSON){ //POST ROOM
 
 	httpRequest.onreadystatechange = function (){
 
-		if (httpRequest.readyState == 4 && httpRequest.status == 200 ) {
+		if (httpRequest.readyState == 4 && httpRequest.status == 201 ) {
 
 			var jsonParsed = JSON.parse(httpRequest.responseText);
 			return jsonParsed;
@@ -523,7 +523,7 @@ function deleteRoom(id){
 
 	httpRequest.onreadystatechange = function (){
 
-		if (httpRequest.readyState == 4 && httpRequest.status == 200 ) {
+		if (httpRequest.readyState == 4 && httpRequest.status == 204 ) {
 
 			var jsonParsed = JSON.parse(httpRequest.responseText);
 			return jsonParsed;
@@ -561,7 +561,7 @@ function postRoomComentari(id, JSON){ //POST COMENTARIS from ROOM
 
 	httpRequest.onreadystatechange = function (){
 
-		if (httpRequest.readyState == 4 && httpRequest.status == 200 ) {
+		if (httpRequest.readyState == 4 && httpRequest.status == 201 ) {
 
 			var jsonParsed = JSON.parse(httpRequest.responseText);
 			return jsonParsed;
@@ -618,7 +618,7 @@ function deleteRoomComentari(idRoom, idComentari){ //DELETE id COMENTARI from RO
 
 	httpRequest.onreadystatechange = function (){
 
-		if (httpRequest.readyState == 4 && httpRequest.status == 200 ) {
+		if (httpRequest.readyState == 4 && httpRequest.status == 204 ) {
 
 			var jsonParsed = JSON.parse(httpRequest.responseText);
 			return jsonParsed;
@@ -676,7 +676,7 @@ function postRoomHorari(id, JSON){ //POST HORARI from ROOM
 
 	httpRequest.onreadystatechange = function (){
 
-		if (httpRequest.readyState == 4 && httpRequest.status == 200 ) {
+		if (httpRequest.readyState == 4 && httpRequest.status == 201 ) {
 
 			var jsonParsed = JSON.parse(httpRequest.responseText);
 			return jsonParsed;
@@ -733,7 +733,7 @@ function deleteRoomHorari(idRoom, idHorari){ //DELETE id HORARI from ROOM
 
 	httpRequest.onreadystatechange = function (){
 
-		if (httpRequest.readyState == 4 && httpRequest.status == 200 ) {
+		if (httpRequest.readyState == 4 && httpRequest.status == 204 ) {
 
 			var jsonParsed = JSON.parse(httpRequest.responseText);
 			return jsonParsed;
@@ -752,7 +752,7 @@ function postRoomOferta(id ,JSON){ //POST OFERTA from ROOM
 
 	httpRequest.onreadystatechange = function (){
 
-		if (httpRequest.readyState == 4 && httpRequest.status == 200 ) {
+		if (httpRequest.readyState == 4 && httpRequest.status == 201 ) {
 
 			var jsonParsed = JSON.parse(httpRequest.responseText);
 			return jsonParsed;
@@ -828,7 +828,7 @@ function deleteRoomOferta(idRoom, idOferta){ //DELETE OFERTA from ROOM
 
 	httpRequest.onreadystatechange = function (){
 
-		if (httpRequest.readyState == 4 && httpRequest.status == 200 ) {
+		if (httpRequest.readyState == 4 && httpRequest.status == 204 ) {
 
 			var jsonParsed = JSON.parse(httpRequest.responseText);
 			return jsonParsed;
@@ -847,7 +847,7 @@ function postRoomReserva(id ,JSON){ //POST RESERVA from ROOM
 
 	httpRequest.onreadystatechange = function (){
 
-		if (httpRequest.readyState == 4 && httpRequest.status == 200 ) {
+		if (httpRequest.readyState == 4 && httpRequest.status == 201 ) {
 
 			var jsonParsed = JSON.parse(httpRequest.responseText);
 			return jsonParsed;
@@ -923,7 +923,7 @@ function deleteRoomReserva(idRoom, idReserva){ //DELETE reserva from ROOM
 
 	httpRequest.onreadystatechange = function (){
 
-		if (httpRequest.readyState == 4 && httpRequest.status == 200 ) {
+		if (httpRequest.readyState == 4 && httpRequest.status == 204 ) {
 
 			var jsonParsed = JSON.parse(httpRequest.responseText);
 			return jsonParsed;
@@ -945,7 +945,7 @@ function postUsuari(JSON){ // POST usuari
 
 	httpRequest.onreadystatechange = function (){
 
-		if (httpRequest.readyState == 4 && httpRequest.status == 200 ) {
+		if (httpRequest.readyState == 4 && httpRequest.status == 201 ) {
 
 			var jsonParsed = JSON.parse(httpRequest.responseText);
 			return jsonParsed;
@@ -1021,7 +1021,7 @@ function deleteUsuari(id){ //DELETE Usuari
 
 	httpRequest.onreadystatechange = function (){
 
-		if (httpRequest.readyState == 4 && httpRequest.status == 200 ) {
+		if (httpRequest.readyState == 4 && httpRequest.status == 204 ) {
 
 			var jsonParsed = JSON.parse(httpRequest.responseText);
 			return jsonParsed;
