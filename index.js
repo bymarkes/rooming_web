@@ -20,7 +20,7 @@ app.get('/categories', function(req,res){
 });
 
 app.get('/register', function(req,res){
-    res.sendFile(__dirname+'/views/register');
+    res.sendFile(__dirname+'/views/register.html');
 });
 
 app.listen(3000);
