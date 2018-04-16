@@ -743,8 +743,8 @@ function getRoomHorari(idRoom, idHorari){ //DELETE id HORARI from ROOM
 	httpRequest.send();
 }
 
-
 /** END ROOM **/
+
 module.exports = {
 	postCategoria,
 	getAllCategoria,
