@@ -609,7 +609,7 @@ function putRoomComentari(idRoom, idComentari, JSON){ //PUT id COMENTARI from RO
 	httpRequest.send(JSON);
 }
 
-function putRoomComentari(idRoom, idComentari){ //DELETE id COMENTARI from ROOM
+function deleteRoomComentari(idRoom, idComentari){ //DELETE id COMENTARI from ROOM
 
 	var httpRequest = new XMLHttpRequest();
 
@@ -745,17 +745,45 @@ function getRoomHorari(idRoom, idHorari){ //DELETE id HORARI from ROOM
 
 
 /** END ROOM **/
-
-function hola(nom){
-	console.log("hola "+nom);
-};
-
-function xxx(nom){
-    console.log("xxx "+nom);
-    return "jjjj";
-};
-
 module.exports = {
-	hola, xxx
+	postCategoria,
+	getAllCategoria,
+	putCategoria,
+	getCategoria,
+	deleteCategoria,
+	getCategoriaRoom,
+	getAllEstabliment,
+	postEstabliment,
+	getEstabliment,
+	putEstabliment,
+	deleteEstabliment,
+	getEstablimentFoto,
+	getEstablimentGps,
+	postEstablimentGps,
+	putEstablimentGps,
+	deleteEstablimentGps,
+	getEstablimentRooms,
+	getAllFoto,
+	postFoto,
+	getFoto,
+	putFoto,
+	deleteFoto,
+	getAllRoom,
+	postRoom,
+	getRoom,
+	putRoom,
+	deleteRoom,
+	getRoomAllComentari,
+	postRoomComentari,
+	getRoomComentari,
+	putRoomComentari,
+	deleteRoomComentari,
+	getRoomAllFoto,
+	getRoomAllHorari,
+	postRoomHorari,
+	getRoomHorari,
+	putRoomHorari,
+	getRoomHorari
 };
+
 

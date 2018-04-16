@@ -9,8 +9,6 @@ app.use(bodyParser.json({ type: 'application/json'}));
 app.use(express.static('public'));
 
 app.get('/', function(req,res){
-    roomingApi.hola("fgh");
-    roomingApi.xxx("fgh");
     res.sendFile(__dirname+'/views/index.html');
 });
 
