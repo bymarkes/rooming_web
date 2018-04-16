@@ -26,4 +26,8 @@ app.get('/register', function(req,res){
     res.sendFile(__dirname+'/views/register.html');
 });
 
+app.get('/plantilla', function(req,res){
+    res.sendFile(__dirname+'/views/plantilla.html');
+});
+
 app.listen(3000);
