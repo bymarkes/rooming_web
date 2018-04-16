@@ -2,12 +2,15 @@ var http = require('http');
 var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
+var roomingApi = require('./rooming');
 
 app.use(bodyParser.json({ type: 'application/json'}));
 
 app.use(express.static('public'));
 
 app.get('/', function(req,res){
+    roomingApi.hola("fgh");
+    roomingApi.xxx("fgh");
     res.sendFile(__dirname+'/views/index.html');
 });
 

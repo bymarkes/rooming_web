@@ -1,5 +1,8 @@
 var URL = "http://localhost/rooming_api/public/api/";
 
+function hola(){
+	console.log("hola");
+}
 
 /** CATEGORIA **/
 function postCategoria(JSON){ // POST
@@ -745,4 +748,3 @@ function getRoomHorari(idRoom, idHorari){ //DELETE id HORARI from ROOM
 
 
 /** END ROOM **/
-

@@ -746,3 +746,16 @@ function getRoomHorari(idRoom, idHorari){ //DELETE id HORARI from ROOM
 
 /** END ROOM **/
 
+function hola(nom){
+	console.log("hola "+nom);
+};
+
+function xxx(nom){
+    console.log("xxx "+nom);
+    return "jjjj";
+};
+
+module.exports = {
+	hola, xxx
+};
+
