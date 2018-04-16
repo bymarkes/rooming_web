@@ -1,0 +1,313 @@
+<!doctype html>
+<html lang="ca">
+    
+<head>
+        <title>Dades Perfil</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <link rel="icon" href="/images/favicon.png" type="image/x-icon">
+        
+        <!-- Google Fonts -->	
+        <link href="https://fonts.googleapis.com/css?family=Lato:300,300i,400,400i,700,700i,900,900i%7CMerriweather:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
+        
+        <!-- Bootstrap Stylesheet -->	
+        <link rel="stylesheet" href="/css/bootstrap.min.css">
+        
+        <!-- Font Awesome Stylesheet -->
+        <link rel="stylesheet" href="/css/font-awesome.min.css">
+            
+        <!-- Custom Stylesheets -->	
+        <link rel="stylesheet" href="/css/style.css">
+        <link rel="stylesheet" id="cpswitch" href="/css/orange.css">
+        <link rel="stylesheet" href="/css/responsive.css">
+    
+        <!-- Owl Carousel Stylesheet -->
+        <link rel="stylesheet" href="/css/owl.carousel.css">
+        <link rel="stylesheet" href="/css/owl.theme.css">
+        
+        <!-- Flex Slider Stylesheet -->
+        <link rel="stylesheet" href="/css/flexslider.css" type="text/css" />
+        
+        <!--Date-Picker Stylesheet-->
+        <link rel="stylesheet" href="/css/datepicker.css">
+        
+        <!-- Magnific Gallery -->
+        <link rel="stylesheet" href="/css/magnific-popup.css">
+        
+        <!-- Color Panel -->
+        <link rel="stylesheet" href="/css/jquery.colorpanel.css">
+    </head>
+    
+    
+    <body id="main-homepage">
+    
+        <!--====== LOADER =====-->
+        <div class="loader"></div>         
+        
+        <!--============= TOP-BAR ===========-->
+        <div id="top-bar" class="tb-text-white">
+            <div class="container">
+                <div class="row">          
+                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                       
+                    </div><!-- end columns -->
+                    
+                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                        <div id="links">
+                            <ul class="list-unstyled list-inline">
+                                <li><a href="/login"><span><i class="fa fa-lock"></i></span>Login</a></li>
+                                <li><a href="/register"><span><i class="fa fa-plus"></i></span>Sign Up</a></li>
+                            </ul>
+                        </div><!-- end links -->
+                    </div><!-- end columns -->				
+                </div><!-- end row -->
+            </div><!-- end container -->
+        </div><!-- end top-bar -->
+		
+        <nav class="navbar navbar-default main-navbar navbar-custom navbar-white" id="mynavbar-1">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" id="menu-button">
+                      <span class="icon-bar"></span>
+                      <span class="icon-bar"></span>
+                      <span class="icon-bar"></span>                        
+                    </button>
+                    <div class="header-search hidden-lg">
+                    	<a href="javascript:void(0)" class="search-button"><span><i class="fa fa-search"></i></span></a>
+                    </div>
+                    <a href="index.html" class="navbar-brand"><span><i class="fa fa-plane"></i>ROOM</span>ING</a>
+                </div><!-- end navbar-header -->
+                
+                <div class="collapse navbar-collapse" id="myNavbar1">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="active"><a href="/">Inici<span></span></a>		
+                        </li>
+                        <li class="dropdown"><a href="/categories">Categories<span></span></a>		
+                        </li>
+                        <li class="dropdown"><a href="/rooms">Rooms<span></span></a>	
+                        </li>
+                    </ul>
+                </div><!-- end navbar collapse -->
+            </div><!-- end container -->
+        </nav><!-- end navbar -->  
+
+        <section class="innerpage-wrapper" style="background-color: #f1f2f2;">
+            <div id="login" class="innerpage-section-padding">
+                <div class="container">
+                    <div class="page-heading">
+                                <h2>Perfil</h2>
+                                <hr class="heading-line" />
+                    <div class="row">
+                        <div class=" col-sm-12" style="margin-top: 30px;">
+                            <div class="flex-content">
+                                <div id="divEdit" class="custom-form custom-form-fields" style="background-color: #fafafa;">                              
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <input id="nom" type="text" class="form-control" placeholder="Nom" disabled required/>
+                                                    <span><i class="fa fa-user"></i></span>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <input id="cognom" type="text" class="form-control" placeholder="Cognom" disabled required/>
+                                                    <span><i class="fa fa-user"></i></span>
+                                                </div>        
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <input id="user" type="text" class="form-control" placeholder="Nom usuari" disabled required/>
+                                            <span><i class="fa fa-user"></i></span>
+                                        </div>
+        
+                                        <div class="form-group">
+                                             <input id="mail" type="email" class="form-control" placeholder="Correu Electronic" disabled required/>
+                                             <span><i class="fa fa-envelope"></i></span>
+                                        </div>
+
+                                        <div class="form-group">
+                                                <input id="dataNaix" type="text" class="form-control dpd1" placeholder="Any neixament" disabled required/>
+                                                <span></span><i class="fa fa-calendar"></i></span>      
+                                        </div>
+
+
+                                        <div class="form-group">
+                                            <input id="poblacio" type="text" class="form-control" placeholder="Població" disabled required/>
+                                            <span><i class="fa fa-map-marker"></i></span>
+                                        </div>  
+
+
+                                        <button class="btn" data-toggle="modal" data-target="#edit-profile">Canvia Contrasenya</button>
+
+                                        
+                                        <button id="editbtn" class="btn btn-orange btn-block" style="margin-top: 35px;">Edita</button>         
+                                        
+                                    <!-- end other-links -->
+                                </div><!-- end custom-form -->     
+                              
+                            </div><!-- end form-content -->
+                            
+                        </div><!-- end columns -->
+                    </div><!-- end row -->
+                    
+                </div><!-- end container -->         
+            </div><!-- end login -->
+        </section>     
+<div id="edit-profile" class="modal custom-modal fade" role="dialog" style="display: none;">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">×</button>
+                        <h3 class="modal-title">Canvia Contrasenya</h3>
+                    </div><!-- end modal-header -->
+                    
+                    <div class="modal-body">
+                        <form>
+                        	<div class="form-group">
+                            	<input type="password" class="form-control" placeholder="Nova Contrasenya">
+                            </div><!-- end form-group -->
+                            
+                        	<div class="form-group">                    
+                            	<input type="password" class="form-control" placeholder="Confirma Contrasenya">
+                            </div><!-- end form-group -->                            
+                            
+                            <button class="btn btn-orange btn-block" >Guarda</button>
+                        </form>
+                    </div><!-- end modal-bpdy -->
+                </div><!-- end modal-content -->
+            </div><!-- end modal-dialog -->
+        </div>              
+        
+        <!--======================= FOOTER =======================-->
+        <section id="footer" class="ftr-heading-o ftr-heading-mgn-1">
+        
+            <div id="footer-bottom" class="ftr-bot-black">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6" id="copyright">
+                            <p>© 2017 <a href="#">Rooming</a>. All rights reserved.</p>
+                        </div><!-- end columns -->
+                        
+                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6" id="terms">
+                            <ul class="list-unstyled list-inline">
+                            	<li><a href="/terms">Termes i Condicions</a></li>
+                                <li><a href="/polices">Politica de Privacitat</a></li>
+                                <li><a href="/contact">| Contacte </a></li>
+                            </ul>
+                        </div><!-- end columns -->
+                    </div><!-- end row -->
+                </div><!-- end container -->
+            </div><!-- end footer-bottom -->
+            
+        </section><!-- end footer -->
+
+        <!--Script editbtn -->
+        <script>
+            var editBtn = document.getElementById("editbtn").addEventListener('click',function (){
+                
+                //Eliminem El edit button
+                var editBtn = document.getElementById("editbtn");                
+                editBtn.remove();
+
+                //Botons del Formulari 
+                var cancelBtn = document.createElement("button");
+                var confirmBtn = document.createElement("button");
+
+                cancelBtn.setAttribute("class", "btn btn-black btn-block");
+                confirmBtn.setAttribute("class", "btn btn-orange btn-block");
+
+                //Text Nodes
+                var nodeCancel = document.createTextNode("Cancela");
+                var nodeConfirm = document.createTextNode("Confirma");
+
+                cancelBtn.appendChild(nodeCancel);
+                confirmBtn.appendChild(nodeConfirm);
+
+                //Container Botons            
+                var divBtns = document.createElement("div");
+
+                divBtns.setAttribute('class','row');
+                divBtns.setAttribute('style','margin-top:10px;');
+
+                //divBoto 1
+                var divcol1 = document.createElement("div");
+
+                divcol1.setAttribute('class','col-sm-6');
+                divcol1.appendChild(cancelBtn);
+
+                //divBoto 2
+                var divcol2 = document.createElement("div");
+
+                divcol2.setAttribute('class','col-sm-6');
+                divcol2.appendChild(confirmBtn);                               
+
+                //Append Botons
+                divBtns.appendChild(divcol1);
+                divBtns.appendChild(divcol2);
+                
+                // //Boto Canvi Contrassenya
+                // var changePassbtn = document.createElement("button");
+
+                // changePassbtn.setAttribute('class','btn');
+                // changePassbtn.setAttribute('data-toggle','modal');
+                // changePassbtn.setAttribute('data-target','#edit-profile');
+
+                // //NodeText Botons
+                // var nodeBoto = document.createTextNode('Canvia Contrassenya');
+
+                // changePassbtn.appendChild(nodeBoto);
+
+                //Mostrem Contingut
+                var divEdit = document.getElementById("divEdit");
+
+                divEdit.appendChild(divBtns);
+
+                //Habilitem tots els inputs del Formulari
+
+                document.getElementById("nom").disabled = false;
+                document.getElementById("cognom").disabled = false;
+                document.getElementById("user").disabled = false;
+                document.getElementById("mail").disabled = false;
+                document.getElementById("dataNaix").disabled = false;
+                document.getElementById("poblacio").disabled = false;
+
+                //Cancel Action
+                cancelBtn.addEventListener('click', function() {
+
+                    //Esborrem botons Formulari
+                    divBtns.remove();
+                   
+                    //Crem boto editar de nou
+                    divEdit.appendChild(editBtn);
+
+                    //Deshabilitem inputs
+                    document.getElementById("nom").disabled = true;
+                    document.getElementById("cognom").disabled = true;
+                    document.getElementById("user").disabled = true;
+                    document.getElementById("mail").disabled = true;
+                    document.getElementById("dataNaix").disabled = true;
+                    document.getElementById("poblacio").disabled = true;
+                });
+
+            });
+        </script>
+                                
+        <!-- Page Scripts Starts -->
+        <script src="/js/jquery.min.js"></script>
+        <script src="/js/jquery.colorpanel.js"></script>
+        <script src="/js/jquery.magnific-popup.min.js"></script>
+        <script src="/js/bootstrap.min.js"></script>
+        <script src="/js/jquery.flexslider.js"></script>
+        <script src="/js/bootstrap-datepicker.js"></script>
+        <script src="/js/owl.carousel.min.js"></script>
+        <script src="/js/custom-navigation.js"></script>
+        <script src="/js/custom-flex.js"></script>
+        <script src="/js/custom-owl.js"></script>
+        <script src="/js/custom-date-picker.js"></script>
+        <script src="/js/custom-video.js"></script>
+        <script src="/js/popup-ad.js"></script>
+        <!-- Page Scripts Ends -->
+        
+    </body>
+</html>
