@@ -1,0 +1,233 @@
+doctype html
+head
+  title CATEGORIES
+  meta(charset='utf-8')
+  meta(name='viewport', content='width=device-width,initial-scale=1')
+  link(rel='icon', href='/images/favicon.png', type='image/x-icon')
+  // Google Fonts
+  link(href='https://fonts.googleapis.com/css?family=Lato:300,300i,400,400i,700,700i,900,900i%7CMerriweather:300,300i,400,400i,700,700i,900,900i', rel='stylesheet')
+  // Bootstrap Stylesheet
+  link(rel='stylesheet', href='/css/bootstrap.min.css')
+  // Font Awesome Stylesheet
+  link(rel='stylesheet', href='/css/font-awesome.min.css')
+  // Custom Stylesheets
+  link(rel='stylesheet', href='/css/style.css')
+  link#cpswitch(rel='stylesheet', href='/css/orange.css')
+  link(rel='stylesheet', href='/css/responsive.css')
+  // Owl Carousel Stylesheet
+  link(rel='stylesheet', href='/css/owl.carousel.css')
+  link(rel='stylesheet', href='/css/owl.theme.css')
+  // Flex Slider Stylesheet
+  link(rel='stylesheet', href='/css/flexslider.css', type='text/css')
+  // Date-Picker Stylesheet
+  link(rel='stylesheet', href='/css/datepicker.css')
+  // Magnific Gallery
+  link(rel='stylesheet', href='/css/magnific-popup.css')
+  // Color Panel
+  link(rel='stylesheet', href='/css/jquery.colorpanel.css')
+// ====== LOADER =====
+.loader
+// ============= TOP-BAR ===========
+#top-bar.tb-text-white
+  .container
+    .row
+      .col-xs-12.col-sm-6.col-md-6.col-lg-6
+      // end columns
+      .col-xs-12.col-sm-6.col-md-6.col-lg-6
+        #links
+          ul.list-unstyled.list-inline
+            li
+              a(href='/login')
+                span
+                  i.fa.fa-lock
+                | Login
+            li
+              a(href='/register')
+                span
+                  i.fa.fa-plus
+                | Sign Up
+        // end links
+      // end columns
+    // end row
+  // end container
+// end top-bar
+nav#mynavbar-1.navbar.navbar-default.main-navbar.navbar-custom.navbar-white
+  .container
+    .navbar-header
+      button#menu-button.navbar-toggle(type='button')
+        span.icon-bar
+        span.icon-bar
+        span.icon-bar
+      .header-search.hidden-lg
+        a.search-button(href='javascript:void(0)')
+          span
+            i.fa.fa-search
+      a.navbar-brand(href='/')
+        span
+          i.fa.fa-plane
+          | ROOM
+        | ING
+    // end navbar-header
+    #myNavbar1.collapse.navbar-collapse
+      ul.nav.navbar-nav.navbar-right
+        li.dropdown
+          a(href='/')
+            | Inici
+            span
+        li.active
+          a(href='/categories')
+            | Categories
+            span
+        li.dropdown
+          a(href='/rooms')
+            | Rooms
+            span
+    // end navbar collapse
+  // end container
+// end navbar
+// ===== INNERPAGE-WRAPPER ====
+section.innerpage-wrapper(style='background-color: #f1f2f2;')
+  #team-page.innerpage-section-padding
+    .container
+      .row
+        .col-sm-12
+          .page-heading
+            h2 Categories
+            hr.heading-line
+          // end page-heading
+          .row
+            .col-xs-12.col-sm-6.col-md-4.col-lg-4
+              .member-block-2.text-center(style='background-color: white;')
+                .member-img-2
+                  img.img-responsive(src='/images/fantasia.png', alt='member-img')
+                  .member-name-2
+                    h3 Fantasia
+                  // end member-name-2
+                // end member-img-2
+                .member-info-2
+                  p
+                    | Est&aacute;is en el manicomio de Barcelona. Su director, el Dr. Steinberg, hace experimentos ilegales con electroshock a los pacientes. En el transcurso del tiempo han ido desapareciendo pacientes y empleados... Vosotros sois pacientes del manicomio. &iquest;Podr&eacute;is escapar a tiempo?
+                  a.myButton(href='#') Veure
+                // end member-info-2
+              // end member-block-2
+            // end columns
+            .col-xs-12.col-sm-6.col-md-4.col-lg-4
+              .member-block-2.text-center(style='background-color: white;')
+                .member-img-2
+                  img.img-responsive(src='/images/detective.jpg', alt='member-img')
+                  .member-name-2
+                    h3 Detectius
+                  // end member-name-2
+                // end member-img-2
+                .member-info-2
+                  p
+                    | Est&aacute;is en el manicomio de Barcelona. Su director, el Dr. Steinberg, hace experimentos ilegales con electroshock a los pacientes. En el transcurso del tiempo han ido desapareciendo pacientes y empleados... Vosotros sois pacientes del manicomio. &iquest;Podr&eacute;is escapar a tiempo?
+                  a.myButton(href='#') Veure
+                // end member-info-2
+              // end member-block-2
+            // end columns
+            .col-xs-12.col-sm-6.col-md-4.col-lg-4
+              .member-block-2.text-center(style='background-color: white;')
+                .member-img-2
+                  img.img-responsive(src='/images/terror.png', alt='member-img')
+                  .member-name-2
+                    h3 Terror
+                  // end member-name-2
+                // end member-img-2
+                .member-info-2
+                  p
+                    | Est&aacute;is en el manicomio de Barcelona. Su director, el Dr. Steinberg, hace experimentos ilegales con electroshock a los pacientes. En el transcurso del tiempo han ido desapareciendo pacientes y empleados... Vosotros sois pacientes del manicomio. &iquest;Podr&eacute;is escapar a tiempo?
+                  a.myButton(href='#') Veure
+                // end member-info-2
+              // end member-block-2
+            // end columns
+            .col-xs-12.col-sm-6.col-md-4.col-lg-4
+              .member-block-2.text-center(style='background-color: white;')
+                .member-img-2
+                  img.img-responsive(src='/images/futuro.jpg', alt='member-img')
+                  .member-name-2
+                    h3 Futurista
+                  // end member-name-2
+                // end member-img-2
+                .member-info-2
+                  p
+                    | Est&aacute;is en el manicomio de Barcelona. Su director, el Dr. Steinberg, hace experimentos ilegales con electroshock a los pacientes. En el transcurso del tiempo han ido desapareciendo pacientes y empleados... Vosotros sois pacientes del manicomio. &iquest;Podr&eacute;is escapar a tiempo?
+                  a.myButton(href='#') Veure
+                // end member-info-2
+              // end member-block-2
+            // end columns
+            .col-xs-12.col-sm-6.col-md-4.col-lg-4
+              .member-block-2.text-center(style='background-color: white;')
+                .member-img-2
+                  img.img-responsive(src='/images/histori.jpeg', alt='member-img')
+                  .member-name-2
+                    h3 Hist&ograve;rica
+                  // end member-name-2
+                // end member-img-2
+                .member-info-2
+                  p
+                    | Est&aacute;is en el manicomio de Barcelona. Su director, el Dr. Steinberg, hace experimentos ilegales con electroshock a los pacientes. En el transcurso del tiempo han ido desapareciendo pacientes y empleados... Vosotros sois pacientes del manicomio. &iquest;Podr&eacute;is escapar a tiempo?
+                  a.myButton(href='#') Veure
+                // end member-info-2
+              // end member-block-2
+            // end columns
+            .col-xs-12.col-sm-6.col-md-4.col-lg-4
+              .member-block-2.text-center(style='background-color: white;')
+                .member-img-2
+                  img.img-responsive(src='/images/infancia.jpg', alt='member-img')
+                  .member-name-2
+                    h3 Infantil
+                  // end member-name-2
+                // end member-img-2
+                .member-info-2
+                  p
+                    | Est&aacute;is en el manicomio de Barcelona. Su director, el Dr. Steinberg, hace experimentos ilegales con electroshock a los pacientes. En el transcurso del tiempo han ido desapareciendo pacientes y empleados... Vosotros sois pacientes del manicomio. &iquest;Podr&eacute;is escapar a tiempo?
+                  a.myButton(href='#') Veure
+                // end member-info-2
+              // end member-block-2
+            // end columns
+          // end row
+        // end columns
+      // end row
+    // end container
+  // end team-page
+// end innerpage-wrapper
+// ======================= FOOTER =======================
+section#footer.ftr-heading-o.ftr-heading-mgn-1
+  #footer-bottom.ftr-bot-black
+    .container
+      .row
+        #copyright.col-xs-12.col-sm-6.col-md-6.col-lg-6
+          p
+            | &copy; 2017 
+            a(href='#') Rooming
+            | . All rights reserved.
+        // end columns
+        #terms.col-xs-12.col-sm-6.col-md-6.col-lg-6
+          ul.list-unstyled.list-inline
+            li
+              a(href='/terms') Termes i Condicions
+            li
+              a(href='/polices') Politica de Privacitat
+            li
+              a(href='/contact') | Contacte 
+        // end columns
+      // end row
+    // end container
+  // end footer-bottom
+// end footer
+// Page Scripts Starts
+script(src='/js/jquery.min.js')
+script(src='/js/jquery.colorpanel.js')
+script(src='/js/jquery.magnific-popup.min.js')
+script(src='/js/bootstrap.min.js')
+script(src='/js/jquery.flexslider.js')
+script(src='/js/bootstrap-datepicker.js')
+script(src='/js/owl.carousel.min.js')
+script(src='/js/custom-navigation.js')
+script(src='/js/custom-flex.js')
+script(src='/js/custom-owl.js')
+script(src='/js/custom-date-picker.js')
+script(src='/js/custom-video.js')
+script(src='/js/popup-ad.js')
+// Page Scripts Ends
