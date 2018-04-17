@@ -1,0 +1,227 @@
+doctype html
+head
+  title ROOMING
+  meta(charset='utf-8')
+  meta(name='viewport', content='width=device-width,initial-scale=1')
+  link(rel='icon', href='/images/favicon.png', type='image/x-icon')
+  // Google Fonts
+  link(href='https://fonts.googleapis.com/css?family=Lato:300,300i,400,400i,700,700i,900,900i%7CMerriweather:300,300i,400,400i,700,700i,900,900i', rel='stylesheet')
+  // Bootstrap Stylesheet
+  link(rel='stylesheet', href='/css/bootstrap.min.css')
+  // Font Awesome Stylesheet
+  link(rel='stylesheet', href='/css/font-awesome.min.css')
+  // Custom Stylesheets
+  link(rel='stylesheet', href='/css/style.css')
+  link#cpswitch(rel='stylesheet', href='/css/orange.css')
+  link(rel='stylesheet', href='/css/responsive.css')
+  // Owl Carousel Stylesheet
+  link(rel='stylesheet', href='/css/owl.carousel.css')
+  link(rel='stylesheet', href='/css/owl.theme.css')
+  // Flex Slider Stylesheet
+  link(rel='stylesheet', href='/css/flexslider.css', type='text/css')
+  // Date-Picker Stylesheet
+  link(rel='stylesheet', href='/css/datepicker.css')
+  // Magnific Gallery
+  link(rel='stylesheet', href='/css/magnific-popup.css')
+  // Color Panel
+  link(rel='stylesheet', href='/css/jquery.colorpanel.css')
+  // SLICK
+  link(rel='stylesheet', href='/css/slick.css')
+  link(rel='stylesheet', href='/css/slick-theme.css')
+// ====== LOADER =====
+.loader
+// ============= TOP-BAR ===========
+#top-bar.tb-text-white
+  .container
+    .row
+      .col-xs-12.col-sm-6.col-md-6.col-lg-6
+      // end columns
+      .col-xs-12.col-sm-6.col-md-6.col-lg-6
+        #links
+          ul.list-unstyled.list-inline
+            li
+              a(href='/login')
+                span
+                  i.fa.fa-lock
+                | Login
+            li
+              a(href='/register')
+                span
+                  i.fa.fa-plus
+                | Sign Up
+        // end links
+      // end columns
+    // end row
+  // end container
+// end top-bar
+nav#mynavbar-1.navbar.navbar-default.main-navbar.navbar-custom.navbar-white
+  .container
+    .navbar-header
+      button#menu-button.navbar-toggle(type='button')
+        span.icon-bar
+        span.icon-bar
+        span.icon-bar
+      .header-search.hidden-lg
+        a.search-button(href='javascript:void(0)')
+          span
+            i.fa.fa-search
+      a.navbar-brand(href='/')
+        span
+          i.fa.fa-plane
+          | ROOM
+        | ING
+    // end navbar-header
+    #myNavbar1.collapse.navbar-collapse
+      ul.nav.navbar-nav.navbar-right
+        li.dropdown
+          a(href='/')
+            | Inici
+            span
+        li.dropdown
+          a(href='/categories')
+            | Categories
+            span
+        li.dropdown
+          a(href='/rooms')
+            | Rooms
+            span
+    // end navbar collapse
+  // end container
+// end navbar
+// ==== INNERPAGE-WRAPPER =====
+section.innerpage-wrapper(style='background-color: #f1f2f2;')
+  .innerpage-section-padding
+    .container
+      .row
+        .col-xs-12.col-sm-12.col-md-3.side-bar.left-side-bar
+          .side-bar-block.booking-form-block
+            h2.selected-price
+              | &euro;18.00 
+              span Persona
+          // end side-bar-block
+          .row
+            .col-xs-12.col-sm-6.col-md-12
+              .side-bar-block.main-block.ad-block
+              // end side-bar-block
+            // end columns
+            .col-xs-12.col-sm-6.col-md-12
+              .side-bar-block.support-block(style='background-color: white;')
+                h3 Contacte amb nosaltres
+                p
+                  | Lorem ipsum dolor sit amet, ad duo fugit aeque fabulas, in lucilius prodesset pri. Veniam delectus ei vis. Est atqui timeam mnesarchum.
+                .support-contact
+                  span
+                    i.fa.fa-phone
+                  p 665852147
+                // end support-contact
+              // end side-bar-block
+            // end columns
+          // end row
+        // end columns
+        .col-xs-12.col-sm-12.col-md-9.col-lg-9.content-side
+          .detail-slider
+            .feature-slider
+              div
+                img.img-responsive(src='images/car-feature-1.jpg', alt='feature-img')
+              div
+                img.img-responsive(src='images/car-feature-2.jpg', alt='feature-img')
+              div
+                img.img-responsive(src='images/car-feature-3.jpg', alt='feature-img')
+              div
+                img.img-responsive(src='images/car-feature-4.jpg', alt='feature-img')
+              div
+                img.img-responsive(src='images/car-feature-5.jpg', alt='feature-img')
+            // end feature-slider
+            .feature-slider-nav
+              div
+                img.img-responsive(src='images/car-feature-thumb-1.jpg', alt='feature-thumb')
+              div
+                img.img-responsive(src='images/car-feature-thumb-2.jpg', alt='feature-thumb')
+              div
+                img.img-responsive(src='images/car-feature-thumb-3.jpg', alt='feature-thumb')
+              div
+                img.img-responsive(src='images/car-feature-thumb-4.jpg', alt='feature-thumb')
+              div
+                img.img-responsive(src='images/car-feature-thumb-5.jpg', alt='feature-thumb')
+            // end feature-slider-nav
+            ul.list-unstyled.features.tour-features
+              li
+                .f-icon
+                  i.fa.fa-user
+                .f-text
+                  p.f-heading Persones
+                  p.f-data 4
+              li
+                .f-icon
+                  i.fa.fa-clock-o
+                .f-text
+                  p.f-heading Duracio
+                  p.f-data 20 min
+              li
+                .f-icon
+                  i.fa.fa-percent
+                .f-text
+                  p.f-heading Descompte
+                  p.f-data 10% 
+          // end detail-slider
+          .detail-tabs
+            .tab-content
+              #car-information.tab-pane.in.active(style='background-color: white;')
+                .row
+                  .col-sm-4.col-md-4.tab-img
+                    img.img-responsive(src='images/car-detail-tab-1.jpg', alt='flight-detail-img')
+                  // end columns
+                  .col-sm-8.col-md-8.tab-text
+                    h3 Nom Room
+                    p
+                      | Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                  // end columns
+                // end row
+              // end car-information
+            // end tab-content
+          // end detail-tabs
+        // end row
+      // end container
+    // end car-detail
+// end innerpage-wrapper
+// ======================= FOOTER =======================
+section#footer.ftr-heading-o.ftr-heading-mgn-1
+  #footer-bottom.ftr-bot-black
+    .container
+      .row
+        #copyright.col-xs-12.col-sm-6.col-md-6.col-lg-6
+          p
+            | &copy; 2017 
+            a(href='#') Rooming
+            | . All rights reserved.
+        // end columns
+        #terms.col-xs-12.col-sm-6.col-md-6.col-lg-6
+          ul.list-unstyled.list-inline
+            li
+              a(href='/terms') Termes i Condicions
+            li
+              a(href='/polices') Politica de Privacitat
+            li
+              a(href='/contact') | Contacte 
+        // end columns
+      // end row
+    // end container
+  // end footer-bottom
+// end footer
+// Page Scripts Starts
+script(src='/js/jquery.min.js')
+script(src='/js/slick.min.js')
+script(src='/js/custom-slick.js')
+script(src='/js/jquery.colorpanel.js')
+script(src='/js/jquery.magnific-popup.min.js')
+script(src='/js/bootstrap.min.js')
+script(src='/js/jquery.flexslider.js')
+script(src='/js/bootstrap-datepicker.js')
+script(src='/js/owl.carousel.min.js')
+script(src='/js/custom-navigation.js')
+script(src='/js/custom-flex.js')
+script(src='/js/custom-owl.js')
+script(src='/js/custom-date-picker.js')
+script(src='/js/custom-video.js')
+script(src='/js/popup-ad.js')
+// Page Scripts Ends
