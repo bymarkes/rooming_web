@@ -1,3 +1,4 @@
+var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 var URL = "http://localhost/rooming_api/public/api/";
 
 

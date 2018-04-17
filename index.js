@@ -10,7 +10,7 @@ app.use(express.static('public'));
 
 app.get('/', function(req,res){
     var r = roomingApi.getAllRoom();
-    res.render(__dirname+'/views/index.html');
+    res.sendFile(__dirname+'/views/index.html');
 });
 
 app.get('/login', function(req,res){
