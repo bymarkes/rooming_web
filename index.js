@@ -7,26 +7,31 @@ var roomingApi = require('./rooming');
 app.use(bodyParser.json({ type: 'application/json'}));
 
 app.use(express.static('public'));
+app.set('view engine', 'pug');
+app.set('views','./views');
 
 app.get('/', function(req,res){
-    var r = roomingApi.getAllRoom();
-    res.sendFile(__dirname+'/views/index.html');
+    res.render('index');
 });
 
 app.get('/login', function(req,res){
-    res.sendFile(__dirname+'/views/login.html');
+    res.render('login');
 });
 
 app.get('/categories', function(req,res){
-    res.sendFile(__dirname+'/views/categories.html');
+    res.render('categories');
 });
 
 app.get('/register', function(req,res){
-    res.sendFile(__dirname+'/views/register.html');
+    res.render('register');
 });
 
 app.get('/plantilla', function(req,res){
-    res.sendFile(__dirname+'/views/plantilla.html');
+    res.render('plantilla');
+});
+
+app.get('/rooms', function(req,res){
+    res.render('room');
 });
 
 app.get('/profile', function(req,res){

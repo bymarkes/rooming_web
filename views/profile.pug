@@ -1,0 +1,255 @@
+doctype html
+head
+  title Dades Perfil
+  meta(charset='utf-8')
+  meta(name='viewport', content='width=device-width,initial-scale=1')
+  link(rel='icon', href='/images/favicon.png', type='image/x-icon')
+  // Google Fonts
+  link(href='https://fonts.googleapis.com/css?family=Lato:300,300i,400,400i,700,700i,900,900i%7CMerriweather:300,300i,400,400i,700,700i,900,900i', rel='stylesheet')
+  // Bootstrap Stylesheet
+  link(rel='stylesheet', href='/css/bootstrap.min.css')
+  // Font Awesome Stylesheet
+  link(rel='stylesheet', href='/css/font-awesome.min.css')
+  // Custom Stylesheets
+  link(rel='stylesheet', href='/css/style.css')
+  link#cpswitch(rel='stylesheet', href='/css/orange.css')
+  link(rel='stylesheet', href='/css/responsive.css')
+  // Owl Carousel Stylesheet
+  link(rel='stylesheet', href='/css/owl.carousel.css')
+  link(rel='stylesheet', href='/css/owl.theme.css')
+  // Flex Slider Stylesheet
+  link(rel='stylesheet', href='/css/flexslider.css', type='text/css')
+  // Date-Picker Stylesheet
+  link(rel='stylesheet', href='/css/datepicker.css')
+  // Magnific Gallery
+  link(rel='stylesheet', href='/css/magnific-popup.css')
+  // Color Panel
+  link(rel='stylesheet', href='/css/jquery.colorpanel.css')
+// ====== LOADER =====
+.loader
+// ============= TOP-BAR ===========
+#top-bar.tb-text-white
+  .container
+    .row
+      .col-xs-12.col-sm-6.col-md-6.col-lg-6
+      // end columns
+      .col-xs-12.col-sm-6.col-md-6.col-lg-6
+        #links
+          ul.list-unstyled.list-inline
+            li
+              a(href='/login')
+                span
+                  i.fa.fa-lock
+                | Login
+            li
+              a(href='/register')
+                span
+                  i.fa.fa-plus
+                | Sign Up
+        // end links
+      // end columns
+    // end row
+  // end container
+// end top-bar
+nav#mynavbar-1.navbar.navbar-default.main-navbar.navbar-custom.navbar-white
+  .container
+    .navbar-header
+      button#menu-button.navbar-toggle(type='button')
+        span.icon-bar
+        span.icon-bar
+        span.icon-bar
+      .header-search.hidden-lg
+        a.search-button(href='javascript:void(0)')
+          span
+            i.fa.fa-search
+      a.navbar-brand(href='index.html')
+        span
+          i.fa.fa-plane
+          | ROOM
+        | ING
+    // end navbar-header
+    #myNavbar1.collapse.navbar-collapse
+      ul.nav.navbar-nav.navbar-right
+        li.active
+          a(href='/')
+            | Inici
+            span
+        li.dropdown
+          a(href='/categories')
+            | Categories
+            span
+        li.dropdown
+          a(href='/rooms')
+            | Rooms
+            span
+    // end navbar collapse
+  // end container
+// end navbar
+section.innerpage-wrapper(style='background-color: #f1f2f2;')
+  #login.innerpage-section-padding
+    .container
+      .page-heading
+        h2 Perfil
+        hr.heading-line
+        .row
+          .col-sm-12(style='margin-top: 30px;')
+            .flex-content
+              #divEdit.custom-form.custom-form-fields(style='background-color: #fafafa;')
+                .row
+                  .col-sm-6
+                    .form-group
+                      input#nom.form-control(type='text', placeholder='Nom', disabled='', required='')
+                      span
+                        i.fa.fa-user
+                  .col-sm-6
+                    .form-group
+                      input#cognom.form-control(type='text', placeholder='Cognom', disabled='', required='')
+                      span
+                        i.fa.fa-user
+                .form-group
+                  input#user.form-control(type='text', placeholder='Nom usuari', disabled='', required='')
+                  span
+                    i.fa.fa-user
+                .form-group
+                  input#mail.form-control(type='email', placeholder='Correu Electronic', disabled='', required='')
+                  span
+                    i.fa.fa-envelope
+                .form-group
+                  input#dataNaix.form-control.dpd1(type='text', placeholder='Any neixament', disabled='', required='')
+                  span
+                  i.fa.fa-calendar
+                .form-group
+                  input#poblacio.form-control(type='text', placeholder='Població', disabled='', required='')
+                  span
+                    i.fa.fa-map-marker
+                button.btn(data-toggle='modal', data-target='#edit-profile') Canvia Contrasenya
+                button#editbtn.btn.btn-orange.btn-block(style='margin-top: 35px;') Edita
+                // end other-links
+              // end custom-form
+            // end form-content
+          // end columns
+        // end row
+      // end container
+    // end login
+#edit-profile.modal.custom-modal.fade(role='dialog', style='display: none;')
+  .modal-dialog
+    .modal-content
+      .modal-header
+        button.close(type='button', data-dismiss='modal') &times;
+        h3.modal-title Canvia Contrasenya
+      // end modal-header
+      .modal-body
+        form
+          .form-group
+            input.form-control(type='password', placeholder='Nova Contrasenya')
+          // end form-group
+          .form-group
+            input.form-control(type='password', placeholder='Confirma Contrasenya')
+          // end form-group
+          button.btn.btn-orange.btn-block Guarda
+      // end modal-bpdy
+    // end modal-content
+  // end modal-dialog
+// ======================= FOOTER =======================
+section#footer.ftr-heading-o.ftr-heading-mgn-1
+  #footer-bottom.ftr-bot-black
+    .container
+      .row
+        #copyright.col-xs-12.col-sm-6.col-md-6.col-lg-6
+          p
+            | &copy; 2017 
+            a(href='#') Rooming
+            | . All rights reserved.
+        // end columns
+        #terms.col-xs-12.col-sm-6.col-md-6.col-lg-6
+          ul.list-unstyled.list-inline
+            li
+              a(href='/terms') Termes i Condicions
+            li
+              a(href='/polices') Politica de Privacitat
+            li
+              a(href='/contact') | Contacte 
+        // end columns
+      // end row
+    // end container
+  // end footer-bottom
+// end footer
+// Script editbtn
+script.
+  var editBtn = document.getElementById("editbtn").addEventListener('click',function (){
+  //Eliminem El edit button
+  var editBtn = document.getElementById("editbtn");
+  editBtn.remove();
+  //Botons del Formulari
+  var cancelBtn = document.createElement("button");
+  var confirmBtn = document.createElement("button");
+  cancelBtn.setAttribute("class", "btn btn-black btn-block");
+  confirmBtn.setAttribute("class", "btn btn-orange btn-block");
+  //Text Nodes
+  var nodeCancel = document.createTextNode("Cancela");
+  var nodeConfirm = document.createTextNode("Confirma");
+  cancelBtn.appendChild(nodeCancel);
+  confirmBtn.appendChild(nodeConfirm);
+  //Container Botons
+  var divBtns = document.createElement("div");
+  divBtns.setAttribute('class','row');
+  divBtns.setAttribute('style','margin-top:10px;');
+  //divBoto 1
+  var divcol1 = document.createElement("div");
+  divcol1.setAttribute('class','col-sm-6');
+  divcol1.appendChild(cancelBtn);
+  //divBoto 2
+  var divcol2 = document.createElement("div");
+  divcol2.setAttribute('class','col-sm-6');
+  divcol2.appendChild(confirmBtn);
+  //Append Botons
+  divBtns.appendChild(divcol1);
+  divBtns.appendChild(divcol2);
+  // //Boto Canvi Contrassenya
+  // var changePassbtn = document.createElement("button");
+  // changePassbtn.setAttribute('class','btn');
+  // changePassbtn.setAttribute('data-toggle','modal');
+  // changePassbtn.setAttribute('data-target','#edit-profile');
+  // //NodeText Botons
+  // var nodeBoto = document.createTextNode('Canvia Contrassenya');
+  // changePassbtn.appendChild(nodeBoto);
+  //Mostrem Contingut
+  var divEdit = document.getElementById("divEdit");
+  divEdit.appendChild(divBtns);
+  //Habilitem tots els inputs del Formulari
+  document.getElementById("nom").disabled = false;
+  document.getElementById("cognom").disabled = false;
+  document.getElementById("user").disabled = false;
+  document.getElementById("mail").disabled = false;
+  document.getElementById("dataNaix").disabled = false;
+  document.getElementById("poblacio").disabled = false;
+  //Cancel Action
+  cancelBtn.addEventListener('click', function() {
+  //Esborrem botons Formulari
+  divBtns.remove();
+  //Crem boto editar de nou
+  divEdit.appendChild(editBtn);
+  //Deshabilitem inputs
+  document.getElementById("nom").disabled = true;
+  document.getElementById("cognom").disabled = true;
+  document.getElementById("user").disabled = true;
+  document.getElementById("mail").disabled = true;
+  document.getElementById("dataNaix").disabled = true;
+  document.getElementById("poblacio").disabled = true;
+  });
+  });
+// Page Scripts Starts
+script(src='/js/jquery.min.js')
+script(src='/js/jquery.colorpanel.js')
+script(src='/js/jquery.magnific-popup.min.js')
+script(src='/js/bootstrap.min.js')
+script(src='/js/jquery.flexslider.js')
+script(src='/js/bootstrap-datepicker.js')
+script(src='/js/owl.carousel.min.js')
+script(src='/js/custom-navigation.js')
+script(src='/js/custom-flex.js')
+script(src='/js/custom-owl.js')
+script(src='/js/custom-date-picker.js')
+script(src='/js/custom-video.js')
+script(src='/js/popup-ad.js')
+// Page Scripts Ends
