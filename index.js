@@ -35,7 +35,7 @@ app.get('/rooms', function(req,res){
 });
 
 app.get('/profile', function(req,res){
-    res.sendFile(__dirname+'/views/profile.html');
+    res.render('profile');
 });
 
 app.listen(3000);
