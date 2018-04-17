@@ -11,12 +11,7 @@ app.set('view engine', 'pug');
 app.set('views','./views');
 
 app.get('/', function(req,res){
-<<<<<<< HEAD
     res.render('index');
-=======
-    var r = roomingApi.getAllRoom();
-    res.render(__dirname+'/views/index.html');
->>>>>>> bymarkes/master
 });
 
 app.get('/login', function(req,res){
