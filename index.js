@@ -11,7 +11,9 @@ app.set('view engine', 'pug');
 app.set('views','./views');
 
 app.get('/', function(req,res){
-    res.render('index');
+    var r = roomingApi.getAllRoom();
+    var a = bodyParser.parse(r);
+    res.render('index', {'hola':a});
 });
 
 app.get('/login', function(req,res){
