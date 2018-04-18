@@ -1,6 +1,6 @@
 doctype html
 head
-  title #{categoria.Titol}
+  title ROOMS
   meta(charset='utf-8')
   meta(name='viewport', content='width=device-width,initial-scale=1')
   link(rel='icon', href='/images/favicon.png', type='image/x-icon')
@@ -78,58 +78,48 @@ nav#mynavbar-1.navbar.navbar-default.main-navbar.navbar-custom.navbar-white
           a(href='/categories')
             | Categories
             span
-        li.dropdown
+        li.active
           a(href='/rooms')
             | Rooms
             span
     // end navbar collapse
   // end container
 // end navbar
-// ==== INNERPAGE-WRAPPER =====
+// ===== INNERPAGE-WRAPPER ====
 section.innerpage-wrapper(style='background-color: #f1f2f2;')
-  #travel-guide.innerpage-section-padding
+  #team-page.innerpage-section-padding
     .container
       .row
-        .col-xs-12.col-sm-12.col-md-12.col-lg-12.content-side
-          .detail-tabs
-            h3 #{categoria.Titol}
-            .tab-content
-              img.img-responsive(src='/images/'+categoria.Titol+'.png', alt='categoria-img')
-              .tab-text
-                h3 Descripció 
-                .table-responsive
-                  table.table.table-striped
-                    tbody
-                      tr
-                        td
-                          p #{categoria.Descripcio}
-                // end table-responsive
-              // end tab-text
-            // end tab-content
-          // end detail-tabs
+        .col-sm-12
+          .page-heading
+            h2 Room Scapes
+            hr.heading-line
+          // end page-heading
+          .row
+            each room in rooms
+              .col-xs-12.col-sm-6.col-md-4.col-lg-4
+                .member-block-2.text-center(style='background-color: white;')
+                  .member-img-2
+                    each foto in fotos
+                      if foto.room_id == room.id && foto.principal
+                        img.img-responsive(src=foto.URL, alt='roomscape-img')
+                    .member-name-2
+                      h3 #{room.Nom}
+                    // end member-name-2
+                  // end member-img-2
+                  .member-info-2
+                    p
+                      |#{room.Descripcio}
+                    a.myButton(href='#') Veure
+                  // end member-info-2
+                // end member-block-2
+              // end columns
+          // end row
         // end columns
       // end row
     // end container
-  // end travel-guide
+  // end team-page
 // end innerpage-wrapper
-// ======================= BEST FEATURES =====================
-#popular-destinations.banner-padding(style='background-color: #fafafa;')
-  .container
-    .row
-      .col-xs-12.col-sm-12
-        .destination-lists
-          .col-sm-6.col-md-3
-            ul.list-unstyled
-              each room in rooms
-                li
-                  a(href='room/'+room.id) #{room.Nom}
-                  p Barcelona
-          // end columns  
-        // end destination-lists
-      // end columns
-    // end row
-  // end container
-// end categoria-trips
 // ======================= FOOTER =======================
 section#footer.ftr-heading-o.ftr-heading-mgn-1
   #footer-bottom.ftr-bot-black

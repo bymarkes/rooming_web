@@ -96,96 +96,22 @@ section.innerpage-wrapper(style='background-color: #f1f2f2;')
             hr.heading-line
           // end page-heading
           .row
-            .col-xs-12.col-sm-6.col-md-4.col-lg-4
-              .member-block-2.text-center(style='background-color: white;')
-                .member-img-2
-                  img.img-responsive(src='/images/fantasia.png', alt='member-img')
-                  .member-name-2
-                    h3 Fantasia
-                  // end member-name-2
-                // end member-img-2
-                .member-info-2
-                  p
-                    | Est&aacute;is en el manicomio de Barcelona. Su director, el Dr. Steinberg, hace experimentos ilegales con electroshock a los pacientes. En el transcurso del tiempo han ido desapareciendo pacientes y empleados... Vosotros sois pacientes del manicomio. &iquest;Podr&eacute;is escapar a tiempo?
-                  a.myButton(href='#') Veure
-                // end member-info-2
-              // end member-block-2
-            // end columns
-            .col-xs-12.col-sm-6.col-md-4.col-lg-4
-              .member-block-2.text-center(style='background-color: white;')
-                .member-img-2
-                  img.img-responsive(src='/images/detective.jpg', alt='member-img')
-                  .member-name-2
-                    h3 Detectius
-                  // end member-name-2
-                // end member-img-2
-                .member-info-2
-                  p
-                    | Est&aacute;is en el manicomio de Barcelona. Su director, el Dr. Steinberg, hace experimentos ilegales con electroshock a los pacientes. En el transcurso del tiempo han ido desapareciendo pacientes y empleados... Vosotros sois pacientes del manicomio. &iquest;Podr&eacute;is escapar a tiempo?
-                  a.myButton(href='#') Veure
-                // end member-info-2
-              // end member-block-2
-            // end columns
-            .col-xs-12.col-sm-6.col-md-4.col-lg-4
-              .member-block-2.text-center(style='background-color: white;')
-                .member-img-2
-                  img.img-responsive(src='/images/terror.png', alt='member-img')
-                  .member-name-2
-                    h3 Terror
-                  // end member-name-2
-                // end member-img-2
-                .member-info-2
-                  p
-                    | Est&aacute;is en el manicomio de Barcelona. Su director, el Dr. Steinberg, hace experimentos ilegales con electroshock a los pacientes. En el transcurso del tiempo han ido desapareciendo pacientes y empleados... Vosotros sois pacientes del manicomio. &iquest;Podr&eacute;is escapar a tiempo?
-                  a.myButton(href='#') Veure
-                // end member-info-2
-              // end member-block-2
-            // end columns
-            .col-xs-12.col-sm-6.col-md-4.col-lg-4
-              .member-block-2.text-center(style='background-color: white;')
-                .member-img-2
-                  img.img-responsive(src='/images/futuro.jpg', alt='member-img')
-                  .member-name-2
-                    h3 Futurista
-                  // end member-name-2
-                // end member-img-2
-                .member-info-2
-                  p
-                    | Est&aacute;is en el manicomio de Barcelona. Su director, el Dr. Steinberg, hace experimentos ilegales con electroshock a los pacientes. En el transcurso del tiempo han ido desapareciendo pacientes y empleados... Vosotros sois pacientes del manicomio. &iquest;Podr&eacute;is escapar a tiempo?
-                  a.myButton(href='#') Veure
-                // end member-info-2
-              // end member-block-2
-            // end columns
-            .col-xs-12.col-sm-6.col-md-4.col-lg-4
-              .member-block-2.text-center(style='background-color: white;')
-                .member-img-2
-                  img.img-responsive(src='/images/histori.jpeg', alt='member-img')
-                  .member-name-2
-                    h3 Hist&ograve;rica
-                  // end member-name-2
-                // end member-img-2
-                .member-info-2
-                  p
-                    | Est&aacute;is en el manicomio de Barcelona. Su director, el Dr. Steinberg, hace experimentos ilegales con electroshock a los pacientes. En el transcurso del tiempo han ido desapareciendo pacientes y empleados... Vosotros sois pacientes del manicomio. &iquest;Podr&eacute;is escapar a tiempo?
-                  a.myButton(href='#') Veure
-                // end member-info-2
-              // end member-block-2
-            // end columns
-            .col-xs-12.col-sm-6.col-md-4.col-lg-4
-              .member-block-2.text-center(style='background-color: white;')
-                .member-img-2
-                  img.img-responsive(src='/images/infancia.jpg', alt='member-img')
-                  .member-name-2
-                    h3 Infantil
-                  // end member-name-2
-                // end member-img-2
-                .member-info-2
-                  p
-                    | Est&aacute;is en el manicomio de Barcelona. Su director, el Dr. Steinberg, hace experimentos ilegales con electroshock a los pacientes. En el transcurso del tiempo han ido desapareciendo pacientes y empleados... Vosotros sois pacientes del manicomio. &iquest;Podr&eacute;is escapar a tiempo?
-                  a.myButton(href='#') Veure
-                // end member-info-2
-              // end member-block-2
-            // end columns
+            each categoria in categories
+              .col-xs-12.col-sm-6.col-md-4.col-lg-4
+                .member-block-2.text-center(style='background-color: white;')
+                  .member-img-2
+                    img.img-responsive(src='/images/'+categoria.Titol+'.png', alt='member-img')
+                    .member-name-2
+                      h3 #{categoria.Titol}
+                    // end member-name-2
+                  // end member-img-2
+                  .member-info-2
+                    p
+                      |#{categoria.Descripcio}
+                    a.myButton(href='/categories/'+categoria.id) Veure
+                  // end member-info-2
+                // end member-block-2
+              // end columns
           // end row
         // end columns
       // end row
