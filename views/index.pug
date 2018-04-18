@@ -176,7 +176,9 @@ section#hotel-offers.section-padding
                 .main-img
                   a(href='#')
                     // IMATGE
-                    img.img-responsive(src='images/JurassicLand.jpg', alt='jurassicland-img')
+                    each foto in fotos
+                      if foto.room_id == room.id && foto.principal
+                        img.img-responsive(src=foto.URL, alt='roomscape-img')
                   .main-mask
                     ul.list-unstyled.list-inline.offer-price-1
                       li.price

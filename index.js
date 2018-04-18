@@ -12,7 +12,8 @@ app.set('views','./views');
 
 app.get('/', function(req,res){
     var r = roomingApi.getAllRoom();
-    res.render('index', {'rooms':r});
+    var f = roomingApi.getAllFoto();
+    res.render('index', {'rooms':r, 'fotos':f});
 });
 
 app.get('/login', function(req,res){
