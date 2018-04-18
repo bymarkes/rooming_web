@@ -336,20 +336,22 @@ function getEstablimentRooms(id){ // GET Rooms from Establiment
 function getAllFoto(){ // GET ALL FOTO 
 
 	var httpRequest = new XMLHttpRequest();
+	var result;
 
 	httpRequest.onreadystatechange = function (){
 
 		if (httpRequest.readyState == 4 && httpRequest.status == 200 ) {
 
 			var jsonParsed = JSON.parse(httpRequest.responseText);
-			return jsonParsed;
+			result = jsonParsed;
 		}
 
 	};
 
-	httpRequest.open('GET', URL+"foto", true);
+	httpRequest.open('GET', URL+"foto", false);
 
 	httpRequest.send();
+	return result;
 }
 
 function postFoto(JSON){ // POST FOTO 
