@@ -440,21 +440,20 @@ function deleteFoto(id){ // DELETE FOTO show
 /** ROOM **/
 
 function getAllRoom(){ //GET ALL ROOMS
-	console.log("GET ALL ROOM");
 	var httpRequest = new XMLHttpRequest();
-
+	var result;
 	httpRequest.onreadystatechange = function (){
 
 		if (httpRequest.readyState == 4 && httpRequest.status == 200 ) {
-
-			var jsonParsed = JSON.parse(httpRequest.responseText);			
-			return jsonParsed;
+			var jsonParsed = JSON.parse(httpRequest.responseText);	
+			result = jsonParsed;
 		}	
 	};
 
-	httpRequest.open('GET', URL+"room", true);
+	httpRequest.open('GET', URL+"room", false);
 
-	httpRequest.send();
+	httpRequest.send();	
+	return result;	
 }
 
 function postRoom(){ //POST ROOM
