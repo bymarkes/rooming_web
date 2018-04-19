@@ -3,6 +3,7 @@ var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
 var roomingApi = require('./rooming');
+var hash = require('./hash');
 
 app.use(bodyParser.json({ type: 'application/json'}));
 
@@ -29,12 +30,19 @@ app.get('/login', function(req,res){
 app.post('/login', function(req, res){
     var nick = req.body.Nick;
     var passNick = req.body.Pass;
-    console.log('nick: '+nick);
-    console.log('pass: '+passNick);
+
+    var usuari = roomingApi.getUsuari(nick);    
+
+    var passHash = hash.onlyHashPass(passNick);
     
-    var usuari = roomingApi.getUsuari(nick);
-    console.log(usuari);
+    var passBD = hash.removeSalt(usuari.Contrasenya);
     
+    if (passHash == passBD) {
+        console.log("ASI ES");
+    }else{
+        console.log("NOOOOOOOOO , ASI NO ES");
+    }
+   
     res.render('login');
 });
 
