@@ -32,18 +32,21 @@ app.post('/login', function(req, res){
     var passNick = req.body.Pass;
 
     var usuari = roomingApi.getUsuari(nick);    
+    if (usuari){
+        var passHash = hash.onlyHashPass(passNick);
+        var passBD = hash.removeSalt(usuari.Contrasenya);
 
-    var passHash = hash.onlyHashPass(passNick);
-    
-    var passBD = hash.removeSalt(usuari.Contrasenya);
-    
-    if (passHash == passBD) {
-        console.log("ASI ES");
+        if (passHash == passBD) {
+            var date = new Date();
+            roomingApi.postToken({usuari_id:usuari.id, creat:date});
+            res.render('profile', {'usuari':usuari});
+        }else{
+            res.render('login', {'errorLogin':true});        
+        }    
     }else{
-        console.log("NOOOOOOOOO , ASI NO ES");
+        res.render('login', {'errorLogin':true});   
     }
    
-    res.render('login');
 });
 
 app.get('/categories', function(req,res){

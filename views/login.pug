@@ -92,6 +92,9 @@ section.innerpage-wrapper(style='background-color: #f1f2f2;')
       .row
         .col-sm-3
         .col-sm-6
+          if errorLogin
+            .alert.alert-danger(role='alert')
+              | Aquest Usuari o Contrasenya no és correcte.
           .flex-content
             .custom-form.custom-form-fields(style='background-color: #fafafa;')
               h3 INICIA SESSI&Oacute;
