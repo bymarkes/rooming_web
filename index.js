@@ -10,6 +10,12 @@ app.use(express.static('public'));
 app.set('view engine', 'pug');
 app.set('views','./views');
 
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
+
+app.use(bodyParser.json());
+
 app.get('/', function(req,res){
     var r = roomingApi.getAllRoom();
     var f = roomingApi.getAllFoto();
@@ -17,6 +23,18 @@ app.get('/', function(req,res){
 });
 
 app.get('/login', function(req,res){
+    res.render('login');
+});
+
+app.post('/login', function(req, res){
+    var nick = req.body.Nick;
+    var passNick = req.body.Pass;
+    console.log('nick: '+nick);
+    console.log('pass: '+passNick);
+    
+    var usuari = roomingApi.getUsuari(nick);
+    console.log(usuari);
+    
     res.render('login');
 });
 

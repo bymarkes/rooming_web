@@ -797,7 +797,32 @@ function putRoomHorari(idRoom, idHorari, JSON){ //PUT id HORARI from ROOM
 	return result;
 }
 
-function getRoomHorari(idRoom, idHorari){ //DELETE id HORARI from ROOM
+function deleteRoomHorari(idRoom, idHorari){ //DELETE id HORARI from ROOM
+
+	var httpRequest = new XMLHttpRequest();
+	var result;
+
+	httpRequest.onreadystatechange = function (){
+
+		if (httpRequest.readyState == 4 && httpRequest.status == 204 ) {
+
+			var jsonParsed = JSON.parse(httpRequest.responseText);
+			result = jsonParsed;
+		}
+
+	};
+
+	httpRequest.open('DELETE', URL+"room/"+idRoom+"/horari/"+idHorari, false);
+
+	httpRequest.send();
+	return result;
+}
+
+/** END ROOM **/
+
+
+/* USUARI*/
+function getUsuari(nick){ // GET Usuari 
 
 	var httpRequest = new XMLHttpRequest();
 	var result;
@@ -812,13 +837,77 @@ function getRoomHorari(idRoom, idHorari){ //DELETE id HORARI from ROOM
 
 	};
 
-	httpRequest.open('DELETE', URL+"room/"+id+"/horari/"+idHorari, false);
+	httpRequest.open('GET', URL+"usuari/"+nick, false);
 
 	httpRequest.send();
 	return result;
 }
 
-/** END ROOM **/
+function postUsuari(JSON){ // GET Usuari 
+
+	var httpRequest = new XMLHttpRequest();
+	var result;
+
+	httpRequest.onreadystatechange = function (){
+
+		if (httpRequest.readyState == 4 && httpRequest.status == 201 ) {
+
+			var jsonParsed = JSON.parse(httpRequest.responseText);
+			result = jsonParsed;
+		}
+
+	};
+
+	httpRequest.open('POST', URL+"usuari", false);
+
+	httpRequest.send(JSON);
+	return result;
+}
+
+function putUsuari(nick, JSON){ // GET Usuari 
+
+	var httpRequest = new XMLHttpRequest();
+	var result;
+
+	httpRequest.onreadystatechange = function (){
+
+		if (httpRequest.readyState == 4 && httpRequest.status == 200 ) {
+
+			var jsonParsed = JSON.parse(httpRequest.responseText);
+			result = jsonParsed;
+		}
+
+	};
+
+	httpRequest.open('PUT', URL+"usuari/"+nick, false);
+
+	httpRequest.send(JSON);
+	return result;
+}
+
+function deleteUsuari(nick){ // GET Usuari 
+
+	var httpRequest = new XMLHttpRequest();
+	var result;
+
+	httpRequest.onreadystatechange = function (){
+
+		if (httpRequest.readyState == 4 && httpRequest.status == 204 ) {
+
+			var jsonParsed = JSON.parse(httpRequest.responseText);
+			result = jsonParsed;
+		}
+
+	};
+
+	httpRequest.open('DELETE', URL+"usuari/"+nick, false);
+
+	httpRequest.send();
+	return result;
+}
+
+
+/* */
 
 module.exports = {
 	postCategoria,
@@ -858,7 +947,11 @@ module.exports = {
 	postRoomHorari,
 	getRoomHorari,
 	putRoomHorari,
-	getRoomHorari
+	deleteRoomHorari,
+	getUsuari,
+	postUsuari,
+	putUsuari,
+	deleteUsuari
 };
 
 

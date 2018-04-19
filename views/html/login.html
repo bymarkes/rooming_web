@@ -102,15 +102,15 @@
                             <div class="flex-content">
                                 <div class="custom-form custom-form-fields" style="background-color: #fafafa;">
                                     <h3>INICIA SESSIÓ</h3>
-                                    <form>
+                                    <form action="/login" method="POST">
                                             
                                         <div class="form-group">
-                                             <input type="text" class="form-control" placeholder="Nom d'usuari"  required/>
+                                             <input type="text" class="form-control" name="Nick" placeholder="Nom d'usuari"  required/>
                                              <span><i class="fa fa-user"></i></span>
                                         </div>
                                         
                                         <div class="form-group">
-                                             <input type="password" class="form-control" placeholder="Contrasenya"  required/>
+                                             <input type="password" class="form-control" name="Pass" placeholder="Contrasenya"  required/>
                                              <span><i class="fa fa-lock"></i></span>
                                         </div>
                                         
@@ -118,7 +118,7 @@
                                              <label><input type="checkbox">Recorda'm</label>
                                         </div>
                                         
-                                        <button class="btn btn-orange btn-block">Inicia Sessió</button>
+                                        <input class="btn btn-orange btn-block" type="submit"/>Inicia Sessió
                                     </form>
                                     
                                     <div class="other-links">

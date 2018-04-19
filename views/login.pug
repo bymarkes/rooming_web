@@ -37,12 +37,12 @@ head
         #links
           ul.list-unstyled.list-inline
             li
-              a(href='/login.html')
+              a(href='/login')
                 span
                   i.fa.fa-lock
                 | Login
             li
-              a(href='register.html')
+              a(href='/register')
                 span
                   i.fa.fa-plus
                 | Sign Up
@@ -95,20 +95,20 @@ section.innerpage-wrapper(style='background-color: #f1f2f2;')
           .flex-content
             .custom-form.custom-form-fields(style='background-color: #fafafa;')
               h3 INICIA SESSI&Oacute;
-              form
+              form(action='/login', method='POST')
                 .form-group
-                  input.form-control(type='text', placeholder="Nom d'usuari", required='')
+                  input.form-control(type='text', name="Nick" placeholder="Nom d'usuari", required='')
                   span
                     i.fa.fa-user
                 .form-group
-                  input.form-control(type='password', placeholder='Contrasenya', required='')
+                  input.form-control(type='password', name="Pass" placeholder='Contrasenya', required='')
                   span
                     i.fa.fa-lock
                 .checkbox
                   label
                     input(type='checkbox')
                     | Recorda&apos;m
-                button.btn.btn-orange.btn-block Inicia Sessi&oacute;
+                input.btn.btn-orange.btn-block(type='submit', value="INICIAR") 
               .other-links
                 p.link-line
                   | Ets nou per aqu&iacute;? 
