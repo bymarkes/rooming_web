@@ -38,7 +38,7 @@ app.post('/login', function(req, res){
 
         if (passHash == passBD) {
             var date = new Date();
-            roomingApi.postToken({usuari_id:usuari.id, creat:date});
+            roomingApi.postToken({"usuari_id":usuari.id, "creat":date});
             res.render('profile', {'usuari':usuari});
         }else{
             res.render('login', {'errorLogin':true});        
