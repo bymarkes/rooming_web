@@ -68,10 +68,16 @@ app.get('/categories/:id', function(req,res){
     var r = roomingApi.getCategoriaRoom(req.params.id);    
     res.render('categoria',{'categoria':c, 'rooms':r});
 });
-
 app.get('/register', function(req,res){
     res.render('register');
 });
+
+app.post('/register', function(req,res){
+    roomingApi.postUsuari(req.body);
+    res.render('login');
+});
+
+
 
 app.get('/plantilla', function(req,res){
     res.render('plantilla');

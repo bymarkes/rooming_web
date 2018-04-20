@@ -97,61 +97,59 @@
                     <div class="row">
                       <div class=" col-sm-3" >
                       </div>
-                        <div class=" col-sm-6">
-                        
+                        <div class=" col-sm-6">                        
                             <div class="flex-content">
                                 <div class="custom-form custom-form-fields" style="background-color: #fafafa;">
                                     <h3>Crea el teu usuari</h3>
                                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                                    <form>
-                                            
+                                    <form id="registerForm" method="post" action="/register">                                            
                                         <div class="row">
                                             <div class="col-sm-6">
                                                 <div class="form-group">
-                                                    <input type="text" class="form-control" placeholder="Nom"  required/>
+                                                    <input type="text" class="form-control" placeholder="Nom" name='Nom' required/>
                                                     <span><i class="fa fa-user"></i></span>
                                                 </div>
                                             </div>
                                             <div class="col-sm-6">
                                                 <div class="form-group">
-                                                    <input type="text" class="form-control" placeholder="Cognom"  required/>
+                                                    <input type="text" class="form-control" placeholder="Cognom" name='Cognom' required/>
                                                     <span><i class="fa fa-user"></i></span>
                                                 </div>        
                                             </div>
                                         </div>
 
                                         <div class="form-group">
-                                            <input type="text" class="form-control" placeholder="Nom usuari"  required/>
+                                            <input type="text" class="form-control" placeholder="Nom usuari" name='User' required/>
                                             <span><i class="fa fa-user"></i></span>
                                         </div>
         
                                         <div class="form-group">
-                                             <input type="email" class="form-control" placeholder="Correu Electronic"  required/>
+                                             <input type="email" class="form-control" placeholder="Correu Electronic" name='Mail' required/>
                                              <span><i class="fa fa-envelope"></i></span>
                                         </div>
 
                                         <div class="form-group">
-                                                <input type="text" class="form-control dpd1" placeholder="Any neixament" required/>
+                                                <input type="text" class="form-control dpd1" placeholder="Any neixament" name='DataNaix' required/>
                                                 <span></span><i class="fa fa-calendar"></i></span>      
                                         </div>
 
 
                                         <div class="form-group">
-                                            <input type="text" class="form-control" placeholder="Població"  required/>
+                                            <input type="text" class="form-control" placeholder="Població" name='Pob' required/>
                                             <span><i class="fa fa-map-marker"></i></span>
                                         </div>
                                             
                                         <div class="form-group">
-                                             <input type="password" class="form-control" placeholder="Contrasenya"  required/>
+                                             <input id="password" type="password" class="form-control" placeholder="Contrasenya" name='Password' required/>
                                              <span><i class="fa fa-lock"></i></span>
                                         </div>
         
                                         <div class="form-group">
-                                             <input type="password" class="form-control" placeholder="Confirma Contrasenya"  required/>
+                                             <input id="confirm_password" type="password" class="form-control" placeholder="Confirma Contrasenya" required/>
                                              <span><i class="fa fa-lock"></i></span>
                                         </div>
                                         
-                                        <button class="btn btn-orange btn-block">Crear Compte</button>
+                                        <button id="submitBtn" type="submit" class="btn btn-orange btn-block">Crear Compte</button>
                                     </form>
                                     
                                     <div class="other-links">
@@ -188,9 +186,12 @@
                 </div><!-- end container -->
             </div><!-- end footer-bottom -->
             
-        </section><!-- end footer -->       
+        </section><!-- end footer -->
+
+        
                                 
         <!-- Page Scripts Starts -->
+        
         <script src="/js/jquery.min.js"></script>
         <script src="/js/jquery.colorpanel.js"></script>
         <script src="/js/jquery.magnific-popup.min.js"></script>
@@ -205,6 +206,65 @@
         <script src="/js/custom-video.js"></script>
         <script src="/js/popup-ad.js"></script>
         <!-- Page Scripts Ends -->
+
+        <script>
+
+            $('submitBtn').submit(function(){
+                if (pass.value() == confirm.value()){
+                    alert('ok');
+                    submitBtn.setAttribute('disabled','false');
+                }else{
+                    alert('nooo');
+                }
+            });
+                           
+            // var pass = document.getElementById('password');
+            // var confPass = document.getElementById('confirm_password');
+            
+            
+        </script>
+            
+        <script>
+            $('#password, #confirm_password').on('keyup', function () {
+                if ($('#password').val() == $('#confirm_password').val()) {
+
+                $('#password').css('border', 'solid 2px green');
+                $('#confirm_password').css('border', 'solid 2px green');
+
+                } else{
+
+                $('#password').css('border', 'solid 2px red');
+                $('#confirm_password').css('border', 'solid 2px red');
+                
+                }
+            });
+
+            $('#password, #confirm_password').on('keyup', function () {
+                if ($('#password').val() == '') {
+                    $('#password').css('border', 'none');      
+                }
+
+                if ($('#confirm_password').val() == ''){
+                    $('#confirm_password').css('border', 'none');
+                }
+            });
+
+            function checkForTheCondition(){
+                
+                var pass = document.getElementById('password');
+                var confPass = document.getElementById('confirm_password');
+
+                alert('ok');
+
+                if (pass.value() == confirm.value()){
+                    alert('ok');
+                    return true;
+                }else{
+                    alert('nooo');
+                    return false;
+                }
+            }
+        </script>
         
     </body>
 </html>

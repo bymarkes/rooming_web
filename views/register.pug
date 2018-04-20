@@ -1,6 +1,6 @@
 doctype html
 head
-  title Crea un Compte
+  title ROOMING
   meta(charset='utf-8')
   meta(name='viewport', content='width=device-width,initial-scale=1')
   link(rel='icon', href='/images/favicon.png', type='image/x-icon')
@@ -97,43 +97,43 @@ section.innerpage-wrapper(style='background-color: #f1f2f2;')
               h3 Crea el teu usuari
               p
                 | Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-              form
+              form#registerForm
                 .row
                   .col-sm-6
                     .form-group
-                      input.form-control(type='text', placeholder='Nom', required='')
+                      input.form-control(type='text', placeholder='Nom', name='Nom',value='Pau', required='')
                       span
                         i.fa.fa-user
                   .col-sm-6
                     .form-group
-                      input.form-control(type='text', placeholder='Cognom', required='')
+                      input.form-control(type='text', placeholder='Cognom', name='Cognom',value='Pau', required='')
                       span
                         i.fa.fa-user
                 .form-group
-                  input.form-control(type='text', placeholder='Nom usuari', required='')
+                  input.form-control(type='text', placeholder='Nom usuari', name='Nick',value='Pau', required='')
                   span
                     i.fa.fa-user
                 .form-group
-                  input.form-control(type='email', placeholder='Correu Electronic', required='')
+                  input.form-control(type='email', placeholder='Correu Electronic', name='Email',value='Pau@sde', required='')
                   span
                     i.fa.fa-envelope
                 .form-group
-                  input.form-control.dpd1(type='text', placeholder='Any neixament', required='')
+                  input.form-control.dpd1(type='text', placeholder='Any neixament', name='AnyNaixement',value='2000-02-22', required='')
                   span
                   i.fa.fa-calendar
                 .form-group
-                  input.form-control(type='text', placeholder='Població', required='')
+                  input.form-control(type='text', placeholder='Població', name='Poblacio',value='Pau', required='')
                   span
                     i.fa.fa-map-marker
                 .form-group
-                  input.form-control(type='password', placeholder='Contrasenya', required='')
+                  input#password.form-control(type='password', placeholder='Contrasenya', name='Contrasenya',value='Pau', required='')
                   span
                     i.fa.fa-lock
                 .form-group
-                  input.form-control(type='password', placeholder='Confirma Contrasenya', required='')
+                  input#confirm_password.form-control(type='password', placeholder='Confirma Contrasenya',value='Pau', required='')
                   span
-                    i.fa.fa-lock
-                button.btn.btn-orange.btn-block Crear Compte
+                    i.fa.fa-lock                
+                button#submitBtn.btn.btn-orange.btn-block(type='submit') Crear Compte
               .other-links
                 p.link-line
                   | Ja tens usuari? 
@@ -185,3 +185,37 @@ script(src='/js/custom-date-picker.js')
 script(src='/js/custom-video.js')
 script(src='/js/popup-ad.js')
 // Page Scripts Ends
+script.
+  $(document).ready(function(){
+    console.log('ready');
+    $('#registerForm').submit(function(){
+      var pass = $('#password').val();
+      var confPass = $('#confirm_password').val();
+      if (pass == confPass){
+        $('#registerForm').attr('action','/register');
+        $('#registerForm').attr('method','post');
+      }else{
+        alert('Les contrasenyes han de coincidir!');
+        return false;
+      }
+    });
+  });
+  
+script.
+  $('#password, #confirm_password').on('keyup', function () {
+  if ($('#password').val() == $('#confirm_password').val()) {
+  $('#password').css('border', 'solid 2px green');
+  $('#confirm_password').css('border', 'solid 2px green');
+  } else{
+  $('#password').css('border', 'solid 2px red');
+  $('#confirm_password').css('border', 'solid 2px red');
+  }
+  });
+  $('#password, #confirm_password').on('keyup', function () {
+  if ($('#password').val() == '') {
+  $('#password').css('border', 'none');
+  }
+  if ($('#confirm_password').val() == ''){
+  $('#confirm_password').css('border', 'none');
+  }
+  });
