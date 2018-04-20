@@ -3,6 +3,7 @@ var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
 var roomingApi = require('./rooming');
+var hash = require('./hash');
 
 app.use(bodyParser.json({ type: 'application/json'}));
 
@@ -29,13 +30,23 @@ app.get('/login', function(req,res){
 app.post('/login', function(req, res){
     var nick = req.body.Nick;
     var passNick = req.body.Pass;
-    console.log('nick: '+nick);
-    console.log('pass: '+passNick);
-    
-    var usuari = roomingApi.getUsuari(nick);
-    console.log(usuari);
-    
-    res.render('login');
+
+    var usuari = roomingApi.getUsuari(nick);    
+    if (usuari){
+        var passHash = hash.onlyHashPass(passNick);
+        var passBD = hash.removeSalt(usuari.Contrasenya);
+
+        if (passHash == passBD) {
+            var date = new Date();
+            roomingApi.postToken({"usuari_id":usuari.id, "creat":date});
+            res.render('profile', {'usuari':usuari});
+        }else{
+            res.render('login', {'errorLogin':true});        
+        }    
+    }else{
+        res.render('login', {'errorLogin':true});   
+    }
+   
 });
 
 app.get('/categories', function(req,res){

@@ -843,7 +843,11 @@ function getUsuari(nick){ // GET Usuari
 	return result;
 }
 
+<<<<<<< HEAD
 function postUsuari(dades){ // POST Usuari 
+=======
+function postUsuari(JSON){ // POST Usuari 
+>>>>>>> 87c83d6e93026c438084b5e1d2688427925a7190
 
 	var httpRequest = new XMLHttpRequest();
 	var result;
@@ -878,7 +882,7 @@ function postUsuari(dades){ // POST Usuari
 	return result;
 }
 
-function putUsuari(nick, JSON){ // GET Usuari 
+function putUsuari(nick, JSON){ // GET nick Usuari 
 
 	var httpRequest = new XMLHttpRequest();
 	var result;
@@ -899,7 +903,7 @@ function putUsuari(nick, JSON){ // GET Usuari
 	return result;
 }
 
-function deleteUsuari(nick){ // GET Usuari 
+function deleteUsuari(nick){ //DELETE Usuari 
 
 	var httpRequest = new XMLHttpRequest();
 	var result;
@@ -919,9 +923,74 @@ function deleteUsuari(nick){ // GET Usuari
 	httpRequest.send();
 	return result;
 }
-
-
 /* */
+
+/* token */
+
+function postToken(JSON){ // POST TOKEN 
+
+	var httpRequest = new XMLHttpRequest();
+	var result;
+
+	httpRequest.onreadystatechange = function (){
+
+		if (httpRequest.readyState == 4 && httpRequest.status == 201 ) {
+
+			var jsonParsed = JSON.parse(httpRequest.responseText);
+			result = jsonParsed;
+		}
+
+	};
+
+	httpRequest.open('POST', URL+"token", false);
+
+	httpRequest.send(JSON);
+	return result;
+}
+
+function getToken(token){ // GET token TOKEN 
+
+	var httpRequest = new XMLHttpRequest();
+	var result;
+
+	httpRequest.onreadystatechange = function (){
+
+		if (httpRequest.readyState == 4 && httpRequest.status == 200 ) {
+
+			var jsonParsed = JSON.parse(httpRequest.responseText);
+			result = jsonParsed;
+		}
+
+	};
+
+	httpRequest.open('GET', URL+"token/"+token, false);
+
+	httpRequest.send();
+	return result;
+}
+
+function deleteToken(token){ // DELETE TOKEN 
+
+	var httpRequest = new XMLHttpRequest();
+	var result;
+
+	httpRequest.onreadystatechange = function (){
+
+		if (httpRequest.readyState == 4 && httpRequest.status == 204 ) {
+
+			var jsonParsed = JSON.parse(httpRequest.responseText);
+			result = jsonParsed;
+		}
+
+	};
+
+	httpRequest.open('DELETE', URL+"token/"+token, false);
+
+	httpRequest.send();
+	return result;
+}
+
+/** */
 
 module.exports = {
 	postCategoria,
@@ -965,7 +1034,10 @@ module.exports = {
 	getUsuari,
 	postUsuari,
 	putUsuari,
-	deleteUsuari
+	deleteUsuari,
+	postToken,
+	getToken,
+	deleteToken
 };
 
 
