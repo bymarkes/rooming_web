@@ -2,12 +2,12 @@ var http = require('http');
 var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
-var cookie = require('cookie-parser');
+var cookieParser = require('cookie-parser');
 var roomingApi = require('./rooming');
 var hash = require('./hash');
 
 app.use(bodyParser.json({ type: 'application/json'}));
-
+app.use(cookieParser());
 app.use(express.static('public'));
 app.set('view engine', 'pug');
 app.set('views','./views');
@@ -25,7 +25,12 @@ app.get('/', function(req,res){
 });
 
 app.get('/login', function(req,res){
-    res.render('login');
+    var cookieBow = req.cookies.token;
+    if (cookieBow) {
+        res.redirect('/');  
+    }else{
+        res.render('login');
+    }
 });
 
 app.post('/login', function(req, res){
@@ -46,6 +51,7 @@ app.post('/login', function(req, res){
             
             var tokenObj = roomingApi.postToken(result);
             var token = tokenObj.token;
+
             res.cookie('nom',usuari.Nom);
             res.cookie('token',token);            
             res.render('profile', {'usuari':usuari, 'token':token});

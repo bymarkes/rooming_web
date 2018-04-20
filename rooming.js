@@ -857,8 +857,6 @@ function postUsuari(dades){ // POST Usuari
 		data.Poblacio = dades.Poblacio;
 		data.Contrasenya = dades.Contrasenya;
 
-
-
 	httpRequest.onreadystatechange = function (){
 
 		if (httpRequest.readyState == 4 && httpRequest.status == 201 ) {
