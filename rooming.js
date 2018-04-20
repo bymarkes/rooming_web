@@ -843,11 +843,7 @@ function getUsuari(nick){ // GET Usuari
 	return result;
 }
 
-<<<<<<< HEAD
 function postUsuari(dades){ // POST Usuari 
-=======
-function postUsuari(JSON){ // POST Usuari 
->>>>>>> 87c83d6e93026c438084b5e1d2688427925a7190
 
 	var httpRequest = new XMLHttpRequest();
 	var result;
