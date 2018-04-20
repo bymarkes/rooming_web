@@ -64,6 +64,8 @@ app.get('/register', function(req,res){
 });
 
 app.post('/register', function(req,res){
+    var hashPass = hash.hashSaltPass(req.body.Contrasenya);
+    req.body.Contrasenya = hashPass;
     roomingApi.postUsuari(req.body);
     res.render('login');
 });
