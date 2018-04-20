@@ -2,6 +2,7 @@ var http = require('http');
 var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
+var cookie = require('cookie-parser');
 var roomingApi = require('./rooming');
 var hash = require('./hash');
 
@@ -37,9 +38,17 @@ app.post('/login', function(req, res){
         var passBD = hash.removeSalt(usuari.Contrasenya);
 
         if (passHash == passBD) {
-            var date = new Date();
-            roomingApi.postToken({"usuari_id":usuari.id, "creat":date});
-            res.render('profile', {'usuari':usuari});
+            var date = new Date().toISOString().replace(/T/, ' ').replace(/\..+/, '');  
+            var result = {
+                "usuari_id":usuari.id, 
+                "creat":date
+            };
+            
+            var tokenObj = roomingApi.postToken(result);
+            var token = tokenObj.token;
+            res.cookie('nom',usuari.Nom);
+            res.cookie('token',token);            
+            res.render('profile', {'usuari':usuari, 'token':token});
         }else{
             res.render('login', {'errorLogin':true});        
         }    

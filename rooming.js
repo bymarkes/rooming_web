@@ -923,10 +923,11 @@ function deleteUsuari(nick){ //DELETE Usuari
 
 /* token */
 
-function postToken(JSON){ // POST TOKEN 
-
+function postToken(dades){ // POST TOKEN 
 	var httpRequest = new XMLHttpRequest();
 	var result;
+	
+	var json = JSON.stringify(dades);
 
 	httpRequest.onreadystatechange = function (){
 
@@ -939,8 +940,8 @@ function postToken(JSON){ // POST TOKEN
 	};
 
 	httpRequest.open('POST', URL+"token", false);
-
-	httpRequest.send(JSON);
+	httpRequest.setRequestHeader("Content-Type", "application/json; charset=utf-8");
+	httpRequest.send(json);
 	return result;
 }
 
