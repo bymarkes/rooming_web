@@ -843,10 +843,21 @@ function getUsuari(nick){ // GET Usuari
 	return result;
 }
 
-function postUsuari(JSON){ // GET Usuari 
+function postUsuari(dades){ // POST Usuari 
 
 	var httpRequest = new XMLHttpRequest();
 	var result;
+
+	var data = {};
+		data.Nom = dades.Nom;
+		data.Cognom = dades.Cognom;
+		data.Nick = dades.Nick;
+		data.Email = dades.Email;
+		data.AnyNaixement = dades.AnyNaixement;
+		data.Poblacio = dades.Poblacio;
+		data.Contrasenya = dades.Contrasenya;
+
+
 
 	httpRequest.onreadystatechange = function (){
 
@@ -859,8 +870,11 @@ function postUsuari(JSON){ // GET Usuari
 	};
 
 	httpRequest.open('POST', URL+"usuari", false);
+	httpRequest.setRequestHeader("Content-Type",'application/json; charset=utf-8');
 
-	httpRequest.send(JSON);
+	var resultStr = JSON.stringify(data);
+	console.log(resultStr);
+	httpRequest.send(resultStr);
 	return result;
 }
 
