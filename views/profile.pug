@@ -95,36 +95,35 @@ section.innerpage-wrapper(style='background-color: #f1f2f2;')
           .col-sm-12(style='margin-top: 30px;')
             .flex-content
               #divEdit.custom-form.custom-form-fields(style='background-color: #fafafa;')
-                form(action='/login', method='POST')
-                  .row
-                    .col-sm-6
-                      .form-group
-                        input#nom.form-control(type='text', value=usuari.Nom, disabled='', required='')
-                        span
-                          i.fa.fa-user
-                    .col-sm-6
-                      .form-group
-                        input#cognom.form-control(type='text', value=usuari.Cognom, disabled='', required='')
-                        span
-                          i.fa.fa-user
-                  .form-group
-                    input#user.form-control(type='text', value=usuari.Nick, disabled='', required='')
-                    span
-                      i.fa.fa-user
-                  .form-group
-                    input#mail.form-control(type='email', value=usuari.Email, disabled='', required='')
-                    span
-                      i.fa.fa-envelope
-                  .form-group
-                    input#dataNaix.form-control.dpd1(type='text', value=usuari.AnyNaixement, disabled='', required='')
-                    span
-                    i.fa.fa-calendar
-                  .form-group
-                    input#poblacio.form-control(type='text', value=usuari.Poblacio, disabled='', required='')
-                    span
-                      i.fa.fa-map-marker
-                  button.btn(data-toggle='modal', data-target='#edit-profile') Canvia Contrasenya
-                  button#editbtn.btn.btn-orange.btn-block(style='margin-top: 35px;') Edita
+                .row
+                  .col-sm-6
+                    .form-group
+                      input#nom.form-control(type='text', placeholder='Nom', disabled='', required='')
+                      span
+                        i.fa.fa-user
+                  .col-sm-6
+                    .form-group
+                      input#cognom.form-control(type='text', placeholder='Cognom', disabled='', required='')
+                      span
+                        i.fa.fa-user
+                .form-group
+                  input#user.form-control(type='text', placeholder='Nom usuari', disabled='', required='')
+                  span
+                    i.fa.fa-user
+                .form-group
+                  input#mail.form-control(type='email', placeholder='Correu Electronic', disabled='', required='')
+                  span
+                    i.fa.fa-envelope
+                .form-group
+                  input#dataNaix.form-control.dpd1(type='text', placeholder='Any neixament', disabled='', required='')
+                  span
+                  i.fa.fa-calendar
+                .form-group
+                  input#poblacio.form-control(type='text', placeholder='Població', disabled='', required='')
+                  span
+                    i.fa.fa-map-marker
+                button.btn(data-toggle='modal', data-target='#edit-profile') Canvia Contrasenya
+                button#editbtn.btn.btn-orange.btn-block(style='margin-top: 35px;') Edita
                 // end other-links
               // end custom-form
             // end form-content

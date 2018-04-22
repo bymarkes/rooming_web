@@ -97,6 +97,11 @@ app.get('/rooms', function(req,res){
     res.render('rooms',{'rooms':r, 'fotos':f});
 });
 
+app.get('/room', function(req,res){
+      
+    res.render('room');
+});
+
 app.get('/profile', function(req,res){
     res.render('profile');
 });
