@@ -21,7 +21,12 @@ app.use(bodyParser.json());
 app.get('/', function(req,res){
     var r = roomingApi.getAllRoom();
     var f = roomingApi.getAllFoto();
-    res.render('index', {'rooms':r, 'fotos':f});
+    var cookieBow = req.cookies;
+
+    if (cookieBow.nom) {
+        res.render('index', {'rooms':r, 'fotos':f, 'nom':cookieBow.nom, 'token':cookieBow.token});        
+    }else    
+        res.render('index', {'rooms':r, 'fotos':f});
 });
 
 app.get('/login', function(req,res){
@@ -104,6 +109,12 @@ app.get('/room', function(req,res){
 
 app.get('/profile', function(req,res){
     res.render('profile');
+});
+
+app.get('/signout', function(req,res){
+    res.clearCookie('nom');
+    res.clearCookie('token');
+    res.redirect('/');  
 });
 
 app.listen(3000);
