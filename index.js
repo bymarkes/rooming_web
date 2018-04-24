@@ -23,8 +23,8 @@ app.get('/', function(req,res){
     var f = roomingApi.getAllFoto();
     var cookieBow = req.cookies;
 
-    if (cookieBow.nom) {
-        res.render('index', {'rooms':r, 'fotos':f, 'nom':cookieBow.nom, 'token':cookieBow.token});        
+    if (cookieBow.nick) {
+        res.render('index', {'rooms':r, 'fotos':f, 'nick':cookieBow.nick, 'token':cookieBow.token});        
     }else    
         res.render('index', {'rooms':r, 'fotos':f});
 });
@@ -57,14 +57,14 @@ app.post('/login', function(req, res){
             var tokenObj = roomingApi.postToken(result);
             var token = tokenObj.token;
 
-            res.cookie('nom',usuari.Nom);
+            res.cookie('nick',usuari.Nick);
             res.cookie('token',token);
 
             var dataNaix = usuari.AnyNaixement;
             var dataSplitted = dataNaix.split(' ');
             usuari.AnyNaixement = dataSplitted[0];
 
-            res.render('profile', {'usuari':usuari, 'token':token});
+            res.render('profile', {'usuari':usuari, 'token':token, 'nick':usuari.Nick});
         }else{
             res.render('login', {'errorLogin':true});        
         }    
@@ -110,8 +110,15 @@ app.get('/room', function(req,res){
     res.render('room');
 });
 
+app.get('/profile/:nick', function(req,res){
+    var nick = req.params.nick;
+    console.log(nick);  
+    var userNew = roomingApi.getUsuari(nick);
+    console.log(userNew);
+    res.render('profile',{'usuari': userNew, 'nom':userNew.Nick});
+});
+
 app.post('/profile', function(req,res){
-    console.log(req.body);
     var nick = req.body.Nick;    
     var userOld = roomingApi.getUsuari(nick);
     var userNew = roomingApi.putUsuari(req.body);
@@ -120,7 +127,7 @@ app.post('/profile', function(req,res){
 });
 
 app.get('/signout', function(req,res){
-    res.clearCookie('nom');
+    res.clearCookie('nick');
     res.clearCookie('token');
     res.redirect('/');  
 });
