@@ -24,7 +24,7 @@ app.get('/', function(req,res){
     var cookieBow = req.cookies;
 
     if (cookieBow.nick) {
-        res.render('index', {'rooms':r, 'fotos':f, 'nom':cookieBow.nom, 'token':cookieBow.token});        
+        res.render('index', {'rooms':r, 'fotos':f, 'nick':cookieBow.nick, 'token':cookieBow.token});        
     }else    
         res.render('index', {'rooms':r, 'fotos':f});
 });
@@ -76,13 +76,13 @@ app.post('/login', function(req, res){
 
 app.get('/categories', function(req,res){
     var c = roomingApi.getAllCategoria();
-    res.render('categories',{'categories':c});
+    res.render('categories',{'categories':c,'nick':req.cookies.nick});
 });
 
 app.get('/categories/:id', function(req,res){
     var c = roomingApi.getCategoria(req.params.id);
     var r = roomingApi.getCategoriaRoom(req.params.id);    
-    res.render('categoria',{'categoria':c, 'rooms':r});
+    res.render('categoria',{'categoria':c, 'rooms':r, 'nick':req.cookies.nick});
 });
 app.get('/register', function(req,res){
     res.render('register');
@@ -102,16 +102,25 @@ app.get('/plantilla', function(req,res){
 app.get('/rooms', function(req,res){
     var r = roomingApi.getAllRoom();  
     var f = roomingApi.getAllFoto();      
-    res.render('rooms',{'rooms':r, 'fotos':f});
+    res.render('rooms',{'rooms':r, 'fotos':f, 'nick':req.cookies.nick});
 });
 
 app.get('/room', function(req,res){
       
-    res.render('room');
+    res.render('room',{'nick':req.cookies.nick} );
+});
+
+app.get('/profile', function(req,res){
+    if (req.cookies.nick){
+        var userNew = roomingApi.getUsuari(req.cookies.nick);
+        res.render('profile',{'usuari': userNew, 'nick':req.cookies.nick});
+    }else{
+        res.redirect('/login');
+    }
+    
 });
 
 app.post('/profile', function(req,res){
-    console.log(req.body);
     var nick = req.body.Nick;    
     var userOld = roomingApi.getUsuari(nick);
     var userNew = roomingApi.putUsuari(req.body);

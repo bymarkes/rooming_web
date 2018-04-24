@@ -36,16 +36,28 @@ head
       .col-xs-12.col-sm-6.col-md-6.col-lg-6
         #links
           ul.list-unstyled.list-inline
-            li
-              a(href='/login')
-                span
-                  i.fa.fa-lock
-                | Login
-            li
-              a(href='/register')
-                span
-                  i.fa.fa-plus
-                | Sign Up
+            if nick
+              li
+                a(href='/profile')
+                  span
+                    i.fa.fa-user
+                  | Hola, #{nick} !
+              li
+                a(href='/signout')
+                  span
+                    i.fa.fa-sign-out
+                  | Tancar Sessio
+            else
+              li
+                a(href='/login')
+                  span
+                    i.fa.fa-lock
+                  | Login
+              li
+                a(href='/register')
+                  span
+                    i.fa.fa-plus
+                  | Sign Up
         // end links
       // end columns
     // end row
