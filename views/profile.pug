@@ -103,44 +103,45 @@ section.innerpage-wrapper(style='background-color: #f1f2f2;')
       .page-heading
         h2 Perfil
         hr.heading-line
-        .row
-          .col-sm-12(style='margin-top: 30px;')
-            .flex-content
-              #divEdit.custom-form.custom-form-fields(style='background-color: #fafafa;')
-                .row
-                  .col-sm-6
-                    .form-group
-                      input#nom.form-control(type='text', placeholder='Nom', disabled='', required='')
-                      span
-                        i.fa.fa-user
-                  .col-sm-6
-                    .form-group
-                      input#cognom.form-control(type='text', placeholder='Cognom', disabled='', required='')
-                      span
-                        i.fa.fa-user
-                .form-group
-                  input#user.form-control(type='text', placeholder='Nom usuari', disabled='', required='')
-                  span
-                    i.fa.fa-user
-                .form-group
-                  input#mail.form-control(type='email', placeholder='Correu Electronic', disabled='', required='')
-                  span
-                    i.fa.fa-envelope
-                .form-group
-                  input#dataNaix.form-control.dpd1(type='text', placeholder='Any neixament', disabled='', required='')
-                  span
-                  i.fa.fa-calendar
-                .form-group
-                  input#poblacio.form-control(type='text', placeholder='Població', disabled='', required='')
-                  span
-                    i.fa.fa-map-marker
-                button.btn(data-toggle='modal', data-target='#edit-profile') Canvia Contrasenya
-                button#editbtn.btn.btn-orange.btn-block(style='margin-top: 35px;') Edita
-                // end other-links
-              // end custom-form
-            // end form-content
-          // end columns
-        // end row
+        form#formProfile
+          .row
+            .col-sm-12(style='margin-top: 30px;')
+              .flex-content
+                #divEdit.custom-form.custom-form-fields(style='background-color: #fafafa;')
+                  .row
+                    .col-sm-6
+                      .form-group
+                        input#nom.form-control(name='Nom',type='text', placeholder='Nom', value=usuari.Nom, disabled='', required='')
+                        span
+                          i.fa.fa-user
+                    .col-sm-6
+                      .form-group
+                        input#cognom.form-control(name='Cognom',type='text', placeholder='Cognom', value=usuari.Cognom, disabled='', required='')
+                        span
+                          i.fa.fa-user
+                  .form-group
+                    input#user.form-control(name='Nick',type='text', placeholder='Nom usuari', value=usuari.Nick, disabled='', required='')
+                    span
+                      i.fa.fa-user
+                  .form-group
+                    input#mail.form-control(name='Email',type='email', placeholder='Correu Electronic', value=usuari.Email, disabled='', required='')
+                    span
+                      i.fa.fa-envelope
+                  .form-group
+                    input#dataNaix.form-control.dpd1(name='AnyNaixement',type='text', placeholder='Any neixament', value=usuari.AnyNaixement, disabled='', required='')
+                    span
+                    i.fa.fa-calendar
+                  .form-group
+                    input#poblacio.form-control(name='Poblacio', type='text', placeholder='Població', value=usuari.Poblacio, disabled='', required='')
+                    span
+                      i.fa.fa-map-marker
+                  button.btn(data-toggle='modal', data-target='#edit-profile') Canvia Contrasenya
+                  button#editbtn.btn.btn-orange.btn-block(style='margin-top: 35px;') Edita
+                  // end other-links
+                // end custom-form
+              // end form-content
+            // end columns
+          // end row
       // end container
     // end login
 #edit-profile.modal.custom-modal.fade(role='dialog', style='display: none;')
@@ -187,6 +188,22 @@ section#footer.ftr-heading-o.ftr-heading-mgn-1
   // end footer-bottom
 // end footer
 // Script editbtn
+// Page Scripts Starts
+script(src='/js/jquery.min.js')
+script(src='/js/jquery.colorpanel.js')
+script(src='/js/jquery.magnific-popup.min.js')
+script(src='/js/bootstrap.min.js')
+script(src='/js/jquery.flexslider.js')
+script(src='/js/bootstrap-datepicker.js')
+script(src='/js/owl.carousel.min.js')
+script(src='/js/custom-navigation.js')
+script(src='/js/custom-flex.js')
+script(src='/js/custom-owl.js')
+script(src='/js/custom-date-picker.js')
+script(src='/js/custom-video.js')
+script(src='/js/popup-ad.js')
+// Page Scripts Ends
+
 script.
   var editBtn = document.getElementById("editbtn").addEventListener('click',function (){
   //Eliminem El edit button
@@ -197,6 +214,7 @@ script.
   var confirmBtn = document.createElement("button");
   cancelBtn.setAttribute("class", "btn btn-black btn-block");
   confirmBtn.setAttribute("class", "btn btn-orange btn-block");
+  confirmBtn.setAttribute('type','submit')
   //Text Nodes
   var nodeCancel = document.createTextNode("Cancela");
   var nodeConfirm = document.createTextNode("Confirma");
@@ -249,19 +267,23 @@ script.
   document.getElementById("dataNaix").disabled = true;
   document.getElementById("poblacio").disabled = true;
   });
+  //Confirm Action
+   //confirmBtn.addEventListener('click', function (){
+   //var form = document.getElementById('formProfile');
+   //form.addEventListener('submit', function (){
+   //form.setAttribute('method','put');
+  //form.setAttribute('action','/profile');
+   //})
+   //});
+   });
+
+
+script.
+  $(document).ready(function(){
+  console.log('ready');
+  $('#formProfile').submit(function(){
+  console.log('submit');
+  $('#formProfile').attr('method','post');
+  $('#formProfile').attr('action','/profile');
   });
-// Page Scripts Starts
-script(src='/js/jquery.min.js')
-script(src='/js/jquery.colorpanel.js')
-script(src='/js/jquery.magnific-popup.min.js')
-script(src='/js/bootstrap.min.js')
-script(src='/js/jquery.flexslider.js')
-script(src='/js/bootstrap-datepicker.js')
-script(src='/js/owl.carousel.min.js')
-script(src='/js/custom-navigation.js')
-script(src='/js/custom-flex.js')
-script(src='/js/custom-owl.js')
-script(src='/js/custom-date-picker.js')
-script(src='/js/custom-video.js')
-script(src='/js/popup-ad.js')
-// Page Scripts Ends
+  });

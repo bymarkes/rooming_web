@@ -872,16 +872,24 @@ function postUsuari(dades){ // POST Usuari
 	httpRequest.open('POST', URL+"usuari", false);
 	httpRequest.setRequestHeader("Content-Type",'application/json; charset=utf-8');
 
-	var resultStr = JSON.stringify(data);
-	console.log(resultStr);
+	var resultStr = JSON.stringify(data);	
 	httpRequest.send(resultStr);
 	return result;
 }
 
-function putUsuari(nick, JSON){ // GET nick Usuari 
+function putUsuari(dades){ // PUT nick Usuari 
 
 	var httpRequest = new XMLHttpRequest();
 	var result;
+
+	var data = {};
+		data.Nom = dades.Nom;
+		data.Cognom = dades.Cognom;
+		data.Nick = dades.Nick;
+		data.Email = dades.Email;
+		data.AnyNaixement = dades.AnyNaixement;
+		data.Poblacio = dades.Poblacio;
+
 
 	httpRequest.onreadystatechange = function (){
 
@@ -893,9 +901,11 @@ function putUsuari(nick, JSON){ // GET nick Usuari
 
 	};
 
-	httpRequest.open('PUT', URL+"usuari/"+nick, false);
-
-	httpRequest.send(JSON);
+	httpRequest.open('PUT', URL+"usuari/"+data.Nick, false);
+	httpRequest.setRequestHeader("Content-Type",'application/json; charset=utf-8');
+	var resultStr = JSON.stringify(data);	
+	httpRequest.send(resultStr);
+	console.log('put');
 	return result;
 }
 
@@ -915,7 +925,6 @@ function deleteUsuari(nick){ //DELETE Usuari
 	};
 
 	httpRequest.open('DELETE', URL+"usuari/"+nick, false);
-
 	httpRequest.send();
 	return result;
 }
@@ -942,7 +951,6 @@ function postToken(dades){ // POST TOKEN
 	httpRequest.open('POST', URL+"token", false);
 	httpRequest.setRequestHeader("Content-Type", "application/json; charset=utf-8");
 	httpRequest.send(json);
-	console.log(result);
 	return result;
 }
 

@@ -58,7 +58,12 @@ app.post('/login', function(req, res){
             var token = tokenObj.token;
 
             res.cookie('nom',usuari.Nom);
-            res.cookie('token',token);            
+            res.cookie('token',token);
+
+            var dataNaix = usuari.AnyNaixement;
+            var dataSplitted = dataNaix.split(' ');
+            usuari.AnyNaixement = dataSplitted[0];
+
             res.render('profile', {'usuari':usuari, 'token':token});
         }else{
             res.render('login', {'errorLogin':true});        
@@ -90,8 +95,6 @@ app.post('/register', function(req,res){
     res.render('login');
 });
 
-
-
 app.get('/plantilla', function(req,res){
     res.render('plantilla');
 });
@@ -107,8 +110,13 @@ app.get('/room', function(req,res){
     res.render('room');
 });
 
-app.get('/profile', function(req,res){
-    res.render('profile');
+app.post('/profile', function(req,res){
+    console.log(req.body);
+    var nick = req.body.Nick;    
+    var userOld = roomingApi.getUsuari(nick);
+    var userNew = roomingApi.putUsuari(req.body);
+    console.log(userNew);
+    res.render('profile',{'usuari': userNew});
 });
 
 app.get('/signout', function(req,res){
