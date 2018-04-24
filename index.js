@@ -76,13 +76,13 @@ app.post('/login', function(req, res){
 
 app.get('/categories', function(req,res){
     var c = roomingApi.getAllCategoria();
-    res.render('categories',{'categories':c});
+    res.render('categories',{'categories':c,'nick':req.cookies.nick});
 });
 
 app.get('/categories/:id', function(req,res){
     var c = roomingApi.getCategoria(req.params.id);
     var r = roomingApi.getCategoriaRoom(req.params.id);    
-    res.render('categoria',{'categoria':c, 'rooms':r});
+    res.render('categoria',{'categoria':c, 'rooms':r, 'nick':req.cookies.nick});
 });
 app.get('/register', function(req,res){
     res.render('register');
@@ -102,20 +102,22 @@ app.get('/plantilla', function(req,res){
 app.get('/rooms', function(req,res){
     var r = roomingApi.getAllRoom();  
     var f = roomingApi.getAllFoto();      
-    res.render('rooms',{'rooms':r, 'fotos':f});
+    res.render('rooms',{'rooms':r, 'fotos':f, 'nick':req.cookies.nick});
 });
 
 app.get('/room', function(req,res){
       
-    res.render('room');
+    res.render('room',{'nick':req.cookies.nick} );
 });
 
-app.get('/profile/:nick', function(req,res){
-    var nick = req.params.nick;
-    console.log(nick);  
-    var userNew = roomingApi.getUsuari(nick);
-    console.log(userNew);
-    res.render('profile',{'usuari': userNew, 'nom':userNew.Nick});
+app.get('/profile', function(req,res){
+    if (req.cookies.nick){
+        var userNew = roomingApi.getUsuari(req.cookies.nick);
+        res.render('profile',{'usuari': userNew, 'nick':req.cookies.nick});
+    }else{
+        res.redirect('/login');
+    }
+    
 });
 
 app.post('/profile', function(req,res){
