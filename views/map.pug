@@ -1,6 +1,6 @@
 doctype html
 head
-  title ROOMING
+  title Mapa
   meta(charset='utf-8')
   meta(name='viewport', content='width=device-width,initial-scale=1')
   link(rel='icon', href='/images/favicon.png', type='image/x-icon')
@@ -36,28 +36,16 @@ head
       .col-xs-12.col-sm-6.col-md-6.col-lg-6
         #links
           ul.list-unstyled.list-inline
-            if nick
-              li
-                a(href='/profile')
-                  span
-                    i.fa.fa-user
-                  | Hola, #{nick} !
-              li
-                a(href='/signout')
-                  span
-                    i.fa.fa-sign-out
-                  | Tancar Sessio
-            else
-              li
-                a(href='/login')
-                  span
-                    i.fa.fa-lock
-                  | Iniciar Sessió
-              li
-                a(href='/register')
-                  span
-                    i.fa.fa-plus
-                  | Registra't
+            li
+              a(href='/login')
+                span
+                  i.fa.fa-lock
+                | Iniciar Sessió
+            li
+              a(href='/register')
+                span
+                  i.fa.fa-plus
+                | Registra't
         // end links
       // end columns
     // end row
@@ -74,7 +62,7 @@ nav#mynavbar-1.navbar.navbar-default.main-navbar.navbar-custom.navbar-white
         a.search-button(href='javascript:void(0)')
           span
             i.fa.fa-search
-      a.navbar-brand(href='index.html')
+      a.navbar-brand(href='/')
         span
           i.fa.fa-plane
           | ROOM
@@ -83,65 +71,103 @@ nav#mynavbar-1.navbar.navbar-default.main-navbar.navbar-custom.navbar-white
     #myNavbar1.collapse.navbar-collapse
       ul.nav.navbar-nav.navbar-right
         li.dropdown
-          a(href='index.html')
+          a(href='/')
             | Inici
             span
         li.dropdown
-          a(href='categories.html')
+          a(href='/categories')
             | Categories
             span
         li.dropdown
-          a(href='rooms.html')
+          a(href='/rooms')
             | Rooms
             span
-        li.dropdown
+        li.active
           a(href='/map')
             | Mapa
             span
     // end navbar collapse
   // end container
 // end navbar
-// ===== INNERPAGE-WRAPPER ====
-section.innerpage-wrapper(style='background-color: #f1f2f2;')
-  #contact-us.innerpage-section-padding
-    .container
-      .row
-        .col-sm-12.col-md-5.no-pd-r
-          .custom-form.contact-form(style='background-color: #fafafa;')
-            h3 Contacte amb nosaltres
-            p
-              | Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et.
-            form
-              .form-group
-                input.form-control(type='text', placeholder='Nom', required='')
-                span
-                  i.fa.fa-user
-              .form-group
-                input.form-control(type='email', placeholder='Correu electronic', required='')
-                span
-                  i.fa.fa-envelope
-              .form-group
-                input.form-control(type='text', placeholder='Tema', required='')
-                span
-                  i.fa.fa-info-circle
-              .form-group
-                textarea.form-control(rows='4', placeholder='Missatge')
-                span
-                  i.fa.fa-pencil
-              button.btn.btn-orange.btn-block Envia
-          // end contact-form
-        // end columns
-        .col-sm-12.col-md-7.no-pd-l
-          .map
-            iframe(src='https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d47781.3834400451!2d2.4032695186280177!3d41.540311587935015!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12a4b518d7addc71%3A0xd6b932f372b5918!2sMatar%C3%B3%2C+Barcelona!5e0!3m2!1ses!2ses!4v1523468355858', allowfullscreen='')
-          // end map
-        // end columns
-      // end row
-    // end container
-  // end contact-us
-// end innerpage-wrapper
+style.
+  #map {
+    height: 94%;
+    width: 100%;
+    z-index: 1;
+    margin-bottom:0;
+  }
+
+#map
+script.
+  var map, icon, icon2, list, markersListNew, markerSelected;
+  var markersListOld = [];
+
+  function initMap() {
+    var cameraPos = {
+        lat: 41.5448861,
+        lng: 2.4469217
+    };
+    map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 9,
+        center: cameraPos
+    });
+    icon = {
+        url: 'images/scape-black.png',
+        scaledSize: new google.maps.Size(50, 50)
+    }
+    icon2 = {
+        url: 'images/scape-yellow.png',
+        scaledSize: new google.maps.Size(50, 50)
+    }
+    google.maps.event.addListener(map, 'click', function(event) {
+        if (markerSelected) {
+            markerSelected.setIcon(icon);
+            markerSelected = null;
+        }
+    });
+    
+    var list = #{puntsDelMapa};
+    var listNoms = #{nomsEstabliment};
+    putMarkers(list, listNoms ,map, icon);    
+  }
+
+  var infowindow;
+    function putMarkers(list, listNoms, map, icon){
+      if(list){
+        for (var i in list){
+          var markerPos = {lat: parseFloat(list[i].Lat), lng: parseFloat(list[i].Lon)};
+          var marker = new google.maps.Marker({
+            position: markerPos,
+            map: map,
+            animation: google.maps.Animation.DROP,
+            icon: icon,
+            bdId: list[i].id
+          });
+          markersListOld.push(marker);
+          var content = '<h3>'+listNoms[i].Nom+'</h3><h4>'
+                          +listNoms[i].Poblacio+', '+listNoms[i].Provincia
+                          +'</h4> <button"><a href=>Veure més</a></button>';
+          infowindow = new google.maps.InfoWindow()
+
+          google.maps.event.addListener(marker, 'click', (function(marker, content, infowindow) {
+            return function() {
+              map.panTo(marker.getPosition());
+              infowindow.setContent(content);
+              infowindow.open(map, marker);
+              for (var j = 0; j < markersListOld.length; j++) {
+                markersListOld[j].setIcon(icon);
+              }
+              marker.setIcon(icon2);
+              markerSelected=marker;
+            }
+          })(marker, content, infowindow));
+        }
+      }	
+    }
+
+
 // ======================= FOOTER =======================
-section#footer.ftr-heading-o.ftr-heading-mgn-1
+section#footer.ftr-heading-o.ftr-heading-mgn-1(style='top:0px;')
   #footer-bottom.ftr-bot-black
     .container
       .row
@@ -178,4 +204,5 @@ script(src='/js/custom-owl.js')
 script(src='/js/custom-date-picker.js')
 script(src='/js/custom-video.js')
 script(src='/js/popup-ad.js')
+script(async='', defer='', src='https://maps.googleapis.com/maps/api/js?key=AIzaSyDVagfyF-3bPDT3XLEg_JMDW1x0jWzxWIU&callback=initMap')
 // Page Scripts Ends

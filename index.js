@@ -124,7 +124,6 @@ app.post('/profile', function(req,res){
     var nick = req.body.Nick;    
     var userOld = roomingApi.getUsuari(nick);
     var userNew = roomingApi.putUsuari(req.body);
-    console.log(userNew);
     res.render('profile',{'usuari': userNew});
 });
 
@@ -134,4 +133,24 @@ app.get('/signout', function(req,res){
     res.redirect('/');  
 });
 
+app.get('/map', function(req,res){
+    var punts = roomingApi.getGps();     
+    var nomsEstabliment = [];
+
+    for (let i = 0; i < punts.length; i++) {
+        const element = punts[i];
+        nomsEstabliment[i] = roomingApi.getEstabliment(element.establiment_id);
+    } 
+
+    punts = getJSonObject(JSON.stringify(punts));
+    nomsEstabliment = getJSonObject(JSON.stringify(nomsEstabliment));
+    
+    res.render('map',{"puntsDelMapa":punts, "nomsEstabliment":nomsEstabliment});  
+});
+
 app.listen(3000);
+
+
+function getJSonObject(value) {
+    return value.replace(/"/ig, "'");
+} 
