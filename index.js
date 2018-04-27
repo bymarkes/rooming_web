@@ -105,9 +105,12 @@ app.get('/rooms', function(req,res){
     res.render('rooms',{'rooms':r, 'fotos':f, 'nick':req.cookies.nick});
 });
 
-app.get('/room', function(req,res){
-      
-    res.render('room',{'nick':req.cookies.nick} );
+app.get('/room/:id', function(req,res){
+    var r = roomingApi.getRoom(req.params.id);
+    var c = roomingApi.getCategoria(r.categoria_id);
+    var e = roomingApi.getEstabliment(r.establiment_id);
+    res.render('room',{'nick':req.cookies.nick, 'room':r, 'categoria':c.Titol,
+'establiment':e} );
 });
 
 app.get('/profile', function(req,res){
