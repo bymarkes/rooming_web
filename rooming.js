@@ -996,6 +996,27 @@ function deleteToken(token){ // DELETE TOKEN
 	return result;
 }
 
+function getGps(){ // GET GPS 
+
+	var httpRequest = new XMLHttpRequest();
+	var result;
+
+	httpRequest.onreadystatechange = function (){
+
+		if (httpRequest.readyState == 4 && httpRequest.status == 200 ) {
+
+			var jsonParsed = JSON.parse(httpRequest.responseText);
+			result = jsonParsed;
+		}
+
+	};
+
+	httpRequest.open('GET', URL+"gps", false);
+
+	httpRequest.send();
+	return result;
+}
+
 /** */
 
 module.exports = {
@@ -1043,7 +1064,8 @@ module.exports = {
 	deleteUsuari,
 	postToken,
 	getToken,
-	deleteToken
+	deleteToken,
+	getGps
 };
 
 

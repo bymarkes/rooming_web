@@ -107,9 +107,12 @@ app.get('/rooms', function(req,res){
     res.render('rooms',{'rooms':r, 'fotos':f, 'nick':req.cookies.nick});
 });
 
-app.get('/room', function(req,res){
-      
-    res.render('room',{'nick':req.cookies.nick} );
+app.get('/room/:id', function(req,res){
+    var r = roomingApi.getRoom(req.params.id);
+    var c = roomingApi.getCategoria(r.categoria_id);
+    var e = roomingApi.getEstabliment(r.establiment_id);
+    res.render('room',{'nick':req.cookies.nick, 'room':r, 'categoria':c.Titol,
+'establiment':e} );
 });
 
 app.get('/profile', function(req,res){
@@ -125,10 +128,13 @@ app.get('/profile', function(req,res){
 app.put('/profile', function(req,res){
     var nick = req.body.Nick;    
     var userNew = roomingApi.putUsuari(req.body);
+<<<<<<< HEAD
     var dataNaix = userNew.AnyNaixement;
     var dataSplitted = dataNaix.split(' ');
     userNew.AnyNaixement = dataSplitted[0];
     console.log(userNew);
+=======
+>>>>>>> 45832d25231f6bc3115ccbe8834f472b1eb6819d
     res.render('profile',{'usuari': userNew});
 });
 
@@ -138,4 +144,24 @@ app.get('/signout', function(req,res){
     res.redirect('/');  
 });
 
+app.get('/map', function(req,res){
+    var punts = roomingApi.getGps();     
+    var nomsEstabliment = [];
+
+    for (let i = 0; i < punts.length; i++) {
+        const element = punts[i];
+        nomsEstabliment[i] = roomingApi.getEstabliment(element.establiment_id);
+    } 
+
+    punts = getJSonObject(JSON.stringify(punts));
+    nomsEstabliment = getJSonObject(JSON.stringify(nomsEstabliment));
+    
+    res.render('map',{"puntsDelMapa":punts, "nomsEstabliment":nomsEstabliment});  
+});
+
 app.listen(3000);
+
+
+function getJSonObject(value) {
+    return value.replace(/"/ig, "'");
+} 

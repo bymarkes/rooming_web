@@ -1,6 +1,6 @@
 doctype html
 head
-  title ROOMING
+  title #{room.Nom}
   meta(charset='utf-8')
   meta(name='viewport', content='width=device-width,initial-scale=1')
   link(rel='icon', href='/images/favicon.png', type='image/x-icon')
@@ -55,12 +55,12 @@ head
                 a(href='/login')
                   span
                     i.fa.fa-lock
-                  | Login
+                  | Iniciar Sessió
               li
                 a(href='/register')
                   span
                     i.fa.fa-plus
-                  | Sign Up
+                  | Registra't
         // end links
       // end columns
     // end row
@@ -97,6 +97,10 @@ nav#mynavbar-1.navbar.navbar-default.main-navbar.navbar-custom.navbar-white
           a(href='/rooms')
             | Rooms
             span
+        li.dropdown
+          a(href='/map')
+            | Mapa
+            span
     // end navbar collapse
   // end container
 // end navbar
@@ -108,7 +112,7 @@ section.innerpage-wrapper(style='background-color: #f1f2f2;')
         .col-xs-12.col-sm-12.col-md-3.side-bar.left-side-bar
           .side-bar-block.booking-form-block
             h2.selected-price
-              | &euro;18.00 
+              |#{room.Preu}&euro; 
               span Persona
           // end side-bar-block
           .row
@@ -124,7 +128,7 @@ section.innerpage-wrapper(style='background-color: #f1f2f2;')
                 .support-contact
                   span
                     i.fa.fa-phone
-                  p 665852147
+                  p #{establiment.Telefon}
                 // end support-contact
               // end side-bar-block
             // end columns
@@ -173,8 +177,8 @@ section.innerpage-wrapper(style='background-color: #f1f2f2;')
                 .f-icon
                   i.fa.fa-percent
                 .f-text
-                  p.f-heading Descompte
-                  p.f-data 10% 
+                  p.f-heading Categoria
+                  p.f-data #{categoria}
           // end detail-slider
           .detail-tabs
             .tab-content
@@ -184,9 +188,9 @@ section.innerpage-wrapper(style='background-color: #f1f2f2;')
                     img.img-responsive(src='images/car-detail-tab-1.jpg', alt='flight-detail-img')
                   // end columns
                   .col-sm-8.col-md-8.tab-text
-                    h3 Nom Room
+                    h3 #{room.Nom}
                     p
-                      | Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                      | #{room.Descripcio} 
                   // end columns
                 // end row
               // end car-information
