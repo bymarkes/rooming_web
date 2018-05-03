@@ -114,6 +114,7 @@ section.innerpage-wrapper(style='background-color: #f1f2f2;')
             h2.selected-price
               |#{room.Preu}&euro; 
               span Persona
+          button.btn.btn-orange Reserva
           // end side-bar-block
           .row
             .col-xs-12.col-sm-6.col-md-12
@@ -166,13 +167,13 @@ section.innerpage-wrapper(style='background-color: #f1f2f2;')
                   i.fa.fa-user
                 .f-text
                   p.f-heading Persones
-                  p.f-data 4
+                  p.f-data #{room.Persones}
               li
                 .f-icon
                   i.fa.fa-clock-o
                 .f-text
                   p.f-heading Duracio
-                  p.f-data 20 min
+                  p.f-data #{room.Duracio} min
               li
                 .f-icon
                   i.fa.fa-percent
@@ -190,7 +191,31 @@ section.innerpage-wrapper(style='background-color: #f1f2f2;')
                   .col-sm-8.col-md-8.tab-text
                     h3 #{room.Nom}
                     p
-                      | #{room.Descripcio} 
+                      | #{room.Descripcio}
+            .tab-content
+              #car-information.tab-pane.in.active(style='background-color: white; margin-top:20px;')
+                h2 Comentaris               
+                .row
+                  each comentari in comentaris
+                    .col-sm-12.col-md-12.tab-text.tab-pane(style='margin-top:20px;')
+                      p(style='color:black;') #{comentari.Usuari}
+                      h4 #{comentari.Titol}    
+                      p
+                        | #{comentari.Text}
+                      p(style="color:grey; font-size:10px;")
+                        | #{comentari.Data}
+            if nick
+              .tab-content
+                #car-information.tab-pane.in.active(style='background-color: white; margin-top:20px;')
+                  h2 Deixa el teu comentari
+                  form(method='post', action='/comentari')
+                    .form-group
+                      .input-group
+                        input.form-control.input-lg(type="hidden" name="Usuari" value=nick style='color:black; margin-bottom:10px;') 
+                        input.form-control.input-lg(type="hidden" name="room_id" value=room.id style='margin-bottom:10px;')                       
+                        input.form-control.input-lg(name="Titol" value="" style='margin-bottom:10px;' placeholder='Titol' required='')                       
+                        textarea.form-control.input-lg(name="Text", cols="100", rows="4", type='text', placeholder='Escriu el teu comentari', required='')
+                        button.btn.btn-orange(type='submit' style="margin-top:20px") ENVIA
                   // end columns
                 // end row
               // end car-information

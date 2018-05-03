@@ -107,8 +107,14 @@ app.get('/room/:id', function(req,res){
     var r = roomingApi.getRoom(req.params.id);
     var c = roomingApi.getCategoria(r.categoria_id);
     var e = roomingApi.getEstabliment(r.establiment_id);
+    var com = roomingApi.getRoomAllComentari(req.params.id);
     res.render('room',{'nick':req.cookies.nick, 'room':r, 'categoria':c.Titol,
-'establiment':e} );
+'establiment':e, 'comentaris':com} );
+});
+
+app.post('/comentari', function(req, res){
+    roomingApi.postRoomComentari(parseInt(req.body.room_id), req.body);
+    res.redirect('/room/'+req.body.room_id);
 });
 
 app.get('/profile', function(req,res){
