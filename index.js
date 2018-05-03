@@ -5,7 +5,9 @@ var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
 var roomingApi = require('./rooming');
 var hash = require('./hash');
+var override = require('express-method-override');
 
+app.use(override('_method', {methods: ['POST','GET']}));
 app.use(bodyParser.json({ type: 'application/json'}));
 app.use(cookieParser());
 app.use(express.static('public'));
@@ -120,10 +122,12 @@ app.get('/profile', function(req,res){
     
 });
 
-app.post('/profile', function(req,res){
+app.put('/profile', function(req,res){
     var nick = req.body.Nick;    
-    var userOld = roomingApi.getUsuari(nick);
     var userNew = roomingApi.putUsuari(req.body);
+    var dataNaix = userNew.AnyNaixement;
+    var dataSplitted = dataNaix.split(' ');
+    userNew.AnyNaixement = dataSplitted[0];
     console.log(userNew);
     res.render('profile',{'usuari': userNew});
 });

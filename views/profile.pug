@@ -103,7 +103,7 @@ section.innerpage-wrapper(style='background-color: #f1f2f2;')
       .page-heading
         h2 Perfil
         hr.heading-line
-        form#formProfile
+        form#formProfile(method='post', action='/profile?_method=PUT')
           .row
             .col-sm-12(style='margin-top: 30px;')
               .flex-content
@@ -111,7 +111,7 @@ section.innerpage-wrapper(style='background-color: #f1f2f2;')
                   .row
                     .col-sm-6
                       .form-group
-                        input#nom.form-control(name='Nom',type='text', placeholder='Nom', value=usuari.Nom, disabled='', required='')
+                        input#nom.form-control(name='Nom',type='text', placeholder='Nom', value= usuari.Nom, disabled='', required='')
                         span
                           i.fa.fa-user
                     .col-sm-6
@@ -135,7 +135,8 @@ section.innerpage-wrapper(style='background-color: #f1f2f2;')
                     input#poblacio.form-control(name='Poblacio', type='text', placeholder='Població', value=usuari.Poblacio, disabled='', required='')
                     span
                       i.fa.fa-map-marker
-                  button.btn(data-toggle='modal', data-target='#edit-profile') Canvia Contrasenya
+                  button#changePass.btn(type='button', data-toggle='modal', data-target='#edit-profile') Canvia Contrasenya
+                  //a#changePass.btn(data-toggle='modal', data-target='#edit-profile') Canvia Contrasenya
                   button#editbtn.btn.btn-orange.btn-block(style='margin-top: 35px;') Edita
                   // end other-links
                 // end custom-form
@@ -144,7 +145,7 @@ section.innerpage-wrapper(style='background-color: #f1f2f2;')
           // end row
       // end container
     // end login
-#edit-profile.modal.custom-modal.fade(role='dialog', style='display: none;')
+#edit-profile.modal.custom-modal.fade(style='display: none;')
   .modal-dialog
     .modal-content
       .modal-header
@@ -152,14 +153,14 @@ section.innerpage-wrapper(style='background-color: #f1f2f2;')
         h3.modal-title Canvia Contrasenya
       // end modal-header
       .modal-body
-        form
+        form#formPassword
           .form-group
-            input.form-control(type='password', placeholder='Nova Contrasenya')
+            input.form-control(type='password',name='Contrasenya' placeholder='Nova Contrasenya')
           // end form-group
           .form-group
             input.form-control(type='password', placeholder='Confirma Contrasenya')
           // end form-group
-          button.btn.btn-orange.btn-block Guarda
+          button#btnForm.btn.btn-orange.btn-block Guarda
       // end modal-bpdy
     // end modal-content
   // end modal-dialog
@@ -267,23 +268,4 @@ script.
   document.getElementById("dataNaix").disabled = true;
   document.getElementById("poblacio").disabled = true;
   });
-  //Confirm Action
-   //confirmBtn.addEventListener('click', function (){
-   //var form = document.getElementById('formProfile');
-   //form.addEventListener('submit', function (){
-   //form.setAttribute('method','put');
-  //form.setAttribute('action','/profile');
-   //})
-   //});
    });
-
-
-script.
-  $(document).ready(function(){
-  console.log('ready');
-  $('#formProfile').submit(function(){
-  console.log('submit');
-  $('#formProfile').attr('method','post');
-  $('#formProfile').attr('action','/profile');
-  });
-  });
