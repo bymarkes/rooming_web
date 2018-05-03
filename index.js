@@ -116,6 +116,12 @@ app.get('/room/:id', function(req,res){
 'establiment':e, 'comentaris':com} );
 });
 
+app.post('/comentari', function(req, res){
+    console.log(req.body);
+    roomingApi.postRoomComentari(parseInt(req.body.room_id), req.body);
+    res.redirect('/room/'+req.body.room_id);
+});
+
 app.get('/profile', function(req,res){
     if (req.cookies.nick){
         var userNew = roomingApi.getUsuari(req.cookies.nick);
@@ -129,13 +135,10 @@ app.get('/profile', function(req,res){
 app.put('/profile', function(req,res){
     var nick = req.body.Nick;    
     var userNew = roomingApi.putUsuari(req.body);
-<<<<<<< HEAD
     var dataNaix = userNew.AnyNaixement;
     var dataSplitted = dataNaix.split(' ');
     userNew.AnyNaixement = dataSplitted[0];
     console.log(userNew);
-=======
->>>>>>> 45832d25231f6bc3115ccbe8834f472b1eb6819d
     res.render('profile',{'usuari': userNew});
 });
 
