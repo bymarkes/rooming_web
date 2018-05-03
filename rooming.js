@@ -616,6 +616,7 @@ function postRoomComentari(id, dades){ //POST COMENTARIS from ROOM
 		data.Text = dades.Text;
 		data.Titol = dades.Titol;
 		data.Usuari = dades.Usuari;
+		data.Data = new Date().toISOString().replace(/T/, ' ').replace(/\..+/, '');  
 		data.room_id = dades.room_id;
 		
 	httpRequest.onreadystatechange = function (){

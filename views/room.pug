@@ -202,18 +202,20 @@ section.innerpage-wrapper(style='background-color: #f1f2f2;')
                       h4 #{comentari.Titol}    
                       p
                         | #{comentari.Text}
+                      p(style="color:grey; font-size:10px;")
+                        | #{comentari.Data}
             if nick
-            .tab-content
-              #car-information.tab-pane.in.active(style='background-color: white; margin-top:20px;')
-                h2 Deixa el teu comentari
-                form(method='post', action='/comentari')
-                  .form-group
-                    .input-group
-                      input.form-control.input-lg(type="hidden" name="Usuari" value=nick style='color:black; margin-bottom:10px;') 
-                      input.form-control.input-lg(type="hidden" name="room_id" value=room.id style='margin-bottom:10px;')                       
-                      input.form-control.input-lg(name="Titol" value="" style='margin-bottom:10px;' placeholder='Titol' required='')                       
-                      textarea.form-control.input-lg(name="Text", cols="100", rows="4", type='text', placeholder='Escriu el teu comentari', required='')
-                      button.btn.btn-orange(type='submit' style="margin-top:20px") ENVIA
+              .tab-content
+                #car-information.tab-pane.in.active(style='background-color: white; margin-top:20px;')
+                  h2 Deixa el teu comentari
+                  form(method='post', action='/comentari')
+                    .form-group
+                      .input-group
+                        input.form-control.input-lg(type="hidden" name="Usuari" value=nick style='color:black; margin-bottom:10px;') 
+                        input.form-control.input-lg(type="hidden" name="room_id" value=room.id style='margin-bottom:10px;')                       
+                        input.form-control.input-lg(name="Titol" value="" style='margin-bottom:10px;' placeholder='Titol' required='')                       
+                        textarea.form-control.input-lg(name="Text", cols="100", rows="4", type='text', placeholder='Escriu el teu comentari', required='')
+                        button.btn.btn-orange(type='submit' style="margin-top:20px") ENVIA
                   // end columns
                 // end row
               // end car-information
