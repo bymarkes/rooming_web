@@ -632,7 +632,6 @@ function postRoomComentari(id, dades){ //POST COMENTARIS from ROOM
 	httpRequest.open('POST', URL+"room/"+id+"/comentari", false);
 	httpRequest.setRequestHeader("Content-Type",'application/json; charset=utf-8');
 	var resultStr = JSON.stringify(data);
-	console.log(resultStr);
 	httpRequest.send(resultStr);
 	return result;
 }

@@ -117,7 +117,6 @@ app.get('/room/:id', function(req,res){
 });
 
 app.post('/comentari', function(req, res){
-    console.log(req.body);
     roomingApi.postRoomComentari(parseInt(req.body.room_id), req.body);
     res.redirect('/room/'+req.body.room_id);
 });
