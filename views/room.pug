@@ -114,6 +114,7 @@ section.innerpage-wrapper(style='background-color: #f1f2f2;')
             h2.selected-price
               |#{room.Preu}&euro; 
               span Persona
+          button.btn.btn-orange Reserva
           // end side-bar-block
           .row
             .col-xs-12.col-sm-6.col-md-12
@@ -166,13 +167,13 @@ section.innerpage-wrapper(style='background-color: #f1f2f2;')
                   i.fa.fa-user
                 .f-text
                   p.f-heading Persones
-                  p.f-data 4
+                  p.f-data #{room.Persones}
               li
                 .f-icon
                   i.fa.fa-clock-o
                 .f-text
                   p.f-heading Duracio
-                  p.f-data 20 min
+                  p.f-data #{room.Duracio} min
               li
                 .f-icon
                   i.fa.fa-percent
@@ -190,7 +191,16 @@ section.innerpage-wrapper(style='background-color: #f1f2f2;')
                   .col-sm-8.col-md-8.tab-text
                     h3 #{room.Nom}
                     p
-                      | #{room.Descripcio} 
+                      | #{room.Descripcio}
+            .tab-content
+              #car-information.tab-pane.in.active(style='background-color: white;')
+                h2 Comentaris               
+                .row
+                  each comentari in comentaris
+                    .col-sm-8.col-md-8.tab-text
+                      h3 #{comentari.Titol} #{comentari.Usuari}
+                      p
+                        | #{comentari.Text}
                   // end columns
                 // end row
               // end car-information

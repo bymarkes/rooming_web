@@ -190,7 +190,7 @@ section#hotel-offers.section-padding
             .item
               .main-block.hotel-block
                 .main-img
-                  a(href='#')
+                  a(href='/room/'+room.id)
                     // IMATGE
                     each foto in fotos
                       if foto.room_id == room.id && foto.principal
@@ -216,12 +216,12 @@ section#hotel-offers.section-padding
                 // end offer-img
                 .main-info.hotel-info
                   .arrow
-                    a(href='#')
+                    a(href='/room/'+room.id)
                       span
                         i.fa.fa-angle-right
                   // end arrow
                   .main-title.hotel-title
-                    a(href='#') #{room.Nom}
+                    a(href='/room/'+room.id) #{room.Nom}
                     p #{room.Descripcio}
                   // end hotel-title
                 // end hotel-info
