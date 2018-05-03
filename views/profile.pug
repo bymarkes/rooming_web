@@ -125,6 +125,7 @@ section.innerpage-wrapper(style='background-color: #f1f2f2;')
                           i.fa.fa-user
                   .form-group
                     input#user.form-control(name='Nick',type='text', placeholder='Nom usuari', value=usuari.Nick, disabled='', required='')
+                    input#user.form-control(name='Nick',type='hidden', placeholder='Nom usuari', value=usuari.Nick)
                     span
                       i.fa.fa-user
                   .form-group
@@ -139,6 +140,7 @@ section.innerpage-wrapper(style='background-color: #f1f2f2;')
                     input#poblacio.form-control(name='Poblacio', type='text', placeholder='Població', value=usuari.Poblacio, disabled='', required='')
                     span
                       i.fa.fa-map-marker
+                    input#contraForm.form-control(name='Contrasenya', type='text', style='display: none;')
                   button#changePass.btn(type='button', data-toggle='modal', data-target='#edit-profile') Canvia Contrasenya
                   //a#changePass.btn(data-toggle='modal', data-target='#edit-profile') Canvia Contrasenya
                   button#editbtn.btn.btn-orange.btn-block(style='margin-top: 35px;') Edita
@@ -159,12 +161,13 @@ section.innerpage-wrapper(style='background-color: #f1f2f2;')
       .modal-body
         form#formPassword
           .form-group
-            input.form-control(type='password',name='Contrasenya' placeholder='Nova Contrasenya')
+            input#password.form-control(type='password', name='Contrasenya', placeholder='Nova Contrasenya')
           // end form-group
           .form-group
-            input.form-control(type='password', placeholder='Confirma Contrasenya')
+            input#confirm_password.form-control(type='password', placeholder='Confirma Contrasenya')
+            input.form-control(type='hidden', name='Nick', value=nick)
           // end form-group
-          button#btnForm.btn.btn-orange.btn-block Guarda
+          button#btnForm.btn.btn-orange.btn-block(type='submit') Guarda
       // end modal-bpdy
     // end modal-content
   // end modal-dialog
@@ -240,21 +243,13 @@ script.
   //Append Botons
   divBtns.appendChild(divcol1);
   divBtns.appendChild(divcol2);
-  // //Boto Canvi Contrassenya
-  // var changePassbtn = document.createElement("button");
-  // changePassbtn.setAttribute('class','btn');
-  // changePassbtn.setAttribute('data-toggle','modal');
-  // changePassbtn.setAttribute('data-target','#edit-profile');
-  // //NodeText Botons
-  // var nodeBoto = document.createTextNode('Canvia Contrassenya');
-  // changePassbtn.appendChild(nodeBoto);
+
   //Mostrem Contingut
   var divEdit = document.getElementById("divEdit");
   divEdit.appendChild(divBtns);
   //Habilitem tots els inputs del Formulari
   document.getElementById("nom").disabled = false;
   document.getElementById("cognom").disabled = false;
-  document.getElementById("user").disabled = false;
   document.getElementById("mail").disabled = false;
   document.getElementById("dataNaix").disabled = false;
   document.getElementById("poblacio").disabled = false;
@@ -273,3 +268,37 @@ script.
   document.getElementById("poblacio").disabled = true;
   });
    });
+
+script.
+  $(document).ready(function(){
+    $('#formPassword').submit(function(){
+      var pass = $('#password').val();
+      var confPass = $('#confirm_password').val();
+      if (pass == confPass){
+        $('#formPassword').attr('action','/profile?_method=PUT');
+        $('#formPassword').attr('method','post');
+      }else{
+        alert('Les contrasenyes han de coincidir!');
+        return false;
+      }
+    });
+  });
+  
+script.
+  $('#password, #confirm_password').on('keyup', function () {
+  if ($('#password').val() == $('#confirm_password').val()) {
+  $('#password').css('border', 'solid 2px green');
+  $('#confirm_password').css('border', 'solid 2px green');
+  } else{
+  $('#password').css('border', 'solid 2px red');
+  $('#confirm_password').css('border', 'solid 2px red');
+  }
+  });
+  $('#password, #confirm_password').on('keyup', function () {
+  if ($('#password').val() == '') {
+  $('#password').css('border', 'none');
+  }
+  if ($('#confirm_password').val() == ''){
+  $('#confirm_password').css('border', 'none');
+  }
+  });
