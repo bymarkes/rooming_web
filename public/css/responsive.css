@@ -166,20 +166,24 @@ Author:			Star Travel
 	
 	#top-bar.container-header #info li:first-child{
 		margin-right:5px;
+		transition: margin-right .5s;
 	}
 	
 	#top-bar.container-header #links > ul > li form{
 		padding-left:18px;
 		margin-left:10px;
+		transition: margin-right .5s;
 	}
 	
 	#top-bar.container-header form ul li:last-child{
 		margin-left:4px;
+		transition: margin-right .5s;
 	}
 	
 	#top-bar #links > ul > li form{
 		padding-left:22px;
 		margin-left:15px;
+		transition: margin-right .5s;
 	}
 }
 
@@ -187,6 +191,7 @@ Author:			Star Travel
 	
 	#top-bar #links ul li form{
 		margin-left:15px;
+		transition: margin-right .5s;
 	}
 }
 
@@ -202,20 +207,25 @@ Author:			Star Travel
 	
 	#top-bar #info li{
 		margin:0px 5px 3px;
+
 	}
 	
 	#top-bar #links{
 		float:none;
 		text-align:center;
+		transition: margin-right .5s;	
 	}
 	
 	#top-bar #links > ul > li form{
 		padding-left:18px;
-		margin-left:10px;
+		margin-left:15px;
+		
+
 	}
 	
 	#top-bar form ul li:last-child{
 		margin-left:4px;
+		transition: margin-right .5s;
 	}
 }
 
@@ -225,15 +235,19 @@ Author:			Star Travel
 
 	#cruise-homepage #top-bar #info li:first-child{
 		margin-right:5px;
+		transition: margin-right .5s;
 	}
 	
 	#cruise-homepage #top-bar #links > ul > li form{
 		padding-left:18px;
 		margin-left:10px;
+		transition: margin-right .5s;
+		
 	}
 	
 	#cruise-homepage #top-bar form ul li:last-child{
 		margin-left:4px;
+		transition: margin-right .5s;
 	}
 }
 
@@ -541,6 +555,7 @@ Author:			Star Travel
 	#slider-1 .slides, 
 	#slider-1 .flex-viewport {
 		height: 712px;
+		transition: margin-right .5s;
 	}
 
 	#slider-1 .slides > li { 
@@ -558,6 +573,7 @@ Author:			Star Travel
 	#slider-1 .slides, 
 	#slider-1 .flex-viewport {
 		height: 800px;
+		transition: margin-right .5s;
 	}
 
 	#slider-1 .slides > li { 
@@ -594,6 +610,7 @@ Author:			Star Travel
 	#slider-1 .slides, 
 	#slider-1 .flex-viewport {
 		height: 830px;
+		transition: margin-right .5s;
 	}
 
 	#slider-1 .slides > li { 
@@ -611,6 +628,7 @@ Author:			Star Travel
 	#slider-1 .slides, 
 	#slider-1 .flex-viewport {
 		height: 745px;
+		transition: margin-right .5s;
 	}
 
 	#slider-1 .slides > li { 
@@ -2457,6 +2475,7 @@ Author:			Star Travel
 	
 	.footer-widget.ftr-about .social-links li a{
 		font-size:19px;
+		transition: margin-right .5s;
 	}
 }
 
@@ -3930,7 +3949,7 @@ Author:			Star Travel
 	}
 }
 
-@media(max-width:767px){
+@media(max-width:767px){  
 	
 	#dashboard-tabs .nav-tabs li a{
 		margin-top:2px;
@@ -3945,6 +3964,7 @@ Author:			Star Travel
 	
 	#dashboard-tabs .tab-content .tab-pane .dashboard-content{
 		padding:50px 16px 20px;
+		transition: margin-right .5s;
 	}
 }
 

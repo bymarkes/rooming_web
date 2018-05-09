@@ -54,14 +54,10 @@ head
 nav#mynavbar-1.navbar.navbar-default.main-navbar.navbar-custom.navbar-white
   .container
     .navbar-header
-      button#menu-button.navbar-toggle(type='button')
+      button#menu-button.navbar-toggle(type='button', onclick='openNav()')
         span.icon-bar
         span.icon-bar
-        span.icon-bar
-      .header-search.hidden-lg
-        a.search-button(href='javascript:void(0)')
-          span
-            i.fa.fa-search
+        span.icon-bar      
       a.navbar-brand(href='/')
         span
           i.fa.fa-plane
@@ -70,7 +66,7 @@ nav#mynavbar-1.navbar.navbar-default.main-navbar.navbar-custom.navbar-white
     // end navbar-header
     #myNavbar1.collapse.navbar-collapse
       ul.nav.navbar-nav.navbar-right
-        li.dropdown
+        li.active
           a(href='/')
             | Inici
             span
@@ -82,13 +78,46 @@ nav#mynavbar-1.navbar.navbar-default.main-navbar.navbar-custom.navbar-white
           a(href='/rooms')
             | Rooms
             span
-        li.active
+        li.dropdown
           a(href='/map')
             | Mapa
             span
     // end navbar collapse
   // end container
 // end navbar
+.sidenav-content
+  #mySidenav.sidenav
+    h2#web-name
+      span
+        i.fa.fa-plane
+      | Rooming
+    #main-menu
+      .closebtn
+        button#closebtn.btn.btn-default(onclick="closeNav()") &times;
+      // end close-btn
+      .list-group.panel
+        a.list-group-item(href='/', data-parent='#main-menu')
+          span
+            i.fa.fa-home.link-icon(style='font-size:20px;')
+          | Inici
+          span
+        a.list-group-item(href='/categories', data-parent='#main-menu')
+          span
+            i.fa.fa-list-ul.link-icon
+          | Categories
+          span
+        a.list-group-item(href='/rooms', data-parent='#main-menu')
+          span
+            i.fa.fa-lock.link-icon(style='font-size:20px;')
+          | Rooms
+          span
+        a.list-group-item.active(href='/map', data-parent='#main-menu')
+          span
+            i.fa.fa-map.link-icon
+          | Mapa
+          span
+    // end mySidenav
+  // end sidenav-content
 style.
   #map {
     height: 94%;
