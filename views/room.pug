@@ -114,7 +114,8 @@ section.innerpage-wrapper(style='background-color: #f1f2f2;')
             h2.selected-price
               |#{room.Preu}&euro; 
               span Persona
-          button.btn.btn-orange Reserva
+          .text-center
+            a.btn.btn-orange(href="/reserva/"+room.id) RESERVA
           // end side-bar-block
           .row
             .col-xs-12.col-sm-6.col-md-12
@@ -130,6 +131,8 @@ section.innerpage-wrapper(style='background-color: #f1f2f2;')
                   span
                     i.fa.fa-phone
                   p #{establiment.Telefon}
+                  .text-center
+                    a.btn.btn-orange(href="/establiment/"+establiment.id) VEURE ESTABLIMENT
                 // end support-contact
               // end side-bar-block
             // end columns
@@ -196,14 +199,17 @@ section.innerpage-wrapper(style='background-color: #f1f2f2;')
               #car-information.tab-pane.in.active(style='background-color: white; margin-top:20px;')
                 h2 Comentaris               
                 .row
-                  each comentari in comentaris
-                    .col-sm-12.col-md-12.tab-text.tab-pane(style='margin-top:20px;')
-                      p(style='color:black;') #{comentari.Usuari}
-                      h4 #{comentari.Titol}    
-                      p
-                        | #{comentari.Text}
-                      p(style="color:grey; font-size:10px;")
-                        | #{comentari.Data}
+                  if comentaris
+                    each comentari in comentaris
+                      .col-sm-12.col-md-12.tab-text.tab-pane(style='margin-top:20px;')
+                        p(style='color:black;') #{comentari.Usuari}
+                        h4 #{comentari.Titol}    
+                        p
+                          | #{comentari.Text}
+                        p(style="color:grey; font-size:10px;")
+                          | #{comentari.Data}
+                  else
+                    h3 Encara no s'ha fet cap comentari d'aquest Room. Sigues el primer!
             if nick
               .tab-content
                 #car-information.tab-pane.in.active(style='background-color: white; margin-top:20px;')
