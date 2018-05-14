@@ -1017,6 +1017,28 @@ function getGps(){ // GET GPS
 	return result;
 }
 
+// reserves
+function getRoomReserves(id){
+	var httpRequest = new XMLHttpRequest();
+	var result;
+
+	httpRequest.onreadystatechange = function (){
+
+		if (httpRequest.readyState == 4 && httpRequest.status == 200 ) {
+
+			var jsonParsed = JSON.parse(httpRequest.responseText);
+			result = jsonParsed;
+		}
+
+	};
+
+	httpRequest.open('GET', URL+"room/" + id + "/reserva", false);
+
+	httpRequest.send();
+	return result;
+}
+
+
 /** */
 
 module.exports = {
@@ -1065,7 +1087,8 @@ module.exports = {
 	postToken,
 	getToken,
 	deleteToken,
-	getGps
+	getGps,
+	getRoomReserves
 };
 
 

@@ -129,13 +129,10 @@ app.get('/profile', function(req,res){
 app.put('/profile', function(req,res){
     var nick = req.body.Nick;    
     var userNew = roomingApi.putUsuari(req.body);
-<<<<<<< HEAD
     var dataNaix = userNew.AnyNaixement;
     var dataSplitted = dataNaix.split(' ');
     userNew.AnyNaixement = dataSplitted[0];
     console.log(userNew);
-=======
->>>>>>> 45832d25231f6bc3115ccbe8834f472b1eb6819d
     res.render('profile',{'usuari': userNew});
 });
 
@@ -158,6 +155,35 @@ app.get('/map', function(req,res){
     nomsEstabliment = getJSonObject(JSON.stringify(nomsEstabliment));
     
     res.render('map',{"puntsDelMapa":punts, "nomsEstabliment":nomsEstabliment});  
+});
+
+app.get('/profile/reserves',function(req,res){
+    var u = roomingApi.getUsuari(req.cookies.nick);
+    var establiment;
+    if(u){
+        if(u.Tipus == 1){
+            var e = roomingApi.getAllEstabliment();
+            for (let index = 0; index < e.length; index++) {
+                const element = e[index];
+                    if (element.usuari_id == u.id){
+                        establiment = element;
+                        break;
+                    }
+            }
+    
+            var r  = roomingApi.getEstablimentRooms(establiment.id);
+    
+            for (let index = 0; index < r.length; index++) {
+                var reserves = roomingApi.getRoomReserves(r[index].id);
+                r[index].Reserves = reserves;
+            }
+            res.render("reserves",{"rooms":r,'nick':req.cookies.nick})
+        }
+            
+    }else{
+        res.redirect("/");
+    }
+   
 });
 
 app.listen(3000);

@@ -1,0 +1,287 @@
+doctype html
+html(lang="en")
+  head
+    title Perfil
+    meta(charset="utf-8")
+    meta(name="viewport" content="width=device-width,initial-scale=1")
+    link(rel="icon" href="images/favicon.png" type="image/x-icon")
+    // Google Fonts
+    link(href="https://fonts.googleapis.com/css?family=Lato:300,300i,400,400i,700,700i,900,900i%7CMerriweather:300,300i,400,400i,700,700i,900,900i" rel="stylesheet")
+    // Bootstrap Stylesheet
+    link(rel="stylesheet" href="css/bootstrap.min.css")
+    // Font Awesome Stylesheet
+    link(rel="stylesheet" href="css/font-awesome.min.css")
+    // Custom Stylesheets
+    link(rel="stylesheet" href="css/style.css")
+    link#cpswitch(rel="stylesheet" href="css/orange.css")
+    link(rel="stylesheet" href="css/responsive.css")
+    // Color Panel
+    link(rel="stylesheet" href="css/jquery.colorpanel.css")
+  body#booking
+    doctype html
+head
+  title Inicia Sessi&oacute;
+  meta(charset='utf-8')
+  meta(name='viewport', content='width=device-width,initial-scale=1')
+  link(rel='icon', href='/images/favicon.png', type='image/x-icon')
+  // Google Fonts
+  link(href='https://fonts.googleapis.com/css?family=Lato:300,300i,400,400i,700,700i,900,900i%7CMerriweather:300,300i,400,400i,700,700i,900,900i', rel='stylesheet')
+  // Bootstrap Stylesheet
+  link(rel='stylesheet', href='/css/bootstrap.min.css')
+  // Font Awesome Stylesheet
+  link(rel='stylesheet', href='/css/font-awesome.min.css')
+  // Custom Stylesheets
+  link(rel='stylesheet', href='/css/style.css')
+  link#cpswitch(rel='stylesheet', href='/css/orange.css')
+  link(rel='stylesheet', href='/css/responsive.css')
+  // Owl Carousel Stylesheet
+  link(rel='stylesheet', href='/css/owl.carousel.css')
+  link(rel='stylesheet', href='/css/owl.theme.css')
+  // Flex Slider Stylesheet
+  link(rel='stylesheet', href='/css/flexslider.css', type='text/css')
+  // Date-Picker Stylesheet
+  link(rel='stylesheet', href='/css/datepicker.css')
+  // Magnific Gallery
+  link(rel='stylesheet', href='/css/magnific-popup.css')
+  // Color Panel
+  link(rel='stylesheet', href='/css/jquery.colorpanel.css')
+// ====== LOADER =====
+.loader
+// ============= TOP-BAR ===========
+#top-bar.tb-text-white
+  .container
+    .row
+      .col-xs-12.col-sm-6.col-md-6.col-lg-6
+      // end columns
+      .col-xs-12.col-sm-6.col-md-6.col-lg-6
+        #links
+          ul.list-unstyled.list-inline
+            if nick
+              li
+                a(href='/profile')
+                  span
+                    i.fa.fa-user
+                  | Hola, #{nick} !
+              li
+                a(href='/signout')
+                  span
+                    i.fa.fa-sign-out
+                  | Tancar Sessio
+            else
+              li
+                a(href='/login')
+                  span
+                    i.fa.fa-lock
+                  | Iniciar Sessió
+              li
+                a(href='/register')
+                  span
+                    i.fa.fa-plus
+                  | Registra't
+        // end links
+      // end columns
+    // end row
+  // end container
+// end top-bar
+nav#mynavbar-1.navbar.navbar-default.main-navbar.navbar-custom.navbar-white
+  .container
+    .navbar-header
+      button#menu-button.navbar-toggle(type='button')
+        span.icon-bar
+        span.icon-bar
+        span.icon-bar
+      .header-search.hidden-lg
+        a.search-button(href='javascript:void(0)')
+          span
+            i.fa.fa-search
+      a.navbar-brand(href='/')
+        span
+          i.fa.fa-plane
+          | ROOM
+        | ING
+    // end navbar-header
+    #myNavbar1.collapse.navbar-collapse
+      ul.nav.navbar-nav.navbar-right
+        li.dropdown
+          a(href='/')
+            | Inici
+            span
+        li.dropdown
+          a(href='/categories')
+            | Categories
+            span
+        li.dropdown
+          a(href='/rooms')
+            | Rooms
+            span
+        li.dropdown
+          a(href='/map')
+            | Mapa
+            span
+    // end navbar collapse
+  // end container
+// end navbar
+// ==== INNERPAGE-WRAPPER =====
+section.innerpage-wrapper(style='background-color: #f1f2f2;')
+      #dashboard.innerpage-section-padding
+        .container
+          .row(style='background-color:#fafafa; padding:20px;')
+            .col-xs-12.col-sm-12.col-md-12.col-lg-12
+              .dashboard-heading
+                h2
+                  span Reserves
+              // end dashboard-heading
+              .dashboard-wrapper
+                .row
+                  .col-xs-12.col-sm-2.col-md-2.dashboard-nav
+                    ul.nav.nav-tabs.nav-stacked.text-center
+                      li
+                        a
+                          span
+                            i.fa.fa-briefcase
+                          | Reserves
+                      each room in rooms
+                        li
+                          a(href='#'+room.Nom)
+                            span
+                              i.fa.fa-home
+                            | #{room.Nom}
+                  // end columns
+                  .col-xs-12.col-sm-10.col-md-10.dashboard-content.booking-trips
+                    h2.dash-content-title Reserves Room
+                    each room in rooms
+                      h3(id=room.Nom) #{room.Nom}
+                      .dashboard-listing.booking-listing
+                        each reserva in room.Reserves
+                          if reserva
+                            .table-responsive
+                              table.table.table-hover
+                                tbody
+                                  tr
+                                    td.dash-list-icon.booking-list-date
+                                      .b-date                               
+                                        h3(id="dia"+reserva.id)
+                                        p(id="mes"+reserva.id)
+                                          script(type='text/javascript').
+                                            //day
+                                            var data = '#{reserva.Hora}'
+                                            var field = data.split('-')
+                                            var dia = field[2]
+                                            var field2 = dia.split(' ')
+                                            var dia2 = field2[0];
+                                            document.getElementById("dia"+ "#{reserva.id}").innerHTML = dia2;
+                                            //month
+                                            var data = '#{reserva.Hora}'
+                                            var field = data.split('-')
+                                            var mes = field[1]
+                                            var field2 = mes.split(' ')
+                                            var mes2 = field2[0];
+                                            switch (mes2) {
+                                                case "01":
+                                                    mes2="Gener"
+                                                    break;
+                                                case "02":
+                                                    mes2="Febrer"
+                                                    break;
+                                                case "03":
+                                                    mes2="Març"
+                                                    break;
+                                                case "04":
+                                                    mes2="Abril"
+                                                    break;
+                                                case "05":
+                                                    mes2="Maig"
+                                                    break;
+                                                case "06":
+                                                    mes2="Juny"
+                                                    break;
+                                                case "07":
+                                                    mes2="Juliol"
+                                                    break;
+                                                case "08":
+                                                    mes2="Agost"
+                                                    break;
+                                                case "09":
+                                                    mes2="Setembre"
+                                                    break;
+                                                case "10":
+                                                    mes2="Octubre"
+                                                    break;
+                                                case "11":
+                                                    mes2="Novembre"
+                                                    break;
+                                                case "12":
+                                                    mes2="Desembre"
+                                                    break;
+                                            }
+                                            document.getElementById("mes"+ "#{reserva.id}").innerHTML = mes2;
+                                            console.log("tito");      
+                                    td.dash-list-text.booking-list-detail
+                                      h3 #{room.Nom}
+                                      ul.list-unstyled.booking-info
+                                        li
+                                          span Dia/Hora Reserva:
+                                          |  #{reserva.Hora}
+                                        li
+                                          span Persones:
+                                          |  #{reserva.Persones}
+                                        li
+                                          span Import:
+                                          |  #{reserva.Import} €
+                                    td.dash-list-btn
+                                      button.btn.btn-orange Cancel·lar
+                        else
+                          .table-responsive
+                            table.table.table-hover
+                              tbody
+                                td.dash-list-text.booking-list-detail
+                                    h3 No hi ha Reserves
+                      // end table-responsive
+                    // end booking-listings
+                  // end columns
+                // end row
+              // end dashboard-wrapper
+            // end columns
+          // end row
+        // end container
+      // end dashboard
+// end innerpage-wrapper
+// ======================= FOOTER =======================
+section#footer.ftr-heading-o.ftr-heading-mgn-1
+  #footer-bottom.ftr-bot-black
+    .container
+      .row
+        #copyright.col-xs-12.col-sm-6.col-md-6.col-lg-6
+          p
+            | &copy; 2017 
+            a(href='#') Rooming
+            | . All rights reserved.
+        // end columns
+        #terms.col-xs-12.col-sm-6.col-md-6.col-lg-6
+          ul.list-unstyled.list-inline
+            li
+              a(href='/terms') Termes i Condicions
+            li
+              a(href='/polices') Politica de Privacitat
+            li
+              a(href='/contact') | Contacte 
+        // end columns
+      // end row
+    // end container
+  // end footer-bottom
+// end footer
+// Page Scripts Starts
+script(src='/js/jquery.min.js')
+script(src='/js/jquery.colorpanel.js')
+script(src='/js/jquery.magnific-popup.min.js')
+script(src='/js/bootstrap.min.js')
+script(src='/js/jquery.flexslider.js')
+script(src='/js/bootstrap-datepicker.js')
+script(src='/js/owl.carousel.min.js')
+script(src='/js/custom-navigation.js')
+script(src='/js/custom-flex.js')
+script(src='/js/custom-owl.js')
+script(src='/js/custom-date-picker.js')
+script(src='/js/custom-video.js')
+script(src='/js/popup-ad.js')
+// Page Scripts Ends
