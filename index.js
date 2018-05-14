@@ -62,11 +62,7 @@ app.post('/login', function(req, res){
             res.cookie('nick',usuari.Nick);
             res.cookie('token',token);
 
-            var dataNaix = usuari.AnyNaixement;
-            var dataSplitted = dataNaix.split(' ');
-            usuari.AnyNaixement = dataSplitted[0];
-
-            res.render('profile', {'usuari':usuari, 'token':token, 'nick':usuari.Nick});
+            res.redirect('profile');
         }else{
             res.render('login', {'errorLogin':true});        
         }    
@@ -79,6 +75,13 @@ app.post('/login', function(req, res){
 app.get('/categories', function(req,res){
     var c = roomingApi.getAllCategoria();
     res.render('categories',{'categories':c,'nick':req.cookies.nick});
+});
+
+app.get('/establiment/:id', function(req,res){
+    var e = roomingApi.getEstabliment(req.params.id);
+    var r = roomingApi.getEstablimentRooms(req.params.id);  
+    var f = roomingApi.getAllFoto();        
+    res.render('establiment',{'establiment':e, 'rooms':r, 'fotos':f,'nick':req.cookies.nick});
 });
 
 app.get('/categories/:id', function(req,res){
@@ -111,14 +114,22 @@ app.get('/room/:id', function(req,res){
     var r = roomingApi.getRoom(req.params.id);
     var c = roomingApi.getCategoria(r.categoria_id);
     var e = roomingApi.getEstabliment(r.establiment_id);
+    var f = roomingApi.getAllFoto();      
     var com = roomingApi.getRoomAllComentari(req.params.id);
-    res.render('room',{'nick':req.cookies.nick, 'room':r, 'categoria':c.Titol,
+    res.render('room',{'nick':req.cookies.nick, 'room':r, 'fotos':f, 'categoria':c.Titol,
 'establiment':e, 'comentaris':com} );
+});
+
+app.post('/comentari', function(req, res){
+    roomingApi.postRoomComentari(parseInt(req.body.room_id), req.body);
+    res.redirect('/room/'+req.body.room_id);
 });
 
 app.get('/profile', function(req,res){
     if (req.cookies.nick){
         var userNew = roomingApi.getUsuari(req.cookies.nick);
+        var dataSplitted = userNew.AnyNaixement.split(' ');
+        userNew.AnyNaixement = dataSplitted[0];
         res.render('profile',{'usuari': userNew, 'nick':req.cookies.nick});
     }else{
         res.redirect('/login');
@@ -127,13 +138,18 @@ app.get('/profile', function(req,res){
 });
 
 app.put('/profile', function(req,res){
-    var nick = req.body.Nick;    
-    var userNew = roomingApi.putUsuari(req.body);
-    var dataNaix = userNew.AnyNaixement;
-    var dataSplitted = dataNaix.split(' ');
-    userNew.AnyNaixement = dataSplitted[0];
-    console.log(userNew);
-    res.render('profile',{'usuari': userNew});
+    var nick = req.body.Nick;
+    var pass = req.body.Contrasenya;
+    var userNew;
+    
+    if (!pass){
+        roomingApi.putUsuari(req.body);
+    }else{
+        var hashPass = hash.hashSaltPass(pass);
+        req.body.Contrasenya = hashPass;    
+        roomingApi.putUsuari(req.body);
+    }
+    res.redirect('profile');
 });
 
 app.get('/signout', function(req,res){

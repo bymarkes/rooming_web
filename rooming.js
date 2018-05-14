@@ -607,14 +607,21 @@ function getRoomAllComentari(id){ //GET ALL COMENTARIS from ROOM
 	return result;
 }
 
-function postRoomComentari(id, JSON){ //POST COMENTARIS from ROOM
+function postRoomComentari(id, dades){ //POST COMENTARIS from ROOM
 
 	var httpRequest = new XMLHttpRequest();
 	var result;
-
+	
+	var data = {};
+		data.Text = dades.Text;
+		data.Titol = dades.Titol;
+		data.Usuari = dades.Usuari;
+		data.Data = new Date().toISOString().replace(/T/, ' ').replace(/\..+/, '');  
+		data.room_id = dades.room_id;
+		
 	httpRequest.onreadystatechange = function (){
 
-		if (httpRequest.readyState == 4 && httpRequest.status == 200 ) {
+		if (httpRequest.readyState == 4 && httpRequest.status == 201 ) {
 
 			var jsonParsed = JSON.parse(httpRequest.responseText);
 			result = jsonParsed;
@@ -623,8 +630,9 @@ function postRoomComentari(id, JSON){ //POST COMENTARIS from ROOM
 	};
 
 	httpRequest.open('POST', URL+"room/"+id+"/comentari", false);
-
-	httpRequest.send(JSON);
+	httpRequest.setRequestHeader("Content-Type",'application/json; charset=utf-8');
+	var resultStr = JSON.stringify(data);
+	httpRequest.send(resultStr);
 	return result;
 }
 
@@ -857,8 +865,6 @@ function postUsuari(dades){ // POST Usuari
 		data.Poblacio = dades.Poblacio;
 		data.Contrasenya = dades.Contrasenya;
 
-
-
 	httpRequest.onreadystatechange = function (){
 
 		if (httpRequest.readyState == 4 && httpRequest.status == 201 ) {
@@ -889,6 +895,10 @@ function putUsuari(dades){ // PUT nick Usuari
 		data.Email = dades.Email;
 		data.AnyNaixement = dades.AnyNaixement;
 		data.Poblacio = dades.Poblacio;
+				
+		if (dades.Contrasenya){
+			data.Contrasenya = dades.Contrasenya;		
+		}
 
 
 	httpRequest.onreadystatechange = function (){
@@ -904,8 +914,7 @@ function putUsuari(dades){ // PUT nick Usuari
 	httpRequest.open('PUT', URL+"usuari/"+data.Nick, false);
 	httpRequest.setRequestHeader("Content-Type",'application/json; charset=utf-8');
 	var resultStr = JSON.stringify(data);	
-	httpRequest.send(resultStr);
-	console.log('put');
+	httpRequest.send(resultStr, data.Nick);
 	return result;
 }
 

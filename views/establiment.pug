@@ -1,6 +1,6 @@
 doctype html
 head
-  title Mapa
+  title #{establiment.Nom}
   meta(charset='utf-8')
   meta(name='viewport', content='width=device-width,initial-scale=1')
   link(rel='icon', href='/images/favicon.png', type='image/x-icon')
@@ -25,6 +25,9 @@ head
   link(rel='stylesheet', href='/css/magnific-popup.css')
   // Color Panel
   link(rel='stylesheet', href='/css/jquery.colorpanel.css')
+  // SLICK
+  link(rel='stylesheet', href='/css/slick.css')
+  link(rel='stylesheet', href='/css/slick-theme.css')
 // ====== LOADER =====
 .loader
 // ============= TOP-BAR ===========
@@ -36,16 +39,28 @@ head
       .col-xs-12.col-sm-6.col-md-6.col-lg-6
         #links
           ul.list-unstyled.list-inline
-            li
-              a(href='/login')
-                span
-                  i.fa.fa-lock
-                | Iniciar Sessió
-            li
-              a(href='/register')
-                span
-                  i.fa.fa-plus
-                | Registra't
+            if nick
+              li
+                a(href='/profile')
+                  span
+                    i.fa.fa-user
+                  | Hola, #{nick} !
+              li
+                a(href='/signout')
+                  span
+                    i.fa.fa-sign-out
+                  | Tancar Sessio
+            else
+              li
+                a(href='/login')
+                  span
+                    i.fa.fa-lock
+                  | Iniciar Sessió
+              li
+                a(href='/register')
+                  span
+                    i.fa.fa-plus
+                  | Registra't
         // end links
       // end columns
     // end row
@@ -54,10 +69,10 @@ head
 nav#mynavbar-1.navbar.navbar-default.main-navbar.navbar-custom.navbar-white
   .container
     .navbar-header
-      button#menu-button.navbar-toggle(type='button', onclick='openNav()')
+      button#menu-button.navbar-toggle(type='button')
         span.icon-bar
         span.icon-bar
-        span.icon-bar      
+        span.icon-bar
       a.navbar-brand(href='/')
         span
           i.fa.fa-plane
@@ -66,7 +81,7 @@ nav#mynavbar-1.navbar.navbar-default.main-navbar.navbar-custom.navbar-white
     // end navbar-header
     #myNavbar1.collapse.navbar-collapse
       ul.nav.navbar-nav.navbar-right
-        li.active
+        li.dropdown
           a(href='/')
             | Inici
             span
@@ -96,7 +111,7 @@ nav#mynavbar-1.navbar.navbar-default.main-navbar.navbar-custom.navbar-white
         button#closebtn.btn.btn-default(onclick="closeNav()") &times;
       // end close-btn
       .list-group.panel
-        a.list-group-item(href='/', data-parent='#main-menu')
+        a.list-group-item.active(href='/', data-parent='#main-menu')
           span
             i.fa.fa-home.link-icon(style='font-size:20px;')
           | Inici
@@ -111,92 +126,83 @@ nav#mynavbar-1.navbar.navbar-default.main-navbar.navbar-custom.navbar-white
             i.fa.fa-lock.link-icon(style='font-size:20px;')
           | Rooms
           span
-        a.list-group-item.active(href='/map', data-parent='#main-menu')
+        a.list-group-item(href='/map', data-parent='#main-menu')
           span
             i.fa.fa-map.link-icon
           | Mapa
           span
     // end mySidenav
   // end sidenav-content
-style.
-  #map {
-    height: 94%;
-    width: 100%;
-    z-index: 1;
-    margin-bottom:0;
-  }
-
-#map
-script.
-  var map, icon, icon2, list, markersListNew, markerSelected;
-  var markersListOld = [];
-
-  function initMap() {
-    var cameraPos = {
-        lat: 41.5448861,
-        lng: 2.4469217
-    };
-    map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 9,
-        center: cameraPos
-    });
-    icon = {
-        url: 'images/scape-black.png',
-        scaledSize: new google.maps.Size(50, 50)
-    }
-    icon2 = {
-        url: 'images/scape-yellow.png',
-        scaledSize: new google.maps.Size(50, 50)
-    }
-    google.maps.event.addListener(map, 'click', function(event) {
-        if (markerSelected) {
-            markerSelected.setIcon(icon);
-            markerSelected = null;
-        }
-    });
-    
-    var list = #{puntsDelMapa};
-    var listNoms = #{nomsEstabliment};
-    putMarkers(list, listNoms ,map, icon);    
-  }
-
-  var infowindow;
-    function putMarkers(list, listNoms, map, icon){
-      if(list){
-        for (var i in list){
-          var markerPos = {lat: parseFloat(list[i].Lat), lng: parseFloat(list[i].Lon)};
-          var marker = new google.maps.Marker({
-            position: markerPos,
-            map: map,
-            animation: google.maps.Animation.DROP,
-            icon: icon,
-            bdId: list[i].id
-          });
-          markersListOld.push(marker);
-          var content = '<h3>'+listNoms[i].Nom+'</h3><h4>'
-                          +listNoms[i].Poblacio+', '+listNoms[i].Provincia
-                          +'</h4> <button"><a href="/establiment/'+listNoms[i].id+'">Veure més</a></button>';
-          infowindow = new google.maps.InfoWindow()
-
-          google.maps.event.addListener(marker, 'click', (function(marker, content, infowindow) {
-            return function() {
-              map.panTo(marker.getPosition());
-              infowindow.setContent(content);
-              infowindow.open(map, marker);
-              for (var j = 0; j < markersListOld.length; j++) {
-                markersListOld[j].setIcon(icon);
-              }
-              marker.setIcon(icon2);
-              markerSelected=marker;
-            }
-          })(marker, content, infowindow));
-        }
-      }	
-    }
-
-
+// ==== INNERPAGE-WRAPPER =====
+section.innerpage-wrapper(style='background-color: #f1f2f2;')
+  .innerpage-section-padding
+    .container
+      .row
+        .col-xs-12.col-sm-12.col-md-2.side-bar.left-side-bar
+          
+        .col-xs-12.col-sm-12.col-md-9.col-lg-9.content-side
+          .detail-tabs
+              .tab-content
+                #car-information.tab-pane.in.active(style='background-color: white;')
+                  .row
+                    .col-sm-8.col-md-8.tab-text
+                      h1 #{establiment.Nom}
+                      h4
+                        | #{establiment.Provincia}, #{establiment.Poblacio}
+                      p
+                        | Lorem ipsum dolor, sit amet consectetur adipisicing elit. Doloremque fuga repudiandae veniam dolores? Consectetur voluptate placeat beatae, maxime quod sit exercitationem perspiciatis porro impedit veniam, dolore, autem neque veritatis nesciunt.
+                    // end columns
+                  // end row
+                // end car-information
+          .detail-slider
+            .feature-slider
+              each foto in fotos
+                if foto.establiment_id == establiment.id
+                  div
+                    img.img-responsive(src=foto.URL, alt='')
+            // end feature-slider
+            .feature-slider-nav
+              each foto in fotos
+                if foto.establiment_id == establiment.id
+                  div
+                    img.img-responsive.img-thumb(src=foto.URL, alt='')
+            // end feature-slider-nav
+          // end detail-slider
+          .row
+            .col-sm-12
+              .page-heading
+                br
+                h2 Room Scapes
+                hr.heading-line
+              // end page-heading
+              .row
+                each room in rooms
+                  .col-xs-12.col-sm-6.col-md-4.col-lg-4
+                    .member-block-2.text-center(style='background-color: white;')
+                      .member-img-2
+                        each foto in fotos
+                          if foto.room_id == room.id && foto.principal
+                            img.img-responsive(src=foto.URL, alt='roomscape-img')
+                        .member-name-2
+                          h3 #{room.Nom}
+                        // end member-name-2
+                      // end member-img-2
+                      .member-info-2
+                        p
+                          |#{room.Descripcio}
+                        a.myButton(href='/room/'+room.id) Veure
+                      // end member-info-2
+                    // end member-block-2
+                  // end columns
+              // end row
+            // end tab-content
+          // end detail-tabs
+        // end row
+      // end container
+    // end car-detail
+// end innerpage-wrapper
 // ======================= FOOTER =======================
-section#footer.ftr-heading-o.ftr-heading-mgn-1(style='top:0px;')
+section#footer.ftr-heading-o.ftr-heading-mgn-1
   #footer-bottom.ftr-bot-black
     .container
       .row
@@ -221,6 +227,8 @@ section#footer.ftr-heading-o.ftr-heading-mgn-1(style='top:0px;')
 // end footer
 // Page Scripts Starts
 script(src='/js/jquery.min.js')
+script(src='/js/slick.min.js')
+script(src='/js/custom-slick.js')
 script(src='/js/jquery.colorpanel.js')
 script(src='/js/jquery.magnific-popup.min.js')
 script(src='/js/bootstrap.min.js')
@@ -233,5 +241,4 @@ script(src='/js/custom-owl.js')
 script(src='/js/custom-date-picker.js')
 script(src='/js/custom-video.js')
 script(src='/js/popup-ad.js')
-script(async='', defer='', src='https://maps.googleapis.com/maps/api/js?key=AIzaSyDVagfyF-3bPDT3XLEg_JMDW1x0jWzxWIU&callback=initMap')
 // Page Scripts Ends

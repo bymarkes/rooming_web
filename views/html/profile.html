@@ -325,11 +325,10 @@
             </script>
 
         <script>
-            $(document).ready(function(){
-                console.log('ready');
-                $('#formProfile').submit(function(){
-                    $('#formProfile').attr('action','/register');
-                    $('#formProfile').attr('method','put');      
+            $(document).ready(function(){                
+                $('#btnForm').click(function(){
+                    var pass = $('#password').val();
+                    $('#contraForm').val('method','put');      
                 });
             });
         </script>

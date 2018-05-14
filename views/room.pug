@@ -69,14 +69,10 @@ head
 nav#mynavbar-1.navbar.navbar-default.main-navbar.navbar-custom.navbar-white
   .container
     .navbar-header
-      button#menu-button.navbar-toggle(type='button')
+      button#menu-button.navbar-toggle(type='button', onclick='openNav()')
         span.icon-bar
         span.icon-bar
-        span.icon-bar
-      .header-search.hidden-lg
-        a.search-button(href='javascript:void(0)')
-          span
-            i.fa.fa-search
+        span.icon-bar      
       a.navbar-brand(href='/')
         span
           i.fa.fa-plane
@@ -85,7 +81,7 @@ nav#mynavbar-1.navbar.navbar-default.main-navbar.navbar-custom.navbar-white
     // end navbar-header
     #myNavbar1.collapse.navbar-collapse
       ul.nav.navbar-nav.navbar-right
-        li.dropdown
+        li.active
           a(href='/')
             | Inici
             span
@@ -104,6 +100,39 @@ nav#mynavbar-1.navbar.navbar-default.main-navbar.navbar-custom.navbar-white
     // end navbar collapse
   // end container
 // end navbar
+.sidenav-content
+  #mySidenav.sidenav
+    h2#web-name
+      span
+        i.fa.fa-plane
+      | Rooming
+    #main-menu
+      .closebtn
+        button#closebtn.btn.btn-default(onclick="closeNav()") &times;
+      // end close-btn
+      .list-group.panel
+        a.list-group-item(href='/', data-parent='#main-menu')
+          span
+            i.fa.fa-home.link-icon(style='font-size:20px;')
+          | Inici
+          span
+        a.list-group-item(href='/categories', data-parent='#main-menu')
+          span
+            i.fa.fa-list-ul.link-icon
+          | Categories
+          span
+        a.list-group-item(href='/rooms', data-parent='#main-menu')
+          span
+            i.fa.fa-lock.link-icon(style='font-size:20px;')
+          | Rooms
+          span
+        a.list-group-item(href='/map', data-parent='#main-menu')
+          span
+            i.fa.fa-map.link-icon
+          | Mapa
+          span
+    // end mySidenav
+  // end sidenav-content
 // ==== INNERPAGE-WRAPPER =====
 section.innerpage-wrapper(style='background-color: #f1f2f2;')
   .innerpage-section-padding
@@ -114,7 +143,8 @@ section.innerpage-wrapper(style='background-color: #f1f2f2;')
             h2.selected-price
               |#{room.Preu}&euro; 
               span Persona
-          button.btn.btn-orange Reserva
+          .text-center
+            a.btn.btn-orange(href="/reserva/"+room.id) RESERVA
           // end side-bar-block
           .row
             .col-xs-12.col-sm-6.col-md-12
@@ -130,6 +160,8 @@ section.innerpage-wrapper(style='background-color: #f1f2f2;')
                   span
                     i.fa.fa-phone
                   p #{establiment.Telefon}
+                  .text-center
+                    a.btn.btn-orange(href="/establiment/"+establiment.id) VEURE ESTABLIMENT
                 // end support-contact
               // end side-bar-block
             // end columns
@@ -193,14 +225,32 @@ section.innerpage-wrapper(style='background-color: #f1f2f2;')
                     p
                       | #{room.Descripcio}
             .tab-content
-              #car-information.tab-pane.in.active(style='background-color: white;')
+              #car-information.tab-pane.in.active(style='background-color: white; margin-top:20px;')
                 h2 Comentaris               
                 .row
-                  each comentari in comentaris
-                    .col-sm-8.col-md-8.tab-text
-                      h3 #{comentari.Titol} #{comentari.Usuari}
-                      p
-                        | #{comentari.Text}
+                  if comentaris
+                    each comentari in comentaris
+                      .col-sm-12.col-md-12.tab-text.tab-pane(style='margin-top:20px;')
+                        p(style='color:black;') #{comentari.Usuari}
+                        h4 #{comentari.Titol}    
+                        p
+                          | #{comentari.Text}
+                        p(style="color:grey; font-size:10px;")
+                          | #{comentari.Data}
+                  else
+                    h3 Encara no s'ha fet cap comentari d'aquest Room. Sigues el primer!
+            if nick
+              .tab-content
+                #car-information.tab-pane.in.active(style='background-color: white; margin-top:20px;')
+                  h2 Deixa el teu comentari
+                  form(method='post', action='/comentari')
+                    .form-group
+                      .input-group
+                        input.form-control.input-lg(type="hidden" name="Usuari" value=nick style='color:black; margin-bottom:10px;') 
+                        input.form-control.input-lg(type="hidden" name="room_id" value=room.id style='margin-bottom:10px;')                       
+                        input.form-control.input-lg(name="Titol" value="" style='margin-bottom:10px;' placeholder='Titol' required='')                       
+                        textarea.form-control.input-lg(name="Text", cols="100", rows="4", type='text', placeholder='Escriu el teu comentari', required='')
+                        button.btn.btn-orange(type='submit' style="margin-top:20px") ENVIA
                   // end columns
                 // end row
               // end car-information
