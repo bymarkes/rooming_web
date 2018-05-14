@@ -66,7 +66,7 @@ nav#mynavbar-1.navbar.navbar-default.main-navbar.navbar-custom.navbar-white
     // end navbar-header
     #myNavbar1.collapse.navbar-collapse
       ul.nav.navbar-nav.navbar-right
-        li.active
+        li.dropdown
           a(href='/')
             | Inici
             span
@@ -78,7 +78,7 @@ nav#mynavbar-1.navbar.navbar-default.main-navbar.navbar-custom.navbar-white
           a(href='/rooms')
             | Rooms
             span
-        li.dropdown
+        li.active
           a(href='/map')
             | Mapa
             span
@@ -155,15 +155,20 @@ script.
         }
     });
     
-    var list = #{puntsDelMapa};
+    list = #{puntsDelMapa};
+    console.log(list);
     var listNoms = #{nomsEstabliment};
-    putMarkers(list, listNoms ,map, icon);    
+    putMarkers(list, listNoms, map, icon);    
   }
 
   var infowindow;
     function putMarkers(list, listNoms, map, icon){
       if(list){
         for (var i in list){
+          /*marker {
+            lat: x,
+            lon: y
+          }*/
           var markerPos = {lat: parseFloat(list[i].Lat), lng: parseFloat(list[i].Lon)};
           var marker = new google.maps.Marker({
             position: markerPos,
@@ -171,6 +176,7 @@ script.
             animation: google.maps.Animation.DROP,
             icon: icon,
             bdId: list[i].id
+
           });
           markersListOld.push(marker);
           var content = '<h3>'+listNoms[i].Nom+'</h3><h4>'
