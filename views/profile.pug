@@ -137,7 +137,14 @@ section.innerpage-wrapper(style='background-color: #f1f2f2;')
         hr.heading-line
         form#formProfile(method='post', action='/profile?_method=PUT')
           .row
-            .col-sm-12(style='margin-top: 30px;')
+            .col-sm-6(style='margin-top: 30px;')
+              .flex-content
+                .custom-form.custom-form-fields(style='background-color: #fafafa;')
+                  h3 Puntuació
+                  h3 Els Meus Establiments
+                  a.btn.btn-orange.btn-block(href="/establiment/new") AFERGIR UN ESTABLIMENT
+                  
+            .col-sm-6(style='margin-top: 30px;')
               .flex-content
                 #divEdit.custom-form.custom-form-fields(style='background-color: #fafafa;')
                   .row
@@ -169,7 +176,7 @@ section.innerpage-wrapper(style='background-color: #f1f2f2;')
                     span
                       i.fa.fa-map-marker
                     input#contraForm.form-control(name='Contrasenya', type='text', style='display: none;')
-                  button#changePass.btn(type='button', data-toggle='modal', data-target='#edit-profile') Canvia Contrasenya
+                  button#changePass.btn.btn-block(type='button', data-toggle='modal', data-target='#edit-profile') Canvia Contrasenya
                   //a#changePass.btn(data-toggle='modal', data-target='#edit-profile') Canvia Contrasenya
                   button#editbtn.btn.btn-orange.btn-block(style='margin-top: 35px;') Edita
                   // end other-links

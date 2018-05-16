@@ -77,6 +77,14 @@ app.get('/categories', function(req,res){
     res.render('categories',{'categories':c,'nick':req.cookies.nick});
 });
 
+app.get('/establiment/new', function(req,res){
+    if (req.cookies.nick) {
+        res.render('new-establiment',{'nick':req.cookies.nick});
+    }else{
+        res.redirect('/');
+    }
+});
+
 app.get('/establiment/:id', function(req,res){
     var e = roomingApi.getEstabliment(req.params.id);
     var r = roomingApi.getEstablimentRooms(req.params.id);  

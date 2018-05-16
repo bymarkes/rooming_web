@@ -1,0 +1,239 @@
+doctype html
+head
+  title ROOMING
+  meta(charset='utf-8')
+  meta(name='viewport', content='width=device-width,initial-scale=1')
+  link(rel='icon', href='/images/favicon.png', type='image/x-icon')
+  // Google Fonts
+  link(href='https://fonts.googleapis.com/css?family=Lato:300,300i,400,400i,700,700i,900,900i%7CMerriweather:300,300i,400,400i,700,700i,900,900i', rel='stylesheet')
+  // Bootstrap Stylesheet
+  link(rel='stylesheet', href='/css/bootstrap.min.css')
+  // Font Awesome Stylesheet
+  link(rel='stylesheet', href='/css/font-awesome.min.css')
+  // Custom Stylesheets
+  link(rel='stylesheet', href='/css/style.css')
+  link#cpswitch(rel='stylesheet', href='/css/orange.css')
+  link(rel='stylesheet', href='/css/responsive.css')
+  // Owl Carousel Stylesheet
+  link(rel='stylesheet', href='/css/owl.carousel.css')
+  link(rel='stylesheet', href='/css/owl.theme.css')
+  // Flex Slider Stylesheet
+  link(rel='stylesheet', href='/css/flexslider.css', type='text/css')
+  // Date-Picker Stylesheet
+  link(rel='stylesheet', href='/css/datepicker.css')
+  // Magnific Gallery
+  link(rel='stylesheet', href='/css/magnific-popup.css')
+  // Color Panel
+  link(rel='stylesheet', href='/css/jquery.colorpanel.css')
+// ====== LOADER =====
+#divTopBar.loader
+// ============= TOP-BAR ===========
+#top-bar.tb-text-white
+  .container
+    .row
+      .col-xs-12.col-sm-6.col-md-6.col-lg-6
+      // end columns
+      .col-xs-12.col-sm-6.col-md-6.col-lg-6
+        #links
+          ul.list-unstyled.list-inline
+            if nick
+              li
+                a(href='/profile')
+                  span
+                    i.fa.fa-user
+                  | Hola, #{nick} !
+              li
+                a(href='/signout')
+                  span
+                    i.fa.fa-sign-out
+                  | Tancar Sessio
+            else
+              li
+                a(href='/login')
+                  span
+                    i.fa.fa-lock
+                  | Iniciar Sessió
+              li
+                a(href='/register')
+                  span
+                    i.fa.fa-plus
+                  | Registra't
+        // end links
+      // end columns
+    // end row
+  // end container
+// end top-bar
+nav#mynavbar-1.navbar.navbar-default.main-navbar.navbar-custom.navbar-white
+  .container
+    .navbar-header
+      button#menu-button.navbar-toggle(type='button', onclick='openNav()')
+        span.icon-bar
+        span.icon-bar
+        span.icon-bar      
+      a.navbar-brand(href='/')
+        span
+          img(src="images/scape-yellow.png", alt="").icon-logo
+          | ROOM
+        | ING
+    // end navbar-header
+    #myNavbar1.collapse.navbar-collapse
+      ul.nav.navbar-nav.navbar-right
+        li.active
+          a(href='/')
+            | Inici
+            span
+        li.dropdown
+          a(href='/categories')
+            | Categories
+            span
+        li.dropdown
+          a(href='/rooms')
+            | Rooms
+            span
+        li.dropdown
+          a(href='/map')
+            | Mapa
+            span
+    // end navbar collapse
+  // end container
+// end navbar
+.sidenav-content
+  #mySidenav.sidenav
+    h2#web-name
+      span
+      | Rooming
+    #main-menu
+      .closebtn
+        button#closebtn.btn.btn-default(onclick="closeNav()") &times;
+      // end close-btn
+      .list-group.panel
+        a.list-group-item.active(href='/', data-parent='#main-menu')
+          span
+            i.fa.fa-home.link-icon(style='font-size:20px;')
+          | Inici
+          span
+        a.list-group-item(href='/categories', data-parent='#main-menu')
+          span
+            i.fa.fa-list-ul.link-icon
+          | Categories
+          span
+        a.list-group-item(href='/rooms', data-parent='#main-menu')
+          span
+            i.fa.fa-lock.link-icon(style='font-size:20px;')
+          | Rooms
+          span
+        a.list-group-item(href='/map', data-parent='#main-menu')
+          span
+            i.fa.fa-map.link-icon
+          | Mapa
+          span
+    // end mySidenav
+  // end sidenav-content
+// ========================= FLEX SLIDER =====================
+section.innerpage-wrapper(style='background-color: #f1f2f2;')
+  #flight-booking.innerpage-section-padding
+    .container
+      .row
+        .col-xs-12.col-sm-12.col-md-7.col-lg-12.content-side(style='background-color: #fafafa; padding: 20px;')
+          form.lg-booking-form
+            .lg-booking-form-heading
+              span
+                i.fa.fa-info
+              h3 Informació Establiment
+            // end lg-bform-heading
+            .personal-info
+              .row
+                .col-xs-6.col-sm-6
+                  .form-group
+                    label Nom de l'Establiment
+                    input.form-control(type='text', required='')
+                // end columns
+                .col-xs-6.col-sm-6
+                  .form-group
+                    label Província
+                    input.form-control(type='text', required='')
+                // end columns
+              // end row
+              .row
+                .col-sm-6
+                  .form-group
+                    label Població
+                    input.form-control.dpd3(type='text', required='')
+                // end columns
+                .col-sm-6
+                  .form-group
+                    label Direcció
+                    input.form-control(type='text', required='')
+                // end columns
+              // end row
+              .row
+                .col-sm-6
+                  .form-group
+                    label Correu Electrónic
+                    input.form-control(type='email', required='')
+                // end columns
+                .col-sm-6
+                  .form-group
+                    label Telèfon
+                    input.form-control(type='number' min="111111111" max="999999999" required='')
+                // end columns
+              // end row
+            // end personal-info
+            .lg-booking-form-heading
+              span 
+                i.fa.fa-photo
+              h3 Fotos de l'Establiment
+            // end lg-bform-heading  
+            input.form-control(type='file' required='')
+            .checkbox
+              label
+                input(type='checkbox')
+                |  He llegit i Accepto els
+                a(href='#') Termes i Condicions.
+            // end checkbox
+            button.btn.btn-orange(type='submit') Donar d'alta Establiment
+        // end columns
+      // end row
+    // end container
+  // end flight-booking
+// end innerpage-wrapper
+// ======================= FOOTER =======================
+section#footer.ftr-heading-o.ftr-heading-mgn-1
+  #footer-bottom.ftr-bot-black
+    .container
+      .row
+        #copyright.col-xs-12.col-sm-6.col-md-6.col-lg-6
+          p
+            | &copy; 2017 
+            a(href='#') Rooming
+            | . All rights reserved.
+        // end columns
+        #terms.col-xs-12.col-sm-6.col-md-6.col-lg-6
+          ul.list-unstyled.list-inline
+            li
+              a(href='/terms') Termes i Condicions
+            li
+              a(href='/polices') Politica de Privacitat
+            li
+              a(href='/contact') | Contacte 
+        // end columns
+      // end row
+    // end container
+  // end footer-bottom
+// end footer
+// Page Scripts Starts
+script(src='/js/jquery.min.js')
+script(src='/js/jquery.colorpanel.js')
+script(src='/js/jquery.magnific-popup.min.js')
+script(src='/js/bootstrap.min.js')
+script(src='/js/jquery.flexslider.js')
+script(src='/js/bootstrap-datepicker.js')
+script(src='/js/owl.carousel.min.js')
+script(src='/js/custom-navigation.js')
+script(src='/js/custom-flex.js')
+script(src='/js/custom-owl.js')
+script(src='/js/custom-date-picker.js')
+script(src='/js/custom-video.js')
+script(src='/js/popup-ad.js')
+script(src='/js/rooming.js')
+// Page Scripts Ends
