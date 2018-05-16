@@ -75,7 +75,6 @@ nav#mynavbar-1.navbar.navbar-default.main-navbar.navbar-custom.navbar-white
         span.icon-bar
       a.navbar-brand(href='/')
         span
-          i.fa.fa-plane
           | ROOM
         | ING
     // end navbar-header
@@ -104,7 +103,6 @@ nav#mynavbar-1.navbar.navbar-default.main-navbar.navbar-custom.navbar-white
   #mySidenav.sidenav
     h2#web-name
       span
-        i.fa.fa-plane
       | Rooming
     #main-menu
       .closebtn
@@ -194,6 +192,11 @@ section.innerpage-wrapper(style='background-color: #f1f2f2;')
                       // end member-info-2
                     // end member-block-2
                   // end columns
+                if usuari
+                  if establiment.usuari_id == usuari.id
+                  .col-xs-12.col-sm-6.col-md-12.col-lg-12
+                    .text-center
+                      a.btn.btn-orange(href="/reserva/") AFEGEIX UN ROOM
               // end row
             // end tab-content
           // end detail-tabs

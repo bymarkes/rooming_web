@@ -80,8 +80,12 @@ app.get('/categories', function(req,res){
 app.get('/establiment/:id', function(req,res){
     var e = roomingApi.getEstabliment(req.params.id);
     var r = roomingApi.getEstablimentRooms(req.params.id);  
-    var f = roomingApi.getAllFoto();        
-    res.render('establiment',{'establiment':e, 'rooms':r, 'fotos':f,'nick':req.cookies.nick});
+    var f = roomingApi.getAllFoto(); 
+    var usuari; 
+    if (req.cookies.nick) {
+        usuari = roomingApi.getUsuari(req.cookies.nick);   
+    }         
+    res.render('establiment',{'establiment':e, 'rooms':r, 'fotos':f,'nick':req.cookies.nick, 'usuari':usuari});    
 });
 
 app.get('/categories/:id', function(req,res){
@@ -153,6 +157,7 @@ app.put('/profile', function(req,res){
 });
 
 app.get('/signout', function(req,res){
+    roomingApi.deleteToken(req.cookies.token);
     res.clearCookie('nick');
     res.clearCookie('token');
     res.redirect('/');  
