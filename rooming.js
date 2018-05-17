@@ -993,8 +993,6 @@ function deleteToken(token){ // DELETE TOKEN
 
 		if (httpRequest.readyState == 4 && httpRequest.status == 204 ) {
 
-			var jsonParsed = JSON.parse(httpRequest.responseText);
-			result = jsonParsed;
 		}
 
 	};

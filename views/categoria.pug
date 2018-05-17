@@ -72,17 +72,17 @@ nav#mynavbar-1.navbar.navbar-default.main-navbar.navbar-custom.navbar-white
         span.icon-bar      
       a.navbar-brand(href='/')
         span
-          img(src="images/scape-yellow.png", alt="").icon-logo
+          img(src="../images/scape-yellow.png", alt="").icon-logo
           | ROOM
         | ING
     // end navbar-header
     #myNavbar1.collapse.navbar-collapse
       ul.nav.navbar-nav.navbar-right
-        li.active
+        li.dropdown
           a(href='/')
             | Inici
             span
-        li.dropdown
+        li.active
           a(href='/categories')
             | Categories
             span
@@ -166,8 +166,7 @@ section.innerpage-wrapper(style='background-color: #f1f2f2;')
             ul.list-unstyled
               each room in rooms
                 li
-                  a(href='room/'+room.id) #{room.Nom}
-                  p Barcelona
+                  a(href='../room/'+room.id) #{room.Nom}
           // end columns  
         // end destination-lists
       // end columns

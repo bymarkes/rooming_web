@@ -75,13 +75,13 @@ nav#mynavbar-1.navbar.navbar-default.main-navbar.navbar-custom.navbar-white
         span.icon-bar      
       a.navbar-brand(href='/')
         span
-          img(src="images/scape-yellow.png", alt="").icon-logo
+          img(src="../images/scape-yellow.png", alt="").icon-logo
           | ROOM
         | ING
     // end navbar-header
     #myNavbar1.collapse.navbar-collapse
       ul.nav.navbar-nav.navbar-right
-        li.active
+        li.dropdown
           a(href='/')
             | Inici
             span
@@ -89,7 +89,7 @@ nav#mynavbar-1.navbar.navbar-default.main-navbar.navbar-custom.navbar-white
           a(href='/categories')
             | Categories
             span
-        li.dropdown
+        li.active
           a(href='/rooms')
             | Rooms
             span
@@ -168,29 +168,23 @@ section.innerpage-wrapper(style='background-color: #f1f2f2;')
         // end columns
         .col-xs-12.col-sm-12.col-md-9.col-lg-9.content-side
           .detail-slider
-            .feature-slider
-              div
-                img.img-responsive(src='images/car-feature-1.jpg', alt='feature-img')
-              div
-                img.img-responsive(src='images/car-feature-2.jpg', alt='feature-img')
-              div
-                img.img-responsive(src='images/car-feature-3.jpg', alt='feature-img')
-              div
-                img.img-responsive(src='images/car-feature-4.jpg', alt='feature-img')
-              div
-                img.img-responsive(src='images/car-feature-5.jpg', alt='feature-img')
+            .feature-slider(style="text-align:center;")
+              each foto in fotos
+                if foto.room_id == room.id
+                  div
+                    img.img-responsive(src=foto.URL, alt='roomscape-img' style="max-width:30%;")
             // end feature-slider
             .feature-slider-nav
               div
-                img.img-responsive(src='images/car-feature-thumb-1.jpg', alt='feature-thumb')
+                img.img-responsive(src='images/car-feature-thumb-1.jpg', alt='img-6')
               div
-                img.img-responsive(src='images/car-feature-thumb-2.jpg', alt='feature-thumb')
+                img.img-responsive(src='images/car-feature-thumb-2.jpg', alt='img-7')
               div
-                img.img-responsive(src='images/car-feature-thumb-3.jpg', alt='feature-thumb')
+                img.img-responsive(src='images/car-feature-thumb-3.jpg', alt='img-8')
               div
-                img.img-responsive(src='images/car-feature-thumb-4.jpg', alt='feature-thumb')
+                img.img-responsive(src='images/car-feature-thumb-4.jpg', alt='img-9')
               div
-                img.img-responsive(src='images/car-feature-thumb-5.jpg', alt='feature-thumb')
+                img.img-responsive(src='images/car-feature-thumb-5.jpg', alt='img-10')
             // end feature-slider-nav
             ul.list-unstyled.features.tour-features
               li
@@ -217,7 +211,10 @@ section.innerpage-wrapper(style='background-color: #f1f2f2;')
               #car-information.tab-pane.in.active(style='background-color: white;')
                 .row
                   .col-sm-4.col-md-4.tab-img
-                    img.img-responsive(src='images/car-detail-tab-1.jpg', alt='flight-detail-img')
+                  each foto in fotos
+                    if foto.room_id == room.id && foto.principal
+                      div
+                        img.img-responsive(src=foto.URL, alt='roomscape-img' style="max-width:25%; float:right;")
                   // end columns
                   .col-sm-8.col-md-8.tab-text
                     h3 #{room.Nom}

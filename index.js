@@ -183,7 +183,7 @@ app.get('/map', function(req,res){
     punts = getJSonObject(JSON.stringify(punts));
     nomsEstabliment = getJSonObject(JSON.stringify(nomsEstabliment));
     
-    res.render('map',{"puntsDelMapa":punts, "nomsEstabliment":nomsEstabliment});  
+    res.render('map',{"puntsDelMapa":punts, "nomsEstabliment":nomsEstabliment, "nick":req.cookies.nick});  
 });
 
 app.get('/profile/reserves',function(req,res){
