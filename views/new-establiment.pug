@@ -72,7 +72,7 @@ nav#mynavbar-1.navbar.navbar-default.main-navbar.navbar-custom.navbar-white
         span.icon-bar      
       a.navbar-brand(href='/')
         span
-          img(src="images/scape-yellow.png", alt="").icon-logo
+          img(src="../images/scape-yellow.png", alt="").icon-logo
           | ROOM
         | ING
     // end navbar-header
@@ -135,7 +135,7 @@ section.innerpage-wrapper(style='background-color: #f1f2f2;')
     .container
       .row
         .col-xs-12.col-sm-12.col-md-7.col-lg-12.content-side(style='background-color: #fafafa; padding: 20px;')
-          form.lg-booking-form
+          form.lg-booking-form(action="/establiment/new", method="POST")
             .lg-booking-form-heading
               span
                 i.fa.fa-info
@@ -146,36 +146,36 @@ section.innerpage-wrapper(style='background-color: #f1f2f2;')
                 .col-xs-6.col-sm-6
                   .form-group
                     label Nom de l'Establiment
-                    input.form-control(type='text', required='')
+                    input.form-control(type='text', name="Nom", required='')
                 // end columns
                 .col-xs-6.col-sm-6
                   .form-group
                     label Província
-                    input.form-control(type='text', required='')
+                    input.form-control(type='text', name="Provincia", required='')
                 // end columns
               // end row
               .row
                 .col-sm-6
                   .form-group
                     label Població
-                    input.form-control.dpd3(type='text', required='')
+                    input.form-control(type='text', name="Poblacio",  required='')
                 // end columns
                 .col-sm-6
                   .form-group
                     label Direcció
-                    input.form-control(type='text', required='')
+                    input.form-control(type='text', name="Direccio", required='')
                 // end columns
               // end row
               .row
                 .col-sm-6
                   .form-group
                     label Correu Electrónic
-                    input.form-control(type='email', required='')
+                    input.form-control(type='email', name="Email", required='')
                 // end columns
                 .col-sm-6
                   .form-group
                     label Telèfon
-                    input.form-control(type='number' min="111111111" max="999999999" required='')
+                    input.form-control(type='number' name="Telefon", min="111111111" max="999999999" required='')
                 // end columns
               // end row
             // end personal-info
@@ -184,10 +184,47 @@ section.innerpage-wrapper(style='background-color: #f1f2f2;')
                 i.fa.fa-photo
               h3 Fotos de l'Establiment
             // end lg-bform-heading  
-            input.form-control(type='file' required='')
+            .form-group
+              input.form-control(type='file')
+            br
+            .lg-booking-form-heading
+              span
+                i.fa.fa-map
+              h3 Posicionat en el Mapa
+              br
+              .row
+                .col-xs-6.col-sm-6              
+                .col-xs-2.col-sm-2
+                    h3 Exemple
+              .row
+                .col-xs-4.col-sm-4
+                  .form-group
+                    label Latitut
+                    input.form-control(type='number', name="Lat", required='' step="any")
+                // end columns
+                .col-xs-1.col-sm-1                
+                .col-xs-4.col-sm-4
+                  .form-group
+                    label Latitud
+                    input.form-control(type='text', placeholder="41.3947688" disabled)
+                // end columns
+              // end row
+              .row
+                .col-xs-4.col-sm-4
+                  .form-group
+                    label Longitut
+                    input.form-control(type='number', name="Lon", required='' step="any")
+                // end columns
+                .col-xs-1.col-sm-1
+                .col-xs-4.col-sm-4
+                  .form-group
+                    label Longitut
+                    input.form-control(type='text', placeholder="2.0787276" disabled)
+                // end columns
+              // end row
             .checkbox
               label
-                input(type='checkbox')
+                input(type='checkbox' required='')
                 |  He llegit i Accepto els
                 a(href='#') Termes i Condicions.
             // end checkbox

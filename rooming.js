@@ -155,14 +155,24 @@ function getAllEstabliment(){ // GET All Establiment
 	return result;
 }
 
-function postEstabliment(JSON){ // POST
-
+function postEstabliment(dades, u_id){ // POST
+	
 	var httpRequest = new XMLHttpRequest();
 	var result;
 
+	var data = {};
+		data.Nom = dades.Nom;
+		data.Provincia = dades.Provincia;
+		data.Poblacio = dades.Poblacio;
+		data.Direccio = dades.Direccio;
+		data.Telefon = dades.Telefon;
+		data.Email = dades.Email;
+		data.usuari_id = u_id;
+		
+	
 	httpRequest.onreadystatechange = function (){
 
-		if (httpRequest.readyState == 4 && httpRequest.status == 200 ) {
+		if (httpRequest.readyState == 4 && httpRequest.status == 201 ) {
 
 			var jsonParsed = JSON.parse(httpRequest.responseText);
 			result = jsonParsed;
@@ -172,7 +182,10 @@ function postEstabliment(JSON){ // POST
 
 	httpRequest.open('POST', URL+"establiment", false);
 
-	httpRequest.send(JSON);
+	httpRequest.setRequestHeader("Content-Type",'application/json; charset=utf-8');
+	var resultStr = JSON.stringify(data);
+	
+	httpRequest.send(resultStr);
 	return result;
 }
 
@@ -281,14 +294,19 @@ function getEstablimentGps(id){ // GET GPS from Establiment
 	return result;
 }
 
-function postEstablimentGps(id){ // GET GPS from Establiment
-
+function postEstablimentGps(dades, id){ // GET GPS from Establiment
+	console.log(dades);
 	var httpRequest = new XMLHttpRequest();
 	var result;
 
+	var data = {};
+		data.Lat = dades.Lat;
+		data.Lon = dades.Lon;
+		data.establiment_id = id;
+			
 	httpRequest.onreadystatechange = function (){
 
-		if (httpRequest.readyState == 4 && httpRequest.status == 200 ) {
+		if (httpRequest.readyState == 4 && httpRequest.status == 201 ) {
 
 			var jsonParsed = JSON.parse(httpRequest.responseText);
 			result = jsonParsed;
@@ -298,8 +316,12 @@ function postEstablimentGps(id){ // GET GPS from Establiment
 
 	httpRequest.open('POST', URL+"establiment/"+id+"/gps", false);
 
-	httpRequest.send();
+	httpRequest.setRequestHeader("Content-Type",'application/json; charset=utf-8');
+	var resultStr = JSON.stringify(data);
+	console.log(resultStr);
+	httpRequest.send(resultStr);
 	return result;
+
 }
 
 function putEstablimentGps(idEstabliment, idGPS){ // PUT GPS from Establiment

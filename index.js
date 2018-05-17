@@ -77,6 +77,19 @@ app.get('/categories', function(req,res){
     res.render('categories',{'categories':c,'nick':req.cookies.nick});
 });
 
+
+app.post('/establiment/new', function(req,res){
+    if (req.cookies.nick) {
+        var usuari = roomingApi.getUsuari(req.cookies.nick);
+        var e = roomingApi.postEstabliment(req.body, usuari.id); 
+        var gps = roomingApi.postEstablimentGps(req.body, e.id);      
+
+        res.redirect('/profile');
+    }else{
+        res.redirect('/');
+    }
+});
+
 app.get('/establiment/new', function(req,res){
     if (req.cookies.nick) {
         res.render('new-establiment',{'nick':req.cookies.nick});
