@@ -75,7 +75,7 @@ nav#mynavbar-1.navbar.navbar-default.main-navbar.navbar-custom.navbar-white
         span.icon-bar
       a.navbar-brand(href='/')
         span
-          img(src="images/scape-yellow.png", alt="").icon-logo
+          img(src="../images/scape-yellow.png", alt="").icon-logo
           | ROOM
         | ING
     // end navbar-header
@@ -134,22 +134,91 @@ nav#mynavbar-1.navbar.navbar-default.main-navbar.navbar-custom.navbar-white
   // end sidenav-content
 // ==== INNERPAGE-WRAPPER =====
 section.innerpage-wrapper(style='background-color: #f1f2f2;')
-  .innerpage-section-padding
+  .innerpage-section-padding(style="padding-top: 20px;")
     .container
       .row
         .col-xs-12.col-sm-12.col-md-2.side-bar.left-side-bar
-          
         .col-xs-12.col-sm-12.col-md-9.col-lg-9.content-side
           .detail-tabs
               .tab-content
                 #car-information.tab-pane.in.active(style='background-color: white;')
                   .row
-                    .col-sm-8.col-md-8.tab-text
+                    .col-sm-7.col-md-7.tab-text
                       h1 #{establiment.Nom}
                       h4
                         | #{establiment.Provincia}, #{establiment.Poblacio}
                       p
                         | Lorem ipsum dolor, sit amet consectetur adipisicing elit. Doloremque fuga repudiandae veniam dolores? Consectetur voluptate placeat beatae, maxime quod sit exercitationem perspiciatis porro impedit veniam, dolore, autem neque veritatis nesciunt.
+                    .col-sm-4.col-md-4.col-lg-4.tab-text
+                      #map
+                      style.
+                        #map {
+                          width:300px;
+                          height:300px;
+                          z-index: 1;
+                        }
+                      script.
+                        var map, icon, icon2, list, markersListNew, markerSelected;
+                        var markersListOld = [];
+                        var camera = #{puntsDelMapa};
+
+                        function initMap() {
+                          var cameraPos = {
+                              lat: parseFloat(camera.Lat),
+                              lng: parseFloat(camera.Lon)
+                          };
+                          map = new google.maps.Map(document.getElementById('map'), {
+                              zoom: 9,
+                              center: cameraPos
+                          });
+                          icon = {
+                              url: '../images/scape-black.png',
+                              scaledSize: new google.maps.Size(50, 50)
+                          }
+                          icon2 = {
+                              url: '../images/scape-yellow.png',
+                              scaledSize: new google.maps.Size(50, 50)
+                          }
+                          google.maps.event.addListener(map, 'click', function(event) {
+                              if (markerSelected) {
+                                  markerSelected.setIcon(icon);
+                                  markerSelected = null;
+                              }
+                          });
+                          
+                          list = #{puntsDelMapa};
+                          putMarkers(list, map, icon);    
+                        }
+
+                        var infowindow;
+                          function putMarkers(list, map, icon){
+                            var markerPos = {lat: parseFloat(list.Lat), lng: parseFloat(list.Lon)};
+                            var marker = new google.maps.Marker({
+                              position: markerPos,
+                              map: map,
+                              animation: google.maps.Animation.DROP,
+                              icon: icon,
+                              bdId: list.id
+
+                            });
+                            markersListOld.push(marker);
+                            var content = '<h3> #{establiment.Nom}</h3>#{establiment.Poblacio}, #{establiment.Provincia}'
+                                            +'</h4> <br> <button"><a href="/establiment/#{establiment.id}">Veure més</a></button>';
+                            infowindow = new google.maps.InfoWindow()
+
+                            google.maps.event.addListener(marker, 'click', (function(marker, content, infowindow) {
+                              return function() {
+                                map.panTo(marker.getPosition());
+                                infowindow.setContent(content);
+                                infowindow.open(map, marker);
+                                for (var j = 0; j < markersListOld.length; j++) {
+                                  markersListOld[j].setIcon(icon);
+                                }
+                                marker.setIcon(icon2);
+                                markerSelected=marker;
+                              }
+                            })(marker, content, infowindow));
+                          }
                     // end columns
                   // end row
                 // end car-information
@@ -245,4 +314,5 @@ script(src='/js/custom-owl.js')
 script(src='/js/custom-date-picker.js')
 script(src='/js/custom-video.js')
 script(src='/js/popup-ad.js')
+script(async='', defer='', src='https://maps.googleapis.com/maps/api/js?key=AIzaSyDVagfyF-3bPDT3XLEg_JMDW1x0jWzxWIU&callback=initMap')
 // Page Scripts Ends

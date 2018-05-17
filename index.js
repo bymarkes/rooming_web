@@ -92,8 +92,10 @@ app.get('/establiment/:id', function(req,res){
     var usuari; 
     if (req.cookies.nick) {
         usuari = roomingApi.getUsuari(req.cookies.nick);   
-    }         
-    res.render('establiment',{'establiment':e, 'rooms':r, 'fotos':f,'nick':req.cookies.nick, 'usuari':usuari});    
+    } 
+    var punts = roomingApi.getEstablimentGps(req.params.id);  
+    punts = getJSonObject(JSON.stringify(punts));       
+    res.render('establiment',{'establiment':e, 'rooms':r, 'fotos':f,'nick':req.cookies.nick, 'usuari':usuari, "puntsDelMapa":punts});    
 });
 
 app.get('/categories/:id', function(req,res){
