@@ -1,6 +1,6 @@
 doctype html
 head
-  title ROOMING
+  title ROOMS
   meta(charset='utf-8')
   meta(name='viewport', content='width=device-width,initial-scale=1')
   link(rel='icon', href='/images/favicon.png', type='image/x-icon')
@@ -26,7 +26,7 @@ head
   // Color Panel
   link(rel='stylesheet', href='/css/jquery.colorpanel.css')
 // ====== LOADER =====
-#divTopBar.loader
+.loader
 // ============= TOP-BAR ===========
 #top-bar.tb-text-white
   .container
@@ -78,7 +78,7 @@ nav#mynavbar-1.navbar.navbar-default.main-navbar.navbar-custom.navbar-white
     // end navbar-header
     #myNavbar1.collapse.navbar-collapse
       ul.nav.navbar-nav.navbar-right
-        li.active
+        li.dropdown
           a(href='/')
             | Inici
             span
@@ -86,7 +86,7 @@ nav#mynavbar-1.navbar.navbar-default.main-navbar.navbar-custom.navbar-white
           a(href='/categories')
             | Categories
             span
-        li.dropdown
+        li.active
           a(href='/rooms')
             | Rooms
             span
@@ -107,7 +107,7 @@ nav#mynavbar-1.navbar.navbar-default.main-navbar.navbar-custom.navbar-white
         button#closebtn.btn.btn-default(onclick="closeNav()") &times;
       // end close-btn
       .list-group.panel
-        a.list-group-item.active(href='/', data-parent='#main-menu')
+        a.list-group-item(href='/', data-parent='#main-menu')
           span
             i.fa.fa-home.link-icon(style='font-size:20px;')
           | Inici
@@ -117,7 +117,7 @@ nav#mynavbar-1.navbar.navbar-default.main-navbar.navbar-custom.navbar-white
             i.fa.fa-list-ul.link-icon
           | Categories
           span
-        a.list-group-item(href='/rooms', data-parent='#main-menu')
+        a.list-group-item.active(href='/rooms', data-parent='#main-menu')
           span
             i.fa.fa-lock.link-icon(style='font-size:20px;')
           | Rooms
@@ -129,59 +129,46 @@ nav#mynavbar-1.navbar.navbar-default.main-navbar.navbar-custom.navbar-white
           span
     // end mySidenav
   // end sidenav-content
-// ========================= FLEX SLIDER =====================
-section#flexslider-container-1.flexslider-container
-  #slider-1.flexslider.slider
-    ul.slides
-      li.item-1(style='\
-      background:linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.3)),url(/images/barcelona.jpg) 50% 0%;\
-      background-size:cover;\
-      height:100%;')
-      // end item-1
-  // end slider
-  #search-tabs-3.search-tabs
+// ===== INNERPAGE-WRAPPER ====
+section.innerpage-wrapper(style='background-color: #f1f2f2;')
+  #team-page.innerpage-section-padding
     .container
       .row
-        .col-xs-12.col-sm-12.col-md-6.col-lg-6.no-pd-r
-          ul.nav.nav-tabs
-            li
-              a(href='#flights', data-toggle='tab')
+        .col-sm-12
+          .page-search-form
+            h2
+                i.fa.fa-cogs(style='margin-right: 20px;')
+                | Cerca 
                 span
-                  i.fa.fa-search
-                span.st-text Cercador
-          #tabcontent.tab-content
-            #hotels.tab-pane.in.active
-              form(method='POST', action='/search')
+                | Avançada 
+            form.pg-search-form(method='POST', action='/search')
                 .row
                   .col-xs-12.col-sm-12.col-md-12.col-lg-12
                     .row
                       .col-xs-12.col-sm-12.col-md-12
                         .form-group.right-icon
-                          label CIUTAT
-                          select.form-control(name='provincia')
-                            option(value='Barcelona') Barcelona
-                            option(value='Lleida') Lleida
-                            option(value='Girona') Girona
-                            option(value='Tarragona') Tarragona
-                          i.fa.fa-angle-down
+                            label CIUTAT
+                            select.form-control(name='provincia')
+                                option(value='Barcelona') Barcelona
+                                option(value='Lleida') Lleida
+                                option(value='Girona') Girona
+                                option(value='Tarragona') Tarragona                        
                       // end columns
                       .col-xs-6.col-sm-6.col-md-6
                         .form-group.right-icon
-                          label Categoria
-                          select.form-control(name='categoria')
-                            each categoria in categories
-                              option(value=categoria.id) #{categoria.Titol}                          
-                          i.fa.fa-angle-down
+                            label Categoria
+                            select.form-control(name='categoria')
+                                each categoria in categories
+                                    option(value=categoria.id) #{categoria.Titol}                                                      
                       // end columns
                       .col-xs-6.col-sm-6.col-md-6
                         .form-group.right-icon
-                          label Participants
-                          select.form-control(name='participants')
-                            option(selected='', value='2') 2
-                            option(value='4') 4
-                            option(value='6') 6
-                            option(value='10') 10
-                          i.fa.fa-angle-down
+                            label Participants
+                            select.form-control(name='participants')
+                                option(selected='', value='2') 2
+                                option(value='4') 4
+                                option(value='6') 6
+                                option(value='10') 10                
                       // end columns
                     // end row
                   // end columns
@@ -189,78 +176,31 @@ section#flexslider-container-1.flexslider-container
                     button.btn.btn-orange(type='submit') Cerca
                   // end columns
                 // end row
-            // end hotels
-          // end tab-content
-        // end columns
-        .hidden-xs.hidden-sm.col-md-6.no-pd-l
-          .welcome-message
-            h2 Busques un Room Scape?
-            p
-              | Lorem ipsum dolor sit amet, ad duo fugit aeque fabulas, in lucilius prodesset pri. Veniam delectus ei vis. Est atqui timeam mnesarchum at, pro an eros perpetua ullamcorper, imeam mnesarchum at, pro an eros perpetua ullamcorper.
-            a.btn.btn-w-border(href='#') Saber M&eacute;s
-      // end row
-    // end container
-  // end search-tabs
-// end flexslider-container
-// =============== ROOM OFFERS ===============
-section#hotel-offers.section-padding
-  .container
-    .row
-      .col-sm-12
-        .page-heading
-          h2 ELS NOSTRES ROOM SCAPES
-          hr.heading-line
-        // end page-heading
-        #owl-hotel-offers.owl-carousel.owl-theme.owl-custom-arrow
-          each room in rooms
-            .item
-              .main-block.hotel-block
-                .main-img
-                  a(href='/room/'+room.id)
-                    // IMATGE
+          .row
+            each room in rooms
+              .col-xs-12.col-sm-6.col-md-4.col-lg-4
+                .member-block-2.text-center(style='background-color: white;')
+                  .member-img-2
                     each foto in fotos
                       if foto.room_id == room.id && foto.principal
                         img.img-responsive(src=foto.URL, alt='roomscape-img')
-                  .main-mask
-                    ul.list-unstyled.list-inline.offer-price-1
-                      li.price
-                        | #{room.Preu} €
-                        span.divider |
-                        span.pkg PER PERSONA
-                      li.rating
-                        span
-                          i.fa.fa-star.orange
-                        span
-                          i.fa.fa-star.orange
-                        span
-                          i.fa.fa-star.orange
-                        span
-                          i.fa.fa-star.orange
-                        span
-                          i.fa.fa-star.lightgrey
-                  // end main-mask
-                // end offer-img
-                .main-info.hotel-info
-                  .arrow
-                    a(href='/room/'+room.id)
-                      span
-                        i.fa.fa-angle-right
-                  // end arrow
-                  .main-title.hotel-title
-                    a(href='/room/'+room.id) #{room.Nom}
-                    p #{room.Descripcio}
-                  // end hotel-title
-                // end hotel-info
-              // end hotel-block
-            // end item
-        // end owl-hotel-offers
-        .view-all.text-center
-          a.btn.btn-orange(href='/rooms') Veure m&eacute;s
-        // end view-all
-      // end columns
-    // end row
-  // end container
-// end hotel-offers
+                    .member-name-2
+                      h3 #{room.Nom}
+                    // end member-name-2
+                  // end member-img-2
+                  .member-info-2
+                    p
+                      |#{room.Descripcio}
+                    a.myButton(href='/room/'+room.id) Veure
+                  // end member-info-2
+                // end member-block-2
+              // end columns
+          // end row
+        // end columns
+      // end row
+    // end container
+  // end team-page
+// end innerpage-wrapper
 // ======================= FOOTER =======================
 section#footer.ftr-heading-o.ftr-heading-mgn-1
   #footer-bottom.ftr-bot-black
@@ -299,5 +239,4 @@ script(src='/js/custom-owl.js')
 script(src='/js/custom-date-picker.js')
 script(src='/js/custom-video.js')
 script(src='/js/popup-ad.js')
-script(src='/js/rooming.js')
 // Page Scripts Ends

@@ -23,12 +23,13 @@ app.use(bodyParser.json());
 app.get('/', function(req,res){
     var r = roomingApi.getAllRoom();
     var f = roomingApi.getAllFoto();
+    var c = roomingApi.getAllCategoria();
     var cookieBow = req.cookies;
 
     if (cookieBow.nick) {
-        res.render('index', {'rooms':r, 'fotos':f, 'nick':cookieBow.nick, 'token':cookieBow.token});        
+        res.render('index', {'rooms':r, 'fotos':f,'categories':c, 'nick':cookieBow.nick, 'token':cookieBow.token});        
     }else    
-        res.render('index', {'rooms':r, 'fotos':f});
+        res.render('index', {'rooms':r, 'fotos':f,'categories':c});
 });
 
 app.get('/login', function(req,res){
@@ -164,6 +165,29 @@ app.put('/profile', function(req,res){
         roomingApi.putUsuari(req.body);
     }
     res.redirect('profile');
+});
+
+app.post('/search', function(req,res){
+    var rooms = roomingApi.getAllRoom();
+    var establiments = roomingApi.getAllEstabliment();
+    var f = roomingApi.getAllFoto();
+    var c = roomingApi.getAllCategoria();
+    var roomFilter = [];
+    
+    for (let i = 0; i < rooms.length; i++) {
+        const element = rooms[i];
+        if (element.categoria_id == req.body.categoria){
+            if (element.Persones == req.body.participants){
+               for (let x = 0; x < establiments.length; x++) {
+                   const establiment = establiments[x];
+                   if (establiment.id == element.establiment_id) {
+                       roomFilter.push(element);
+                   }   
+               }
+            }
+        }    
+    }
+    res.render('searchRooms',{'rooms':roomFilter, 'fotos':f,'categories':c, 'nick':req.cookies.nick});
 });
 
 app.get('/signout', function(req,res){
