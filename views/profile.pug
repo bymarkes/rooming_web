@@ -141,8 +141,30 @@ section.innerpage-wrapper(style='background-color: #f1f2f2;')
               .flex-content
                 .custom-form.custom-form-fields(style='background-color: #fafafa;')
                   h3 Puntuació
-                  h3 Els Meus Establiments
-                  a.btn.btn-orange.btn-block(href="/establiment/new") AFERGIR UN ESTABLIMENT
+                  .dashboard-wrapper
+                    if establiments
+                      h3 Els Meus Establiments
+                      .row
+                        .col-xs-1.col-sm-1.col-md-1.col-lg-1
+                        .col-xs-10.col-sm-10.col-md-10.col-lg-10
+                          ul.list-unstyled.list-inline
+                            each establiment in establiments
+                                li(style="display:inline;")
+                                  a.unstyled(href='/establiment/'+establiment.id)
+                                    .main-info.hotel-info(style="border:2px solid #faa61a;")
+                                      .main-title.hotel-title
+                                        h4(style="font-size:16px; font-weight:bold;") #{establiment.Nom} 
+                                        span
+                                          i.fa.fa-map-marker(style="margin-right:10px;")
+                                        | #{establiment.Poblacio} 
+                                        span
+                            li(style="display:inline;")
+                                  a.unstyled.orange(href='/establiment/new')
+                                    .main-info.hotel-info(style="border:2px solid #faa61a; background-color:#faa61a;")
+                                      .main-title.hotel-title
+                                        h4(style="font-size:16px; font-weight:bold;")
+                                        | AFERGIR UN ESTABLIMENT 
+                                        i.fa.fa-plus(style="margin-left:10px;") 
                   a.btn.btn-orange.btn-block(href="/profile/reserves") VEURE RESERVES
             .col-sm-6(style='margin-top: 30px;')
               .flex-content
