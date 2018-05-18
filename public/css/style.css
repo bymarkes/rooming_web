@@ -5779,3 +5779,19 @@ h1,h2,h3,h4,h5,h6,.main-title a, .flight-info h3 .flight-destination,.blog-post-
 		display: none;
 	}
 }
+
+.unstyled{
+	color:#58595b;
+}
+
+.unstyled:hover{
+	color:#faa61a;
+	text-decoration: none;
+}
+.orange:hover{
+	color:black;
+}
+
+.orange{
+	color:white;
+}

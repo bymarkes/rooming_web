@@ -1,6 +1,6 @@
 doctype html
 head
-  title Nou Establiment
+  title Editar #{establiment.Nom}
   meta(charset='utf-8')
   meta(name='viewport', content='width=device-width,initial-scale=1')
   link(rel='icon', href='/images/favicon.png', type='image/x-icon')
@@ -72,7 +72,7 @@ nav#mynavbar-1.navbar.navbar-default.main-navbar.navbar-custom.navbar-white
         span.icon-bar      
       a.navbar-brand(href='/')
         span
-          img(src="../images/scape-yellow.png", alt="").icon-logo
+          img(src="/images/scape-yellow.png", alt="").icon-logo
           | ROOM
         | ING
     // end navbar-header
@@ -146,36 +146,36 @@ section.innerpage-wrapper(style='background-color: #f1f2f2;')
                 .col-xs-6.col-sm-6
                   .form-group
                     label Nom de l'Establiment
-                    input.form-control(type='text', name="Nom", required='')
+                    input.form-control(type='text', name="Nom", required='', value=establiment.Nom)
                 // end columns
                 .col-xs-6.col-sm-6
                   .form-group
                     label Província
-                    input.form-control(type='text', name="Provincia", required='')
+                    input.form-control(type='text', name="Provincia", required='', value=establiment.Provincia )
                 // end columns
               // end row
               .row
                 .col-sm-6
                   .form-group
                     label Població
-                    input.form-control(type='text', name="Poblacio",  required='')
+                    input.form-control(type='text', name="Poblacio",  required='', value=establiment.Poblacio)
                 // end columns
                 .col-sm-6
                   .form-group
                     label Direcció
-                    input.form-control(type='text', name="Direccio", required='')
+                    input.form-control(type='text', name="Direccio", required='', value=establiment.Direccio)
                 // end columns
               // end row
               .row
                 .col-sm-6
                   .form-group
                     label Correu Electrónic
-                    input.form-control(type='email', name="Email", required='')
+                    input.form-control(type='email', name="Email", required='', value=establiment.Email)
                 // end columns
                 .col-sm-6
                   .form-group
                     label Telèfon
-                    input.form-control(type='number' name="Telefon", min="111111111" max="999999999" required='')
+                    input.form-control(type='number' name="Telefon", min="111111111", max="999999999", required='', value=establiment.Telefon)
                 // end columns
               // end row
             // end personal-info
@@ -183,6 +183,12 @@ section.innerpage-wrapper(style='background-color: #f1f2f2;')
               span 
                 i.fa.fa-photo
               h3 Fotos de l'Establiment
+              br
+              ul.list-unstyled.list-inline
+                each foto in fotos
+                  if foto.establiment_id == establiment.id
+                    li
+                      img.img-responsive.img-thumb(src=foto.URL, alt='')
             // end lg-bform-heading  
             .form-group
               input.form-control(type='file')
@@ -200,7 +206,7 @@ section.innerpage-wrapper(style='background-color: #f1f2f2;')
                 .col-xs-4.col-sm-4
                   .form-group
                     label Latitut
-                    input.form-control(type='number', name="Lat", required='' step="any")
+                    input.form-control(type='number', name="Lat", required='', step="any", value=puntsDelMapa.Lat)
                 // end columns
                 .col-xs-1.col-sm-1                
                 .col-xs-4.col-sm-4
@@ -213,7 +219,7 @@ section.innerpage-wrapper(style='background-color: #f1f2f2;')
                 .col-xs-4.col-sm-4
                   .form-group
                     label Longitut
-                    input.form-control(type='number', name="Lon", required='' step="any")
+                    input.form-control(type='number', name="Lon", required='', value=puntsDelMapa.Lon, step="any")
                 // end columns
                 .col-xs-1.col-sm-1
                 .col-xs-4.col-sm-4
@@ -222,13 +228,10 @@ section.innerpage-wrapper(style='background-color: #f1f2f2;')
                     input.form-control(type='text', placeholder="2.0787276" disabled)
                 // end columns
               // end row
-            .checkbox
-              label
-                input(type='checkbox' required='')
-                |  He llegit i Accepto els
-                a(href='#') Termes i Condicions.
-            // end checkbox
-            button.btn.btn-orange(type='submit') Donar d'alta Establiment
+          .col-xs-12.col-sm-4.col-lg-4
+          .col-xs-12.col-sm-6.col-lg-4
+            button.btn.btn-black.btn-block Cancelar
+            button.btn.btn-orange.btn-block(type='submit') Editar Establiment
         // end columns
       // end row
     // end container

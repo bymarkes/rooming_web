@@ -149,7 +149,12 @@ section.innerpage-wrapper(style='background-color: #f1f2f2;')
                         | #{establiment.Provincia}, #{establiment.Poblacio}
                       p
                         | Lorem ipsum dolor, sit amet consectetur adipisicing elit. Doloremque fuga repudiandae veniam dolores? Consectetur voluptate placeat beatae, maxime quod sit exercitationem perspiciatis porro impedit veniam, dolore, autem neque veritatis nesciunt.
-                    .col-sm-4.col-md-4.col-lg-4.tab-text
+                    if usuari
+                          if establiment.usuari_id == usuari.id
+                            .col-xs-2.col-sm-6.col-md-2.col-lg-2(style="float:right;")
+                              .text-center
+                                a.btn.btn-orange(href="/establiment/"+establiment.id+"/edit") EDITAR
+                    .col-sm-4.col-md-4.col-lg-4.tab-text  
                       #map
                       style.
                         #map {
@@ -219,7 +224,7 @@ section.innerpage-wrapper(style='background-color: #f1f2f2;')
                               }
                             })(marker, content, infowindow));
                           }
-                    // end columns
+                    // end 
                   // end row
                 // end car-information
           .detail-slider

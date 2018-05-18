@@ -78,11 +78,41 @@ app.get('/categories', function(req,res){
     res.render('categories',{'categories':c,'nick':req.cookies.nick});
 });
 
+
+app.post('/establiment/new', function(req,res){
+    if (req.cookies.nick) {
+        var usuari = roomingApi.getUsuari(req.cookies.nick);
+        var e = roomingApi.postEstabliment(req.body, usuari.id); 
+        var gps = roomingApi.postEstablimentGps(req.body, e.id);      
+
+        res.redirect('/profile');
+    }else{
+        res.redirect('/');
+    }
+});
+
 app.get('/establiment/new', function(req,res){
     if (req.cookies.nick) {
         res.render('new-establiment',{'nick':req.cookies.nick});
     }else{
         res.redirect('/');
+    }
+});
+
+app.get('/establiment/:id/edit', function(req,res){
+    var e = roomingApi.getEstabliment(req.params.id);
+    var r = roomingApi.getEstablimentRooms(req.params.id);  
+    var f = roomingApi.getAllFoto(); 
+    var usuari; 
+    if (req.cookies.nick) {
+        usuari = roomingApi.getUsuari(req.cookies.nick);
+        if (e.usuari_id == usuari.id) {
+            var punts = roomingApi.getEstablimentGps(req.params.id);  
+            punts = getJSonObject(JSON.stringify(punts));     
+            res.render('edit-establiment',{'establiment':e, 'rooms':r, 'fotos':f,'nick':req.cookies.nick, 'usuari':usuari, "puntsDelMapa":punts});     
+        }else{
+            res.redirect('/');
+        }   
     }
 });
 
@@ -142,10 +172,18 @@ app.post('/comentari', function(req, res){
 
 app.get('/profile', function(req,res){
     if (req.cookies.nick){
-        var userNew = roomingApi.getUsuari(req.cookies.nick);
-        var dataSplitted = userNew.AnyNaixement.split(' ');
-        userNew.AnyNaixement = dataSplitted[0];
-        res.render('profile',{'usuari': userNew, 'nick':req.cookies.nick});
+        var usuari = roomingApi.getUsuari(req.cookies.nick);
+        var dataSplitted = usuari.AnyNaixement.split(' ');
+        usuari.AnyNaixement = dataSplitted[0];
+        var establiments = roomingApi.getAllEstabliment();
+        var establimentsUsuari = []
+        for (let i = 0; i < establiments.length; i++) {
+            const element = establiments[i];
+            if (element.usuari_id == usuari.id ) {
+                establimentsUsuari.push(element);
+            }
+        }
+        res.render('profile',{'usuari': usuari, 'nick':req.cookies.nick, 'establiments':establimentsUsuari});
     }else{
         res.redirect('/login');
     }
