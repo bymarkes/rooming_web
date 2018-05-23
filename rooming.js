@@ -210,10 +210,18 @@ function getEstabliment(id){ // GET SHOW
 	return result;
 }
 
-function putEstabliment(JSON){ // PUT
+function putEstabliment(id,dades){ // PUT
 
 	var httpRequest = new XMLHttpRequest();
 	var result;
+
+	var data = {};
+	data.Nom = dades.Nom;
+	data.Provincia = dades.Provincia;
+	data.Poblacio = dades.Poblacio;
+	data.Direccio = dades.Direccio;
+	data.Telefon = dades.Telefon;
+	data.Email = dades.Email;
 
 	httpRequest.onreadystatechange = function (){
 
@@ -225,9 +233,10 @@ function putEstabliment(JSON){ // PUT
 
 	};
 
-	httpRequest.open('PUT', URL+"establiment", false);
-
-	httpRequest.send(JSON);
+	httpRequest.open('PUT', URL+"establiment/"+id, false);
+	httpRequest.setRequestHeader("Content-Type",'application/json; charset=utf-8');
+	var resultStr = JSON.stringify(data);	
+	httpRequest.send(resultStr);
 	return result;
 }
 
@@ -235,15 +244,13 @@ function deleteEstabliment(id){ // DELETE
 
 	var httpRequest = new XMLHttpRequest();
 	var result;
-
+	console.log("hola2");
 	httpRequest.onreadystatechange = function (){
 
-		if (httpRequest.readyState == 4 && httpRequest.status == 200 ) {
+		if (httpRequest.readyState == 4 && httpRequest.status == 204 ) {
+			console.log("hola3");
 
-			var jsonParsed = JSON.parse(httpRequest.responseText);
-			result = jsonParsed;
 		}
-
 	};
 
 	httpRequest.open('DELETE', URL+"establiment/"+id, false);
@@ -324,10 +331,14 @@ function postEstablimentGps(dades, id){ // GET GPS from Establiment
 
 }
 
-function putEstablimentGps(idEstabliment, idGPS){ // PUT GPS from Establiment
+function putEstablimentGps(idEstabliment, idGPS, dades){ // PUT GPS from Establiment
 
 	var httpRequest = new XMLHttpRequest();
 	var result;
+
+	var data = {};
+	data.Lat = dades.Lat;
+	data.Lon = dades.Lon;
 
 	httpRequest.onreadystatechange = function (){
 
@@ -340,8 +351,9 @@ function putEstablimentGps(idEstabliment, idGPS){ // PUT GPS from Establiment
 	};
 
 	httpRequest.open('PUT', URL+"establiment/"+idEstabliment+"/gps/"+idGPS, false);
-
-	httpRequest.send();
+	httpRequest.setRequestHeader("Content-Type",'application/json; charset=utf-8');
+	var resultStr = JSON.stringify(data);	
+	httpRequest.send(resultStr);
 	return result;
 }
 
@@ -524,14 +536,25 @@ function getAllRoom(){ //GET ALL ROOMS
 	return result;	
 }
 
-function postRoom(){ //POST ROOM
+function postRoom(dades){ //POST ROOM
 
 	var httpRequest = new XMLHttpRequest();
 	var result;
 
+	var data = {};
+		data.Nom = dades.Nom;
+		data.Valoracio = dades.Valoracio;
+		data.Vots = dades.Vots;
+		data.Preu = dades.Preu;
+		data.Descripcio = dades.Descripcio;
+		data.Duracio = dades.Duracio;  
+		data.Persones = dades.Persones;
+		data.establiment_id = dades.establiment_id;
+		data.categoria_id = dades.categoria_id;
+
 	httpRequest.onreadystatechange = function (){
 
-		if (httpRequest.readyState == 4 && httpRequest.status == 200 ) {
+		if (httpRequest.readyState == 4 && httpRequest.status == 201 ) {
 
 			var jsonParsed = JSON.parse(httpRequest.responseText);
 			result = jsonParsed;
@@ -540,8 +563,10 @@ function postRoom(){ //POST ROOM
 	};
 
 	httpRequest.open('POST', URL+"room", false);
+	httpRequest.setRequestHeader("Content-Type",'application/json; charset=utf-8');
+	var resultStr = JSON.stringify(data);
+	httpRequest.send(resultStr);
 
-	httpRequest.send();
 	return result;
 }
 
@@ -566,24 +591,35 @@ function getRoom(id){ // GET ROOM ID
 	return result;
 }
 
-function putRoom(id, JSON){
+function putRoom(id, dades){
 
 	var httpRequest = new XMLHttpRequest();
 	var result;
+	
+	var data = {};
+		data.Nom = dades.Nom;
+		data.Valoracio = dades.Valoracio;
+		data.Vots = dades.Vots;
+		data.Preu = dades.Preu;
+		data.Descripcio = dades.Descripcio;
+		data.Duracio = dades.Duracio;  
+		data.Persones = dades.Persones;
 
 	httpRequest.onreadystatechange = function (){
 
 		if (httpRequest.readyState == 4 && httpRequest.status == 200 ) {
-
 			var jsonParsed = JSON.parse(httpRequest.responseText);
 			result = jsonParsed;
 		}
 
 	};
 
-	httpRequest.open('GET', URL+"room/"+id, false);
+	httpRequest.open('PUT', URL+"room/"+id, false);
+	httpRequest.setRequestHeader("Content-Type",'application/json; charset=utf-8');
+	
+	var resultStr = JSON.stringify(data);	
+	httpRequest.send(resultStr);
 
-	httpRequest.send(JSON);
 	return result;
 }
 

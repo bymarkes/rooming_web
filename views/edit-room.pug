@@ -1,6 +1,6 @@
 doctype html
 head
-  title Editar #{establiment.Nom}
+  title Editar Room Scape
   meta(charset='utf-8')
   meta(name='viewport', content='width=device-width,initial-scale=1')
   link(rel='icon', href='/images/favicon.png', type='image/x-icon')
@@ -135,120 +135,74 @@ section.innerpage-wrapper(style='background-color: #f1f2f2;')
     .container
       .row
         .col-xs-12.col-sm-12.col-md-7.col-lg-12.content-side(style='background-color: #fafafa; padding: 20px;')
-          form.lg-booking-form(method="POST", action="/establiment/"+establiment.id+"?_method=PUT")
+          form.lg-booking-form(method="POST", action="/room/"+room.id+"?_method=PUT")
             .lg-booking-form-heading
               span
                 i.fa.fa-info
-              h3 Informació Establiment
+              h3 Informació Room
             // end lg-bform-heading
             .personal-info
               .row
                 .col-xs-6.col-sm-6
                   .form-group
-                    label Nom de l'Establiment
-                    input.form-control(type='text', name="Nom", required='', value=establiment.Nom)
+                    label Nom del Room Scape
+                    input.form-control(type='text', name="Nom", required='', value=room.Nom)
                 // end columns
                 .col-xs-6.col-sm-6
                   .form-group
-                    label Província
-                    input.form-control(type='text', name="Provincia", required='', value=establiment.Provincia )
+                    label Preu en €
+                    input.form-control(type='number', name="Preu", min='0', max='99', value=room.Preu ,required='')
                 // end columns
               // end row
               .row
                 .col-sm-6
                   .form-group
-                    label Població
-                    input.form-control(type='text', name="Poblacio",  required='', value=establiment.Poblacio)
+                    label Persones
+                    input.form-control(type='number', name="Persones", value=room.Persones , required='')
                 // end columns
                 .col-sm-6
                   .form-group
-                    label Direcció
-                    input.form-control(type='text', name="Direccio", required='', value=establiment.Direccio)
+                    label Duració en minuts
+                    input.form-control(type='number', name="Duracio", value=room.Duracio , required='')
                 // end columns
               // end row
               .row
                 .col-sm-6
                   .form-group
-                    label Correu Electrónic
-                    input.form-control(type='email', name="Email", required='', value=establiment.Email)
+                    label Descripció
+                    textarea.form-control(type='text', name="Descripcio", value=room.Descripcio, required)
                 // end columns
                 .col-sm-6
                   .form-group
-                    label Telèfon
-                    input.form-control(type='number' name="Telefon", min="111111111", max="999999999", required='', value=establiment.Telefon)
+                    label Categoria
+                    select#sel.form-control(name='categoria_id', required='')
+                      each categoria in categories
+                        if categoria.id == room.categoria_id
+                          option(value=categoria.id, selected='') #{categoria.Titol}
+                        else
+                          option(value=categoria.id) #{categoria.Titol}
+                    i.fa.fa-angle-down
+                    input.form-control(name='Valoracio',type='hidden', value=0)
+                    input.form-control(name='Vots',type='hidden', value=0)
+                    input.form-control(name='establiment_id',type='hidden', value=room.establiment_id) 
                 // end columns
               // end row
             // end personal-info
             .lg-booking-form-heading
               span 
                 i.fa.fa-photo
-              h3 Fotos de l'Establiment
-              br
-              ul.list-unstyled.list-inline
-                each foto in fotos
-                  if foto.establiment_id == establiment.id
-                    li
-                      img.img-responsive.img-thumb(src=foto.URL, alt='')
+              h3 Fotos del Room Scape
             // end lg-bform-heading  
             .form-group
               input.form-control(type='file')
             br
-            .lg-booking-form-heading
-              span
-                i.fa.fa-map
-              h3 Posicionat en el Mapa
-              br
-              .row
-                .col-xs-1.col-sm-2.col-lg-2 
-                .col-xs-6.col-sm-6              
-                .col-xs-2.col-sm-2
-                    h3 Exemple
-              .row
-                .col-xs-1.col-sm-2.col-lg-2 
-                .col-xs-4.col-sm-4
-                  .form-group
-                    label Latitut
-                    input.form-control(type='number', name="Lat", required='', step="any", value=puntsDelMapa.Lat)
-                // end columns
-                .col-xs-1.col-sm-1                
-                .col-xs-4.col-sm-4
-                  .form-group
-                    label Latitud
-                    input.form-control(type='text', placeholder="41.3947688" disabled)
-                // end columns
-              // end row
-              .row
-                .col-xs-1.col-sm-2.col-lg-2 
-                .col-xs-4.col-sm-4
-                  .form-group
-                    label Longitut
-                    input.form-control(type='number', name="Lon", required='', value=puntsDelMapa.Lon, step="any")
-                // end columns
-                .col-xs-1.col-sm-1
-                .col-xs-4.col-sm-4
-                  .form-group
-                    label Longitut
-                    input.form-control(type='text', placeholder="2.0787276" disabled)
-                // end columns
-              // end row
-            .col-xs-12.col-sm-4.col-lg-4
-            .col-xs-12.col-sm-6.col-lg-4
-              a.btn.btn-black.btn-block(href="/establiment/"+establiment.id) Cancelar
-              button.btn.btn-orange.btn-block(type='submit', style="margin-bottom:20px;") Editar Establiment
-          form.lg-booking-form(method="POST", action="/establiment/"+establiment.id+"?_method=DELETE")
-            .row
-              .col-xs-12.col-sm-12.col-lg-12
-                .lg-booking-form-heading
-                  span(style="background-color:red;")
-                    i.fa.fa-trash
-                  h3 Elimina l'Establiment
-                  .col-sm-3.col-lg-3
-                  .col-xs-12.col-sm-12.col-lg-4
-                    .form-group                                 
-                      label Escriu el nom de l'establiment a ELIMINAR
-                      input.form-control(type='text', name="Nom", placeholder="Nom de l'Establiment", required='')
-                  .col-sm-2.col-lg-2 
-                    button.btn.btn-orange(type='submit', style="background-color:red;") ELIMINAR
+            .checkbox
+              label
+                input(type='checkbox' required='')
+                |  He llegit i Accepto els
+                a(href='#') Termes i Condicions.
+            // end checkbox
+            button.btn.btn-orange(type='submit') Edita el Room Scape
         // end columns
       // end row
     // end container

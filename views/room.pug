@@ -166,6 +166,10 @@ section.innerpage-wrapper(style='background-color: #f1f2f2;')
             // end columns
           // end row
         // end columns
+        if propietari == true
+            .col-xs-2.col-sm-6.col-md-2.col-lg-2(style="float:right;")
+              .text-center
+                a.btn.btn-orange(href="/room/"+room.id+"/edit") EDITAR
         .col-xs-12.col-sm-12.col-md-9.col-lg-9.content-side
           .detail-slider
             .feature-slider(style="text-align:center;")

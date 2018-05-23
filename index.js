@@ -107,14 +107,34 @@ app.get('/establiment/:id/edit', function(req,res){
     if (req.cookies.nick) {
         usuari = roomingApi.getUsuari(req.cookies.nick);
         if (e.usuari_id == usuari.id) {
-            var punts = roomingApi.getEstablimentGps(req.params.id);  
-            punts = getJSonObject(JSON.stringify(punts));     
+            var punts = roomingApi.getEstablimentGps(req.params.id);     
             res.render('edit-establiment',{'establiment':e, 'rooms':r, 'fotos':f,'nick':req.cookies.nick, 'usuari':usuari, "puntsDelMapa":punts});     
         }else{
             res.redirect('/');
         }   
     }
 });
+
+app.put('/establiment/:id', function(req,res){
+    var id = req.params.id;
+    roomingApi.putEstabliment(id, req.body);
+
+    var punts = roomingApi.getEstablimentGps(id);
+    roomingApi.putEstablimentGps(id, punts.id, req.body);
+    res.redirect('/establiment/'+id);
+});
+
+app.delete('/establiment/:id', function(req,res){
+    var id = req.params.id;
+    var e = roomingApi.getEstabliment(id);
+    if (e.Nom == req.body.Nom) {
+        console.log("hola");
+        roomingApi.deleteEstabliment(id);
+        res.redirect('/profile/');
+    }else{
+        res.redirect('/establiment/'+id+'/edit');
+    }
+});  
 
 app.get('/establiment/:id', function(req,res){
     var e = roomingApi.getEstabliment(req.params.id);
@@ -155,14 +175,46 @@ app.get('/rooms', function(req,res){
     res.render('rooms',{'rooms':r, 'fotos':f, 'nick':req.cookies.nick});
 });
 
+app.get('/room/new/:id', function(req,res){
+    var c = roomingApi.getAllCategoria();
+    var e = roomingApi.getEstabliment(req.params.id);
+    res.render('new-room',{'categories':c, 'establiment':e, 'nick':req.cookies.nick});
+});
+
+app.post('/room/new', function(req,res){
+    var r = roomingApi.postRoom(req.body);
+    res.redirect('/room/'+r.id);
+});
+
+app.put('/room/:id', function(req,res){
+    var id = req.params.id;
+    var a = roomingApi.putRoom(id, req.body);
+    res.redirect('/room/'+id);
+});
+
 app.get('/room/:id', function(req,res){
     var r = roomingApi.getRoom(req.params.id);
     var c = roomingApi.getCategoria(r.categoria_id);
     var e = roomingApi.getEstabliment(r.establiment_id);
     var f = roomingApi.getAllFoto();      
+    
     var com = roomingApi.getRoomAllComentari(req.params.id);
+    var usuari = roomingApi.getUsuari(req.cookies.nick);
+    var propietari = false;
+    
+    if(usuari.id == e.usuari_id){
+        propietari = true;
+    }
+
     res.render('room',{'nick':req.cookies.nick, 'room':r, 'fotos':f, 'categoria':c.Titol,
-'establiment':e, 'comentaris':com} );
+'establiment':e, 'comentaris':com, 'propietari':propietari } );
+});
+
+app.get('/room/:id/edit', function(req,res){
+    var c = roomingApi.getAllCategoria();
+    var r = roomingApi.getRoom(req.params.id);
+    
+    res.render('edit-room',{'nick':req.cookies.nick, 'categories':c, 'room':r});
 });
 
 app.post('/comentari', function(req, res){
