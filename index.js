@@ -32,6 +32,41 @@ app.get('/', function(req,res){
         res.render('index', {'rooms':r, 'fotos':f,'categories':c});
 });
 
+app.get('/dashboard', function(req,res){
+    var usuari = roomingApi.getUsuari(req.cookies.nick);
+    if(usuari && usuari.Tipus ==3){
+        var r = roomingApi.getAllRoom();
+        var tr = 0;
+        
+        r.forEach(element => {
+            var com = roomingApi.getRoomAllComentari(element.id);
+            element.Comentari= com;
+            tr = tr+1;
+        });
+
+        var e = roomingApi.getAllEstabliment();
+        var te = 0;
+        e.forEach(element => {
+            te = te+1;
+        });
+        
+        var u = roomingApi.getAllUsuari();
+        var tu = 0;
+        u.forEach(element => {
+            tu = tu+1;
+        });
+
+        var c = roomingApi.getAllCategoria();
+        var tc = 0;
+        c.forEach(element => {
+            tc = tc+1;
+        });
+        res.render('dashboard', {'nick':req.cookies.nick, 'rooms':r, 'totalRooms': tr, 'establiments':e, 'totalEstabliments': te, 'categories':c, 'totalCategories': tc, 'usuaris':u, 'totalUsuaris': tu});
+    }else{
+        res.redirect('/');
+    }
+});
+
 app.get('/login', function(req,res){
     var cookieBow = req.cookies.token;
     if (cookieBow) {
@@ -202,10 +237,11 @@ app.get('/room/:id', function(req,res){
     var usuari = roomingApi.getUsuari(req.cookies.nick);
     var propietari = false;
     
-    if(usuari.id == e.usuari_id){
-        propietari = true;
+    if (usuari){
+        if(usuari.id == e.usuari_id){
+            propietari = true;
+        }
     }
-
     res.render('room',{'nick':req.cookies.nick, 'room':r, 'fotos':f, 'categoria':c.Titol,
 'establiment':e, 'comentaris':com, 'propietari':propietari } );
 });

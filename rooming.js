@@ -888,6 +888,28 @@ function deleteRoomHorari(idRoom, idHorari){ //DELETE id HORARI from ROOM
 
 
 /* USUARI*/
+
+function getAllUsuari(){ // GET ALL Usuari
+
+	var httpRequest = new XMLHttpRequest();
+	var result;
+
+	httpRequest.onreadystatechange = function (){
+
+		if (httpRequest.readyState == 4 && httpRequest.status == 200 ) {
+
+			var jsonParsed = JSON.parse(httpRequest.responseText);
+			result = jsonParsed;
+		}
+
+	};
+
+	httpRequest.open('GET', URL+"usuari", false);
+
+	httpRequest.send();
+	return result;
+}
+
 function getUsuari(nick){ // GET Usuari 
 
 	var httpRequest = new XMLHttpRequest();
@@ -1146,6 +1168,7 @@ module.exports = {
 	putRoomHorari,
 	deleteRoomHorari,
 	getUsuari,
+	getAllUsuari,
 	postUsuari,
 	putUsuari,
 	deleteUsuari,

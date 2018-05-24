@@ -1,0 +1,363 @@
+doctype html
+head
+  title Dashboard
+  meta(charset='utf-8')
+  meta(name='viewport', content='width=device-width,initial-scale=1')
+  link(rel='icon', href='/images/favicon.png', type='image/x-icon')
+  // Google Fonts
+  link(href='https://fonts.googleapis.com/css?family=Lato:300,300i,400,400i,700,700i,900,900i%7CMerriweather:300,300i,400,400i,700,700i,900,900i', rel='stylesheet')
+  // Bootstrap Stylesheet
+  link(rel='stylesheet', href='/css/bootstrap.min.css')
+  // Font Awesome Stylesheet
+  link(rel='stylesheet', href='/css/font-awesome.min.css')
+  // Custom Stylesheets
+  link(rel='stylesheet', href='/css/style.css')
+  link#cpswitch(rel='stylesheet', href='/css/orange.css')
+  link(rel='stylesheet', href='/css/responsive.css')
+  // Owl Carousel Stylesheet
+  link(rel='stylesheet', href='/css/owl.carousel.css')
+  link(rel='stylesheet', href='/css/owl.theme.css')
+  // Flex Slider Stylesheet
+  link(rel='stylesheet', href='/css/flexslider.css', type='text/css')
+  // Date-Picker Stylesheet
+  link(rel='stylesheet', href='/css/datepicker.css')
+  // Magnific Gallery
+  link(rel='stylesheet', href='/css/magnific-popup.css')
+  // Color Panel
+  link(rel='stylesheet', href='/css/jquery.colorpanel.css')
+// ====== LOADER =====
+.loader
+// ============= TOP-BAR ===========
+#top-bar.tb-text-white
+  .container
+    .row
+      .col-xs-12.col-sm-6.col-md-6.col-lg-6
+      // end columns
+      .col-xs-12.col-sm-6.col-md-6.col-lg-6
+        #links
+          ul.list-unstyled.list-inline
+            if nick
+              li
+                a(href='/profile')
+                  span
+                    i.fa.fa-user
+                  | Hola, #{nick} !
+              li
+                a(href='/signout')
+                  span
+                    i.fa.fa-sign-out
+                  | Tancar Sessio
+            else
+              li
+                a(href='/login')
+                  span
+                    i.fa.fa-lock
+                  | Iniciar Sessió
+              li
+                a(href='/register')
+                  span
+                    i.fa.fa-plus
+                  | Registra't
+        // end links
+      // end columns
+    // end row
+  // end container
+// end top-bar
+nav#mynavbar-1.navbar.navbar-default.main-navbar.navbar-custom.navbar-white
+  .container
+    .navbar-header
+      button#menu-button.navbar-toggle(type='button', onclick='openNav()')
+        span.icon-bar
+        span.icon-bar
+        span.icon-bar      
+      a.navbar-brand(href='/')
+        span
+          img(src="images/scape-yellow.png", alt="").icon-logo
+          | ROOM
+        | ING
+    // end navbar-header
+    #myNavbar1.collapse.navbar-collapse
+      ul.nav.navbar-nav.navbar-right
+        li.dropdown
+          a(href='/')
+            | Inici
+            span
+        li.dropdown
+          a(href='/categories')
+            | Categories
+            span
+        li.dropdown
+          a(href='/rooms')
+            | Rooms
+            span
+        li.active
+          a(href='/map')
+            | Mapa
+            span
+    // end navbar collapse
+  // end container
+// end navbar
+.sidenav-content
+  #mySidenav.sidenav
+    h2#web-name
+      span
+      | Rooming
+    #main-menu
+      .closebtn
+        button#closebtn.btn.btn-default(onclick="closeNav()") &times;
+      // end close-btn
+      .list-group.panel
+        a.list-group-item(href='/', data-parent='#main-menu')
+          span
+            i.fa.fa-home.link-icon(style='font-size:20px;')
+          | Inici
+          span
+        a.list-group-item(href='/categories', data-parent='#main-menu')
+          span
+            i.fa.fa-list-ul.link-icon
+          | Categories
+          span
+        a.list-group-item(href='/rooms', data-parent='#main-menu')
+          span
+            i.fa.fa-lock.link-icon(style='font-size:20px;')
+          | Rooms
+          span
+        a.list-group-item.active(href='/map', data-parent='#main-menu')
+          span
+            i.fa.fa-map.link-icon
+          | Mapa
+          span
+    // end mySidenav
+  // end sidenav-content
+
+// ===== INNERPAGE-WRAPPER ====
+section.innerpage-wrapper(style='background-color: #f1f2f2;')
+  #dashboard
+    .container
+      .row
+        .col-xs-12.col-sm-12.col-md-12
+          .dashboard-heading
+            br
+            br
+            h2
+              | Dashboard 
+              span Pro
+          // end dashboard-heading
+          #dashboard-tabs
+            .dashboard-content
+              h2.dash-content-title Estadístiques Totals
+              .row.info-stat
+                .col-sm-6.col-md-3
+                  .stat-block
+                    span
+                      i.fa.fa-tachometer
+                    h3 #{totalRooms}
+                    p Rooms
+                  // end stat-block
+                // end columns
+                .col-sm-6.col-md-3
+                  .stat-block
+                    span
+                      i.fa.fa-building
+                    h3 #{totalEstabliments}
+                    p Establiments
+                  // end stat-block
+                // end columns
+                .col-sm-6.col-md-3
+                  .stat-block
+                    span
+                      i.fa.fa-user
+                    h3 #{totalUsuaris}
+                    p Usuaris
+                  // end stat-block
+                // end columns
+                .col-sm-6.col-md-3
+                  .stat-block
+                    span
+                      i.fa.fa-thumb-tack
+                    h3 #{totalCategories}
+                    p Categories
+                  // end stat-block
+                // end columns
+              // end row
+            .innerpage-section-padding
+              ul.nav.nav-tabs.nav-justified
+                li.active
+                  a(href='#dsh-room', data-toggle='tab')
+                    span
+                      i.fa.fa-cogs
+                    | Room Escapes
+                li
+                  a(href='#dsh-establiment', data-toggle='tab')
+                    span
+                      i.fa.fa-building
+                    | Establiments
+                li
+                  a(href='#dsh-usuari', data-toggle='tab')
+                    span
+                      i.fa.fa-user
+                    | Usuaris
+                li
+                  a(href='#dsh-categoria', data-toggle='tab')
+                    span
+                      i.fa.fa-thumb-tack
+                    | Categories
+                li
+                  a(href='#dsh-comentari', data-toggle='tab')
+                    span
+                      i.fa.fa-comment
+                    | Comentaris
+              .tab-content
+                #dsh-room.tab-pane.in.active.fade
+                  .dashboard-content
+                    .dashboard-listing.invoices
+                      h3.dash-listing-heading Room Escapes
+                      .table-responsive
+                        table.table.table-hover
+                          tbody
+                            each room in rooms
+                              tr
+                                td.dash-list-icon.invoice-icon
+                                  i.fa.fa-bars
+                                td.dash-list-text.invoice-text
+                                  h4.invoice-title #{room.Nom}
+                                  ul.list-unstyled.list-inline.invoice-info
+                                    each categoria in categories
+                                      if categoria.id == room.categoria_id
+                                        li.invoice-status.green #{categoria.Titol}
+                                    li.invoice-order  #{room.Preu}€
+                                    each establiment in establiments
+                                      if establiment.id == room.establiment_id
+                                        li.invoice-date  #{establiment.Nom}
+                                td.dash-list-btn
+                                  button.btn.btn-orange(style="background-color:red") Eliminar
+                      // end table-responsive
+                    // end invoices
+                  // end dashboard-content
+                // end dsh-room
+                #dsh-establiment.tab-pane.fade
+                  .dashboard-content
+                    .dashboard-listing.invoices
+                      h3.dash-listing-heading Establiments
+                      .table-responsive
+                        table.table.table-hover
+                          tbody
+                            each establiment in establiments
+                              tr
+                                td.dash-list-icon.invoice-icon
+                                  i.fa.fa-building
+                                td.dash-list-text.invoice-text
+                                  h4.invoice-title #{establiment.Nom}
+                                  ul.list-unstyled.list-inline.invoice-info
+                                    li.invoice-order  #{establiment.Poblacio}
+                                    li.invoice-date  #{establiment.Provincia}
+                                td.dash-list-btn
+                                  button.btn.btn-orange(style="background-color:red") Eliminar
+                // end dsh-establiment
+                #dsh-usuari.tab-pane.fade
+                  .dashboard-content
+                    .dashboard-listing.invoices
+                      h3.dash-listing-heading Usuaris
+                      .table-responsive
+                        table.table.table-hover
+                          tbody
+                            each usuari in usuaris
+                              tr
+                                td.dash-list-icon.invoice-icon
+                                  i.fa.fa-user
+                                td.dash-list-text.invoice-text
+                                  h4.invoice-title #{usuari.Nom}
+                                  ul.list-unstyled.list-inline.invoice-info
+                                    li.invoice-order  #{usuari.Poblacio}
+                                    li.invoice-date  #{usuari.Email}
+                                td.dash-list-btn
+                                  button.btn.btn-orange(style="background-color:red") Eliminar
+                // end dsh-usuari
+                #dsh-categoria.tab-pane.fade.dashboard-content
+                  .dashboard-listing.invoices
+                    h3.dash-listing-heading Categories
+                    .table-responsive
+                      table.table.table-hover
+                        tbody
+                          each categoria in categories
+                            tr
+                              td.dash-list-icon.invoice-icon
+                                i.fa.fa-thumb-tack
+                              td.dash-list-text.invoice-text
+                                h4.invoice-title #{categoria.Titol}
+                                ul.list-unstyled.list-inline.invoice-info
+                                  li.invoice-order  #{categoria.Descripcio}
+                              td.dash-list-btn
+                                button.btn.btn-orange(style="background-color:red") Eliminar
+                // end dsh-categoria
+                #dsh-comentari.tab-pane.fade
+                  .dashboard-content
+                    .dashboard-listing.invoices
+                      h3.dash-listing-heading Comentaris
+                      .table-responsive
+                        table.table.table-hover
+                          tbody
+                            each room in rooms
+                              each comentari in room.Comentari
+                                tr
+                                  td.dash-list-icon.invoice-icon
+                                    i.fa.fa-comment
+                                  td.dash-list-text.invoice-text
+                                    h4.invoice-title #{comentari.Titol}
+                                    ul.list-unstyled.list-inline.invoice-info
+                                      li.invoice-order  #{comentari.Text}
+                                      li.invoice-date  #{comentari.Usuari}
+                                      li.invoice-date  #{comentari.Data}
+                                      each room in rooms
+                                        if room.id == comentari.room_id
+                                          li.invoice-status.green  #{room.Nom}                                                                                           
+                                  td.dash-list-btn
+                                    button.btn.btn-orange(style="background-color:red") Eliminar
+              // end comentari
+            // end tab-content
+          // end dashboard-tabs
+        // end columns
+      // end row
+    // end container
+  // end contact-us
+// end innerpage-wrapper
+// ======================= FOOTER =======================
+section#footer.ftr-heading-o.ftr-heading-mgn-1(style='top:0px;')
+  #footer-bottom.ftr-bot-black
+    .container
+      .row
+        #copyright.col-xs-12.col-sm-6.col-md-6.col-lg-6
+          p
+            | &copy; 2017 
+            a(href='#') Rooming
+            | . All rights reserved.
+        // end columns
+        #terms.col-xs-12.col-sm-6.col-md-6.col-lg-6
+          ul.list-unstyled.list-inline
+            li
+              a(href='/terms') Termes i Condicions
+            li
+              a(href='/polices') Politica de Privacitat
+            li
+              a(href='/contact') | Contacte 
+        // end columns
+      // end row
+    // end container
+  // end footer-bottom
+// end footer
+// Page Scripts Starts
+script(src='/js/jquery.min.js')
+script(src='/js/jquery.colorpanel.js')
+script(src='/js/jquery.magnific-popup.min.js')
+script(src='/js/bootstrap.min.js')
+script(src='/js/jquery.flexslider.js')
+script(src='/js/bootstrap-datepicker.js')
+script(src='/js/owl.carousel.min.js')
+script(src='/js/custom-navigation.js')
+script(src='/js/custom-flex.js')
+script(src='/js/custom-owl.js')
+script(src='/js/custom-date-picker.js')
+script(src='/js/custom-video.js')
+script(src='/js/popup-ad.js')
+script(async='', defer='', src='https://maps.googleapis.com/maps/api/js?key=AIzaSyDVagfyF-3bPDT3XLEg_JMDW1x0jWzxWIU&callback=initMap')
+// Page Scripts Ends
