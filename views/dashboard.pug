@@ -90,7 +90,7 @@ nav#mynavbar-1.navbar.navbar-default.main-navbar.navbar-custom.navbar-white
           a(href='/rooms')
             | Rooms
             span
-        li.active
+        li.dropdown
           a(href='/map')
             | Mapa
             span
@@ -122,7 +122,7 @@ nav#mynavbar-1.navbar.navbar-default.main-navbar.navbar-custom.navbar-white
             i.fa.fa-lock.link-icon(style='font-size:20px;')
           | Rooms
           span
-        a.list-group-item.active(href='/map', data-parent='#main-menu')
+        a.list-group-item(href='/map', data-parent='#main-menu')
           span
             i.fa.fa-map.link-icon
           | Mapa
@@ -150,7 +150,7 @@ section.innerpage-wrapper(style='background-color: #f1f2f2;')
                 .col-sm-6.col-md-3
                   .stat-block
                     span
-                      i.fa.fa-tachometer
+                      i.fa.fa-home
                     h3 #{totalRooms}
                     p Rooms
                   // end stat-block
@@ -185,8 +185,8 @@ section.innerpage-wrapper(style='background-color: #f1f2f2;')
                 li.active
                   a(href='#dsh-room', data-toggle='tab')
                     span
-                      i.fa.fa-cogs
-                    | Room Escapes
+                      i.fa.fa-home
+                    | Rooms
                 li
                   a(href='#dsh-establiment', data-toggle='tab')
                     span
@@ -207,6 +207,11 @@ section.innerpage-wrapper(style='background-color: #f1f2f2;')
                     span
                       i.fa.fa-comment
                     | Comentaris
+                li
+                  a(href='#dsh-fotos', data-toggle='tab')
+                    span
+                      i.fa.fa-photo
+                    | Fotografies
               .tab-content
                 #dsh-room.tab-pane.in.active.fade
                   .dashboard-content
@@ -218,7 +223,7 @@ section.innerpage-wrapper(style='background-color: #f1f2f2;')
                             each room in rooms
                               tr
                                 td.dash-list-icon.invoice-icon
-                                  i.fa.fa-bars
+                                  i.fa.fa-home
                                 td.dash-list-text.invoice-text
                                   h4.invoice-title #{room.Nom}
                                   ul.list-unstyled.list-inline.invoice-info
@@ -313,6 +318,21 @@ section.innerpage-wrapper(style='background-color: #f1f2f2;')
                                           li.invoice-status.green  #{room.Nom}                                                                                           
                                   td.dash-list-btn
                                     button.btn.btn-orange(style="background-color:red") Eliminar
+                #dsh-fotos.tab-pane.fade
+                  .dashboard-content
+                    .dashboard-listing.invoices
+                      h3.dash-listing-heading Comentaris
+                      .table-responsive
+                        table.table.table-hover
+                          tbody
+                            each foto in fotos
+                              tr
+                                td.invoice-icon
+                                  img(src=foto.URL, alt="foto", style="max-width:100px;")
+                                td.dash-list-text.invoice-text
+                                  h4.invoice-title #{foto.URL}                                                                        
+                                td.dash-list-btn
+                                  button.btn.btn-orange(style="background-color:red") Eliminar
               // end comentari
             // end tab-content
           // end dashboard-tabs
@@ -359,5 +379,4 @@ script(src='/js/custom-owl.js')
 script(src='/js/custom-date-picker.js')
 script(src='/js/custom-video.js')
 script(src='/js/popup-ad.js')
-script(async='', defer='', src='https://maps.googleapis.com/maps/api/js?key=AIzaSyDVagfyF-3bPDT3XLEg_JMDW1x0jWzxWIU&callback=initMap')
 // Page Scripts Ends

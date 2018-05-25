@@ -61,7 +61,9 @@ app.get('/dashboard', function(req,res){
         c.forEach(element => {
             tc = tc+1;
         });
-        res.render('dashboard', {'nick':req.cookies.nick, 'rooms':r, 'totalRooms': tr, 'establiments':e, 'totalEstabliments': te, 'categories':c, 'totalCategories': tc, 'usuaris':u, 'totalUsuaris': tu});
+
+        var f = roomingApi.getAllFoto();        
+        res.render('dashboard', {'nick':req.cookies.nick, 'fotos':f, 'rooms':r, 'totalRooms': tr, 'establiments':e, 'totalEstabliments': te, 'categories':c, 'totalCategories': tc, 'usuaris':u, 'totalUsuaris': tu});
     }else{
         res.redirect('/');
     }
