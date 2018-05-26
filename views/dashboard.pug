@@ -293,7 +293,30 @@ section.innerpage-wrapper(style='background-color: #f1f2f2;')
                                 ul.list-unstyled.list-inline.invoice-info
                                   li.invoice-order  #{categoria.Descripcio}
                               td.dash-list-btn
-                                button.btn.btn-orange(style="background-color:red") Eliminar
+                                button.btn.btn-orange(style="background-color:red") Eliminar 
+                  br
+                  form(action="/categoria", method="POST")
+                    .personal-info
+                      .row
+                        .col-sm-2
+                          .form-group
+                            label Titol de la Categoria
+                            input.form-control(type='text', name="Titol",  required='')
+                        // end columns
+                        .col-sm-4
+                          .form-group
+                            label Descripció
+                            textarea.form-control(type='text', name="Descripcio", required='')
+                        .col-sm-2
+                          .form-group
+                            label Selecciona una foto
+                            input.form-control(type='file')
+                        .col-sm-4
+                          .form-group
+                            label .
+                            button.btn.btn-orange.btn-block(type='submit') Afegir Categoria
+                      // end columns
+                    // end row
                 // end dsh-categoria
                 #dsh-comentari.tab-pane.fade
                   .dashboard-content

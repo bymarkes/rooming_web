@@ -3,26 +3,31 @@ var URL = "http://localhost/rooming_api/public/api/";
 
 
 /** CATEGORIA **/
-function postCategoria(JSON){ // POST
+function postCategoria(dades){ // POST
 
 	var httpRequest = new XMLHttpRequest();
 
 	var result;
+	var data = {};
+		data.Titol = dades.Titol;
+		data.Descripcio = dades.Descripcio;
 
 	httpRequest.onreadystatechange = function (){
 
-		if (httpRequest.readyState == 4 && httpRequest.status == 200 ) {
-
+		if (httpRequest.readyState == 4 && httpRequest.status == 201) {
 			var jsonParsed = JSON.parse(httpRequest.responseText);
 			result = jsonParsed;
 		}
 
 	};
 
+	
 	httpRequest.open('POST', URL+"categoria", false);
 
-	httpRequest.send(JSON);
-
+	httpRequest.setRequestHeader("Content-Type",'application/json; charset=utf-8');
+	var resultStr = JSON.stringify(data);
+	
+	httpRequest.send(resultStr);
 	return result;
 }
 
@@ -241,14 +246,11 @@ function putEstabliment(id,dades){ // PUT
 }
 
 function deleteEstabliment(id){ // DELETE
-
 	var httpRequest = new XMLHttpRequest();
 	var result;
-	console.log("hola2");
-	httpRequest.onreadystatechange = function (){
 
+	httpRequest.onreadystatechange = function (){
 		if (httpRequest.readyState == 4 && httpRequest.status == 204 ) {
-			console.log("hola3");
 
 		}
 	};
@@ -494,7 +496,7 @@ function deleteFoto(id){ // DELETE FOTO show
 
 	httpRequest.onreadystatechange = function (){
 
-		if (httpRequest.readyState == 4 && httpRequest.status == 200 ) {
+		if (httpRequest.readyState == 4 && httpRequest.status == 204 ) {
 
 			var jsonParsed = JSON.parse(httpRequest.responseText);
 			result = jsonParsed;
@@ -630,7 +632,7 @@ function deleteRoom(id){
 
 	httpRequest.onreadystatechange = function (){
 
-		if (httpRequest.readyState == 4 && httpRequest.status == 200 ) {
+		if (httpRequest.readyState == 4 && httpRequest.status == 204 ) {
 
 			var jsonParsed = JSON.parse(httpRequest.responseText);
 			result = jsonParsed;
@@ -638,7 +640,7 @@ function deleteRoom(id){
 
 	};
 
-	httpRequest.open('DELETE', URL+"room", false);
+	httpRequest.open('DELETE', URL+"room/"+id, false);
 
 	httpRequest.send();
 	return result;

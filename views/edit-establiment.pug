@@ -191,7 +191,8 @@ section.innerpage-wrapper(style='background-color: #f1f2f2;')
                       img.img-responsive.img-thumb(src=foto.URL, alt='')
             // end lg-bform-heading  
             .form-group
-              input.form-control(type='file')
+              label Foto de portada
+              input.form(type='file')
             br
             .lg-booking-form-heading
               span
@@ -246,9 +247,12 @@ section.innerpage-wrapper(style='background-color: #f1f2f2;')
                   .col-xs-12.col-sm-12.col-lg-4
                     .form-group                                 
                       label Escriu el nom de l'establiment a ELIMINAR
-                      input.form-control(type='text', name="Nom", placeholder="Nom de l'Establiment", required='')
+                      input.form-control(type='text', name="Nom", placeholder="Nom de l'Establiment", required='')                      
                   .col-sm-2.col-lg-2 
                     button.btn.btn-orange(type='submit', style="background-color:red;") ELIMINAR
+                  .col-xs-12-col-sm-12-col-lg-12
+                    p.info <b>Recorda que eliminarem tota la informació relacionada amb l'Establiment, això inclou els Rooms i les seves Fotos i Comentaris.
+                
         // end columns
       // end row
     // end container
