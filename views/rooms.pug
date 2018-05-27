@@ -144,11 +144,24 @@ section.innerpage-wrapper(style='background-color: #f1f2f2;')
               .col-xs-12.col-sm-6.col-md-4.col-lg-4
                 .member-block-2.text-center(style='background-color: white;')
                   .member-img-2
-                    each foto in fotos
-                      if foto.room_id == room.id && foto.principal
-                        img.img-responsive(src=foto.URL, alt='roomscape-img')
-                    .member-name-2
-                      h3 #{room.Nom}
+                    .main-block.hotel-block
+                      .main-img
+                        a(href='/room/'+room.id)
+                          // IMATGE
+                          each foto in fotos
+                            if foto.room_id == room.id && foto.principal
+                              img.img-responsive(src=foto.URL, alt='roomscape-img')
+                        .main-mask
+                          ul.list-unstyled.list-inline.offer-price-1
+                            li.price
+                              | #{room.Preu} €
+                              span.divider |
+                              span.pkg PER PERSONA
+                      br
+                      br
+                      .member-name-2
+                        h3 #{room.Nom}
+                    
                     // end member-name-2
                   // end member-img-2
                   .member-info-2

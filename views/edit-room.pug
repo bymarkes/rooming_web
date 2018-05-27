@@ -202,7 +202,23 @@ section.innerpage-wrapper(style='background-color: #f1f2f2;')
                 |  He llegit i Accepto els
                 a(href='#') Termes i Condicions.
             // end checkbox
-            button.btn.btn-orange(type='submit') Edita el Room Scape
+            button.btn.btn-orange(type='submit', style="margin-bottom:20px;") Edita el Room Scape
+          form.lg-booking-form(method="POST", action="/room/"+room.id+"?_method=DELETE")
+            .row
+              .col-xs-12.col-sm-12.col-lg-12
+                .lg-booking-form-heading
+                  span(style="background-color:red;")
+                    i.fa.fa-trash
+                  h3 Elimina el Room
+                  .col-sm-3.col-lg-3
+                  .col-xs-12.col-sm-12.col-lg-4
+                    .form-group                                 
+                      label Escriu el nom del Room Escape a ELIMINAR
+                      input.form-control(type='text', name="Nom", placeholder="Nom del Room Escape", required='')                      
+                  .col-sm-2.col-lg-2 
+                    button.btn.btn-orange(type='submit', style="background-color:red;") ELIMINAR
+                  .col-xs-12-col-sm-12-col-lg-12
+                    p.info <b>Recorda que eliminarem tota la informació relacionada amb el Room Escape, això inclou les seves Fotos, Comentaris, Valoracions..
         // end columns
       // end row
     // end container

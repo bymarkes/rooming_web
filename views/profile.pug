@@ -159,12 +159,9 @@ section.innerpage-wrapper(style='background-color: #f1f2f2;')
                                         | #{establiment.Poblacio} 
                                         span
                             li(style="display:inline;")
-                                  a.unstyled.orange(href='/establiment/new')
-                                    .main-info.hotel-info(style="border:2px solid #faa61a; background-color:#faa61a;")
-                                      .main-title.hotel-title
-                                        h4(style="font-size:16px; font-weight:bold;")
-                                        | AFERGIR UN ESTABLIMENT 
-                                        i.fa.fa-plus(style="margin-left:10px;") 
+                              a.btn.btn-orange.btn-block(href='/establiment/new')
+                                | AFERGIR UN ESTABLIMENT 
+                                i.fa.fa-plus(style="margin-left:10px;")                      
                   a.btn.btn-orange.btn-block(href="/profile/reserves") VEURE RESERVES
             .col-sm-6(style='margin-top: 30px;')
               .flex-content
@@ -206,6 +203,12 @@ section.innerpage-wrapper(style='background-color: #f1f2f2;')
               // end form-content
             // end columns
           // end row
+      if usuari.Tipus == 3
+        .col-lg-4
+        .col-sm-12.col-md-12.col-lg-4
+          a.btn.btn-orange.btn-block(href='/dashboard')
+            | DASHBOARD
+            i.fa.fa-terminal(style="margin-left:10px;")             
       // end container
     // end login
 #edit-profile.modal.custom-modal.fade(style='display: none;')
@@ -227,7 +230,7 @@ section.innerpage-wrapper(style='background-color: #f1f2f2;')
           button#btnForm.btn.btn-orange.btn-block(type='submit') Guarda
       // end modal-bpdy
     // end modal-content
-  // end modal-dialog
+  // end modal-dialog            
 // ======================= FOOTER =======================
 section#footer.ftr-heading-o.ftr-heading-mgn-1
   #footer-bottom.ftr-bot-black

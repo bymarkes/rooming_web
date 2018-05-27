@@ -174,22 +174,15 @@ section.innerpage-wrapper(style='background-color: #f1f2f2;')
           .detail-slider
             .feature-slider(style="text-align:center;")
               each foto in fotos
-                if foto.room_id == room.id
+                if foto.room_id == room.id && !foto.principal
                   div
-                    img.img-responsive(src=foto.URL, alt='roomscape-img' style="max-width:30%;")
+                    img.img-responsive(src=foto.URL, alt='img-'+foto.id style="height:350px;")
             // end feature-slider
             .feature-slider-nav
-              div
-                img.img-responsive(src='images/car-feature-thumb-1.jpg', alt='img-6')
-              div
-                img.img-responsive(src='images/car-feature-thumb-2.jpg', alt='img-7')
-              div
-                img.img-responsive(src='images/car-feature-thumb-3.jpg', alt='img-8')
-              div
-                img.img-responsive(src='images/car-feature-thumb-4.jpg', alt='img-9')
-              div
-                img.img-responsive(src='images/car-feature-thumb-5.jpg', alt='img-10')
-            // end feature-slider-nav
+              each foto in fotos
+                if foto.room_id == room.id && !foto.principal
+                  div
+                    img.img-responsive(src=foto.URL, alt='img-'+foto.id)
             ul.list-unstyled.features.tour-features
               li
                 .f-icon
