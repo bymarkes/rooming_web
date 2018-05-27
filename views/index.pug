@@ -10,6 +10,7 @@ head
   link(rel='stylesheet', href='/css/bootstrap.min.css')
   // Font Awesome Stylesheet
   link(rel='stylesheet', href='/css/font-awesome.min.css')
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
   // Custom Stylesheets
   link(rel='stylesheet', href='/css/style.css')
   link#cpswitch(rel='stylesheet', href='/css/orange.css')
@@ -25,6 +26,18 @@ head
   link(rel='stylesheet', href='/css/magnific-popup.css')
   // Color Panel
   link(rel='stylesheet', href='/css/jquery.colorpanel.css')
+  
+  link(href='/css/star-rating.min.css', media='all', rel='stylesheet', type='text/css')
+
+  link(rel='stylesheet', href='/css/jquery.range.css')
+
+  // Latest compiled and minified CSS
+  link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.css')
+  // Latest compiled and minified JavaScript
+  
+
+
+  
 // ====== LOADER =====
 #divTopBar.loader
 // ============= TOP-BAR ===========
@@ -151,14 +164,14 @@ section#flexslider-container-1.flexslider-container
                 span.st-text Cercador
           #tabcontent.tab-content
             #hotels.tab-pane.in.active
-              form(method='POST', action='/search')
+              form#searchForm(method='POST', action='/search')
                 .row
                   .col-xs-12.col-sm-12.col-md-12.col-lg-12
                     .row
                       .col-xs-12.col-sm-12.col-md-12
                         .form-group.right-icon
-                          label CIUTAT
-                          select.form-control(name='provincia')
+                          label PROVINCIA
+                          select#provincia.form-control(name='Provincia')
                             option(value='Barcelona') Barcelona
                             option(value='Lleida') Lleida
                             option(value='Girona') Girona
@@ -168,7 +181,7 @@ section#flexslider-container-1.flexslider-container
                       .col-xs-6.col-sm-6.col-md-6
                         .form-group.right-icon
                           label Categoria
-                          select.form-control(name='categoria')
+                          select.form-control(name='Categoria')
                             each categoria in categories
                               option(value=categoria.id) #{categoria.Titol}                          
                           i.fa.fa-angle-down
@@ -176,12 +189,25 @@ section#flexslider-container-1.flexslider-container
                       .col-xs-6.col-sm-6.col-md-6
                         .form-group.right-icon
                           label Participants
-                          select.form-control(name='participants')
+                          select.form-control(name='Participants')
                             option(selected='', value='2') 2
                             option(value='4') 4
                             option(value='6') 6
                             option(value='10') 10
                           i.fa.fa-angle-down
+                      // end columns
+                      .col-xs-12.col-sm-12.col-md-12
+                        .form-group.right-icon
+                          label Preu
+                          br
+                          br                          
+                          input#range.slider-input(value='23',name='Preu')
+                      // end columns
+                      .col-xs-6.col-sm-6.col-md-6
+                        .form-group.right-icon
+                          label Valoració
+                          #example
+                          input#inputVal(name='Valoracio',type='hidden')
                       // end columns
                     // end row
                   // end columns
@@ -300,4 +326,34 @@ script(src='/js/custom-date-picker.js')
 script(src='/js/custom-video.js')
 script(src='/js/popup-ad.js')
 script(src='/js/rooming.js')
+script(src='/js/jquery.barrating.js')
+script(src='/js/star-rating.min.js', type='text/javascript')
+script(src='/js/jquery.range.js')
+script(src='https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.js')
+script.
+   $(function() {
+    $('#example').rateYo({
+      rating: 3,
+      fullStar: true
+    });
+    $('#searchForm').submit(function (){
+      var valoracio = $('#example').rateYo('rating');
+      $('#inputVal').val(valoracio);
+    });
+  });
+
+script.
+  $(function() {
+    $('.slider-input').jRange({
+      from: 0,
+      to: 60,
+      step: 1,
+      scale: [0,10,20,30,40,50,60],
+      format: '%s',
+      width: 500,      
+      showLabels: true,
+      isRange : true
+    });
+  });
+
 // Page Scripts Ends

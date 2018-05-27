@@ -25,6 +25,11 @@ head
   link(rel='stylesheet', href='/css/magnific-popup.css')
   // Color Panel
   link(rel='stylesheet', href='/css/jquery.colorpanel.css')
+
+  link(rel='stylesheet', href='/css/jquery.range.css')
+
+  // Latest compiled and minified CSS
+  link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.css')
 // ====== LOADER =====
 .loader
 // ============= TOP-BAR ===========
@@ -138,37 +143,51 @@ section.innerpage-wrapper(style='background-color: #f1f2f2;')
           .page-search-form
             h2
                 i.fa.fa-cogs(style='margin-right: 20px;')
-                | Cerca 
-                span
-                | Avançada 
-            form.pg-search-form(method='POST', action='/search')
+                | Paràmetres 
+            form#searchForm.pg-search-form(method='POST', action='/search')
                 .row
                   .col-xs-12.col-sm-12.col-md-12.col-lg-12
                     .row
                       .col-xs-12.col-sm-12.col-md-12
                         .form-group.right-icon
-                            label CIUTAT
-                            select.form-control(name='provincia')
+                            label PROVINCIA
+                            select#provincia.form-control(name='Provincia')
                                 option(value='Barcelona') Barcelona
                                 option(value='Lleida') Lleida
                                 option(value='Girona') Girona
-                                option(value='Tarragona') Tarragona                        
+                                option(value='Tarragona') Tarragona
                       // end columns
                       .col-xs-6.col-sm-6.col-md-6
                         .form-group.right-icon
                             label Categoria
-                            select.form-control(name='categoria')
+                            select#categoria.form-control(name='Categoria')
                                 each categoria in categories
-                                    option(value=categoria.id) #{categoria.Titol}                                                      
+                                  if categoria.id == category
+                                    option(selected='',value=categoria.id) #{categoria.Titol}
+                                  else
+                                     option(value=categoria.id) #{categoria.Titol}                                                     
                       // end columns
                       .col-xs-6.col-sm-6.col-md-6
                         .form-group.right-icon
                             label Participants
-                            select.form-control(name='participants')
-                                option(selected='', value='2') 2
+                            select#participants.form-control(name='Participants')
+                                option(value='2') 2
                                 option(value='4') 4
                                 option(value='6') 6
                                 option(value='10') 10                
+                      // end columns
+                      .col-xs-6.col-sm-6.col-md-6
+                        .form-group.right-icon
+                          label Preu
+                          br
+                          br                          
+                          input#range.slider-input(name='Preu', value=preu)
+                      // end columns
+                      .col-xs-6.col-sm-6.col-md-6
+                        .form-group.right-icon
+                          label Valoració
+                          #example
+                          input#inputVal(name='Valoracio',type='hidden')
                       // end columns
                     // end row
                   // end columns
@@ -176,7 +195,7 @@ section.innerpage-wrapper(style='background-color: #f1f2f2;')
                     button.btn.btn-orange(type='submit') Cerca
                   // end columns
                 // end row
-          .row
+          .row          
             each room in rooms
               .col-xs-12.col-sm-6.col-md-4.col-lg-4
                 .member-block-2.text-center(style='background-color: white;')
@@ -239,4 +258,42 @@ script(src='/js/custom-owl.js')
 script(src='/js/custom-date-picker.js')
 script(src='/js/custom-video.js')
 script(src='/js/popup-ad.js')
+script(src='/js/jquery.range.js')
+script(src='https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.js')
 // Page Scripts Ends
+script.
+   $(function() {
+    $('#example').rateYo({
+      rating: #{valoracio},
+      fullStar: true
+    });
+    $('#searchForm').submit(function (){
+      var valoracio = $('#example').rateYo('rating');
+      $('#inputVal').val(valoracio);
+    });
+    $("#provincia > option").each(function() {
+      if(this.value == '#{provincia}'){
+        $(this).attr('selected',true);
+      }
+    });
+    
+    $("#participants > option").each(function() {
+      if(this.value == #{participants}){
+        $(this).attr('selected',true);
+      }
+    });
+  });
+
+script.
+  $(function() {
+    $('.slider-input').jRange({
+      from: 0,
+      to: 60,
+      step: 1,
+      scale: [0,10,20,30,40,50,60],
+      format: '%s',
+      width: 500,      
+      showLabels: true,
+      isRange : true,
+    });
+  });

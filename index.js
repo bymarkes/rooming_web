@@ -263,21 +263,38 @@ app.post('/search', function(req,res){
     var f = roomingApi.getAllFoto();
     var c = roomingApi.getAllCategoria();
     var roomFilter = [];
-    
+
+    var provincia = req.body.Provincia;
+    var participants = req.body.Participants;
+    var categoria = req.body.Categoria;
+    var range = req.body.Preu;
+    var valoracio = req.body.Valoracio;
+
+    var rangeSplitted = range.split(',');
+
+    var min = rangeSplitted[0];
+    var max = rangeSplitted[1];
+
     for (let i = 0; i < rooms.length; i++) {
         const element = rooms[i];
-        if (element.categoria_id == req.body.categoria){
-            if (element.Persones == req.body.participants){
-               for (let x = 0; x < establiments.length; x++) {
-                   const establiment = establiments[x];
-                   if (establiment.id == element.establiment_id) {
-                       roomFilter.push(element);
-                   }   
-               }
+        if (element.categoria_id == req.body.Categoria){
+            if (element.Persones == req.body.Participants){
+                if(element.Preu >= min && element.Preu <= max){
+                    if(element.Valoracio == valoracio){
+                        for (let x = 0; x < establiments.length; x++) {
+                            const establiment = establiments[x];
+                            if (establiment.id == element.establiment_id) {
+                                if(establiment.Provincia == provincia){
+                                    roomFilter.push(element);
+                                }                                
+                            }   
+                        }
+                    }                    
+                }               
             }
         }    
     }
-    res.render('searchRooms',{'rooms':roomFilter, 'fotos':f,'categories':c, 'nick':req.cookies.nick});
+    res.render('searchRooms',{'rooms':roomFilter, 'fotos':f,'categories':c, 'nick':req.cookies.nick, 'provincia':provincia, 'category':categoria,'participants':participants,'preu':range,'valoracio':valoracio});
 });
 
 app.get('/signout', function(req,res){
