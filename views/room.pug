@@ -208,6 +208,8 @@ section.innerpage-wrapper(style='background-color: #f1f2f2;')
               li
                 .f-text
                   case room.Valoracio
+                    when '0'
+                      #ratingbar
                     when '1'
                       #ratingbar1
                     when '2'
@@ -346,6 +348,12 @@ script(src='https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.mi
 // Page Scripts Ends
 script.
   $(function (){
+    $('#ratingbar').rateYo({
+      rating: 0,
+      readOnly: true,
+      starWidth: "20px",
+      fullStar: true
+    });
     $('#ratingbar1').rateYo({
       rating: 1,
       readOnly: true,
