@@ -158,7 +158,12 @@ section.innerpage-wrapper(style='background-color: #f1f2f2;')
                 .col-sm-6
                   .form-group
                     label Persones
-                    input.form-control(type='number', name="Persones",  required='')
+                    select.form-control(name='Persones' required='')
+                      option(value='2') 2
+                      option(value='4') 4
+                      option(value='6') 6
+                      option(value='10') 10  
+                    i.fa.fa-angle-down
                 // end columns
                 .col-sm-6
                   .form-group
