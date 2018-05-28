@@ -155,7 +155,7 @@ section.innerpage-wrapper(style='background-color: #f1f2f2;')
               .side-bar-block.support-block(style='background-color: white;')
                 h3 Contacte amb nosaltres
                 p
-                  | Lorem ipsum dolor sit amet, ad duo fugit aeque fabulas, in lucilius prodesset pri. Veniam delectus ei vis. Est atqui timeam mnesarchum.
+                  | Si no has trobat resposta a les teves preguntes pots posar-te en contacte amb nosaltres per telefon a:
                 .support-contact
                   span
                     i.fa.fa-phone
@@ -195,7 +195,7 @@ section.innerpage-wrapper(style='background-color: #f1f2f2;')
                 .f-icon
                   i.fa.fa-clock-o
                 .f-text
-                  p.f-heading Duracio
+                  p.f-heading Duració
                   p.f-data #{room.Duracio} min
               li
                 .f-icon
@@ -235,8 +235,8 @@ section.innerpage-wrapper(style='background-color: #f1f2f2;')
               #car-information.tab-pane.in.active(style='background-color: white; margin-top:20px;')
                 h2 Comentaris               
                 .row
-                  if comentaris
-                    each comentari in comentaris
+                  each comentari in comentaris
+                    if comentaris
                       .col-sm-12.col-md-12.tab-text.tab-pane(style='margin-top:20px;')
                         p(style='color:black;') #{comentari.Usuari}
                         h4 #{comentari.Titol}    
@@ -244,8 +244,9 @@ section.innerpage-wrapper(style='background-color: #f1f2f2;')
                           | #{comentari.Text}
                         p(style="color:grey; font-size:10px;")
                           | #{comentari.Data}
-                  else
-                    h3 Encara no s'ha fet cap comentari d'aquest Room. Sigues el primer!
+                    else
+                      .col-lg-12
+                        h3 Encara no s'ha fet cap comentari d'aquest Room. Sigues el primer!
             if nick
               .tab-content
                 #car-information.tab-pane.in.active(style='background-color: white; margin-top:20px;')
