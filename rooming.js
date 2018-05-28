@@ -304,7 +304,6 @@ function getEstablimentGps(id){ // GET GPS from Establiment
 }
 
 function postEstablimentGps(dades, id){ // GET GPS from Establiment
-	console.log(dades);
 	var httpRequest = new XMLHttpRequest();
 	var result;
 
@@ -327,7 +326,6 @@ function postEstablimentGps(dades, id){ // GET GPS from Establiment
 
 	httpRequest.setRequestHeader("Content-Type",'application/json; charset=utf-8');
 	var resultStr = JSON.stringify(data);
-	console.log(resultStr);
 	httpRequest.send(resultStr);
 	return result;
 
@@ -426,26 +424,34 @@ function getAllFoto(){ // GET ALL FOTO
 	return result;
 }
 
-function postFoto(JSON){ // POST FOTO 
+function postFoto(path, establiment_id, usuari_id, room_id, principal){ // POST FOTO 
 
-	var httpRequest = new XMLHttpRequest();
-	var result;
+    var httpRequest = new XMLHttpRequest();
+    var result;
+    var data = {};
+        data.URL = path;
+        data.establiment_id = establiment_id;
+        data.usuari_id = usuari_id;
+        data.room_id = room_id;
+        data.principal = principal;
 
-	httpRequest.onreadystatechange = function (){
+    httpRequest.onreadystatechange = function (){
 
-		if (httpRequest.readyState == 4 && httpRequest.status == 200 ) {
+        if (httpRequest.readyState == 4 && httpRequest.status == 201 ) {
 
-			var jsonParsed = JSON.parse(httpRequest.responseText);
-			result = jsonParsed;
-		}
+            var jsonParsed = JSON.parse(httpRequest.responseText);
+            result = jsonParsed;
+        }
 
-	};
+    };
 
-	httpRequest.open('POST', URL+"foto", false);
-
-	httpRequest.send(JSON);
-	return result;
+    httpRequest.open('POST', URL+"foto", false);
+    httpRequest.setRequestHeader("Content-Type",'application/json; charset=utf-8');
+    var resultStr = JSON.stringify(data);
+    httpRequest.send(resultStr);
+    return result;
 }
+
 
 function getFoto(id){ // GET FOTO show
 

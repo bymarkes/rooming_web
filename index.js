@@ -6,6 +6,9 @@ var cookieParser = require('cookie-parser');
 var roomingApi = require('./rooming');
 var hash = require('./hash');
 var override = require('express-method-override');
+var multer = require('multer');
+var upload = multer({dest: '/uploads/'});
+var fs = require('fs');
 
 app.use(override('_method', {methods: ['POST','GET']}));
 app.use(bodyParser.json({ type: 'application/json'}));
@@ -115,13 +118,25 @@ app.get('/categories', function(req,res){
     res.render('categories',{'categories':c,'nick':req.cookies.nick});
 });
 
-
-app.post('/establiment/new', function(req,res){
+app.post('/establiment/new', upload.array('foto',10),function(req,res){
     if (req.cookies.nick) {
         var usuari = roomingApi.getUsuari(req.cookies.nick);
         var e = roomingApi.postEstabliment(req.body, usuari.id); 
-        var gps = roomingApi.postEstablimentGps(req.body, e.id);      
-
+        var gps = roomingApi.postEstablimentGps(req.body, e.id);
+        var path = './public/images/e/' + e.id + '/';
+        fs.mkdir(path);
+        for(var x=0;x<req.files.length;x++){
+            //copiamos el archivo a la carpeta definitiva de fotos
+            fs.createReadStream('/uploads/'+req.files[x].filename).pipe(fs.createWriteStream(path+req.files[x].originalname)); 
+            //borramos el archivo temporal creado
+            var finalPath = "/images/e/"+e.id+"/"+req.files[x].originalname;
+            var principal = true;
+            fs.unlink('/uploads/'+req.files[x].filename);
+            if (x>1){
+                principal = false;
+            }
+            roomingApi.postFoto(finalPath, e.id, null, null, principal);
+        }
         res.redirect('/profile');
     }else{
         res.redirect('/');
