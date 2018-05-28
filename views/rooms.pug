@@ -25,6 +25,7 @@ head
   link(rel='stylesheet', href='/css/magnific-popup.css')
   // Color Panel
   link(rel='stylesheet', href='/css/jquery.colorpanel.css')
+  link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.css')
 // ====== LOADER =====
 .loader
 // ============= TOP-BAR ===========
@@ -157,6 +158,17 @@ section.innerpage-wrapper(style='background-color: #f1f2f2;')
                               | #{room.Preu} €
                               span.divider |
                               span.pkg PER PERSONA
+                              case room.Valoracio
+                                when '1'
+                                  #ratingbar1(style='float:right; left:20px;')
+                                when '2'
+                                  #ratingbar2(style='float:right; left:20px;')
+                                when '3'
+                                  #ratingbar3(style='float:right; left:20px;')
+                                when '4'
+                                  #ratingbar4(style='float:right; left:20px;')
+                                when '5'
+                                  #ratingbar5(style='float:right; left:20px;')
                       br
                       br
                       .member-name-2
@@ -215,4 +227,38 @@ script(src='/js/custom-owl.js')
 script(src='/js/custom-date-picker.js')
 script(src='/js/custom-video.js')
 script(src='/js/popup-ad.js')
+script(src='https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.js')
 // Page Scripts Ends
+script.
+  $(function (){
+    $('#ratingbar1').rateYo({
+      rating: 1,
+      readOnly: true,
+      starWidth: "20px",
+      fullStar: true
+    });
+    $('#ratingbar2').rateYo({
+      rating: 2,
+      readOnly: true,
+      starWidth: "20px",
+      fullStar: true
+    });
+    $('#ratingbar3').rateYo({
+      rating: 3,
+      readOnly: true,
+      starWidth: "20px",
+      fullStar: true
+    });
+    $('#ratingbar4').rateYo({
+      rating: 4,
+      readOnly: true,
+      starWidth: "20px",
+      fullStar: true      
+    });
+    $('#ratingbar5').rateYo({
+      rating: 5,
+      readOnly: true,
+      starWidth: "20px",
+      fullStar: true
+    });
+  });

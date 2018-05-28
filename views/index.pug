@@ -265,18 +265,18 @@ section#hotel-offers.section-padding
                       li.price
                         | #{room.Preu} €
                         span.divider |
-                        span.pkg PER PERSONA
-                      li.rating
-                        span
-                          i.fa.fa-star.orange
-                        span
-                          i.fa.fa-star.orange
-                        span
-                          i.fa.fa-star.orange
-                        span
-                          i.fa.fa-star.orange
-                        span
-                          i.fa.fa-star.lightgrey
+                        span.pkg PER PERSONA                        
+                          case room.Valoracio
+                            when '1'
+                              #ratingbar1(style='float:right; left:20px;')
+                            when '2'
+                              #ratingbar2(style='float:right; left:20px;')
+                            when '3'
+                              #ratingbar3(style='float:right; left:20px;')
+                            when '4'
+                              #ratingbar4(style='float:right; left:20px;')
+                            when '5'
+                              #ratingbar5(style='float:right; left:20px;')
                   // end main-mask
                 // end offer-img
                 .main-info.hotel-info
@@ -345,10 +345,42 @@ script(src='/js/jquery.range.js')
 script(src='https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.js')
 script.
    $(function() {
+
     $('#example').rateYo({
       rating: 3,
       fullStar: true
     });
+    $('#ratingbar1').rateYo({
+      rating: 1,
+      readOnly: true,
+      starWidth: "20px",
+      fullStar: true
+    });
+    $('#ratingbar2').rateYo({
+      rating: 2,
+      readOnly: true,
+      starWidth: "20px",
+      fullStar: true
+    });
+    $('#ratingbar3').rateYo({
+      rating: 3,
+      readOnly: true,
+      starWidth: "20px",
+      fullStar: true
+    });
+    $('#ratingbar4').rateYo({
+      rating: 4,
+      readOnly: true,
+      starWidth: "20px",
+      fullStar: true      
+    });
+    $('#ratingbar5').rateYo({
+      rating: 5,
+      readOnly: true,
+      starWidth: "20px",
+      fullStar: true
+    });
+
     $('#searchForm').submit(function (){
       var valoracio = $('#example').rateYo('rating');
       $('#inputVal').val(valoracio);
