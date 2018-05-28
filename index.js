@@ -438,6 +438,23 @@ app.get('/profile/reserves',function(req,res){
    
 });
 
+app.post('/reserva',function(req, res){
+    var data = req.body.Data;
+    var hora = req.body.Hora;
+    var dataCompleta = data +' '+hora;
+    var participants = req.body.Participants;
+    var usuari = roomingApi.getUsuari(req.cookies.nick);
+    var idUser = usuari.id;
+    var idRoom = req.body.idUsuari;
+
+    var room = roomingApi.getRoom(idRoom);
+
+    var preu = room.Preu * participants;
+
+    var reserva = roomingApi.postReserva(participants,dataCompleta,idUser,idRoom,preu);
+    res.redirect('/room/'+idRoom);
+});
+
 app.listen(3000);
 
 

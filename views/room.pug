@@ -144,7 +144,9 @@ section.innerpage-wrapper(style='background-color: #f1f2f2;')
               |#{room.Preu}&euro; 
               span Persona
           .text-center
-            a.btn.btn-orange(href="/reserva/"+room.id) RESERVA
+            if (nick)
+              a.btn.btn-orange(data-toggle='modal', data-target='#reserva') RESERVA
+                   
           // end side-bar-block
           .row
             .col-xs-12.col-sm-6.col-md-12
@@ -268,6 +270,38 @@ section.innerpage-wrapper(style='background-color: #f1f2f2;')
       // end container
     // end car-detail
 // end innerpage-wrapper
+#reserva.modal.custom-modal.fade(style='display: none;')
+  .modal-dialog
+    .modal-content
+      .modal-header
+        button.close(type='button', data-dismiss='modal') &times;
+        h3.modal-title Reserva
+      // end modal-header
+      .modal-body
+        form#formReserva(method='POST', action='/reserva')
+          .form-group
+            label Participants
+            select.form-control(name='Participants')
+              option(selected='', value='2') 2
+              option(value='4') 4
+              option(value='6') 6
+              option(value='10') 10
+          // end form-group
+          .form-group
+            label Data
+            input#data.form-control.dpd3(name='Data',type='text', placeholder='Data Reserva', required='')
+          .form-group
+            label Hora
+            select.form-control(name='Hora')
+              option(selected='', value='16:00') 16:00
+              option(value='18:00') 18:00
+              option(value='20:00') 20:00
+            input(type="hidden", value=room.id, name='idUsuari')
+          // end form-group
+          button#btnForm.btn.btn-orange.btn-block(type='submit') Reserva
+      // end modal-bpdy
+    // end modal-content
+  // end modal-dialog
 // ======================= FOOTER =======================
 section#footer.ftr-heading-o.ftr-heading-mgn-1
   #footer-bottom.ftr-bot-black
@@ -293,7 +327,8 @@ section#footer.ftr-heading-o.ftr-heading-mgn-1
   // end footer-bottom
 // end footer
 // Page Scripts Starts
-script(src='/js/jquery.min.js')
+script(src='https://code.jquery.com/jquery-1.11.1.min.js')
+script(src='https://code.jquery.com/ui/1.11.1/jquery-ui.min.js')
 script(src='/js/slick.min.js')
 script(src='/js/custom-slick.js')
 script(src='/js/jquery.colorpanel.js')
@@ -341,5 +376,8 @@ script.
       readOnly: true,
       starWidth: "20px",
       fullStar: true
+    });
+    $('#data').click(function (){
+      $('.datepicker').css('z-index',32767);
     });
   });

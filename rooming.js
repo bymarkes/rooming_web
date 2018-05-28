@@ -1133,6 +1133,34 @@ function getRoomReserves(id){
 	return result;
 }
 
+function postReserva(participants, date, idUser, idRoom,preu){
+	var httpRequest = new XMLHttpRequest();
+	var result;
+
+	var data = {};
+		data.Persones = participants;
+		data.Hora = date;
+		data.Import = preu;
+		data.room_id = idRoom;
+		data.usuari_id = idUser;
+
+	httpRequest.onreadystatechange = function (){
+
+		if (httpRequest.readyState == 4 && httpRequest.status == 201 ) {
+
+			var jsonParsed = JSON.parse(httpRequest.responseText);
+			result = jsonParsed;
+		}
+
+	};
+
+	httpRequest.open('POST', URL+"room/"+idRoom+"/reserva", false);
+	httpRequest.setRequestHeader("Content-Type", "application/json; charset=utf-8");
+	var json = JSON.stringify(data);
+	httpRequest.send(json);
+	return result;
+}
+
 
 /** */
 
@@ -1184,7 +1212,8 @@ module.exports = {
 	getToken,
 	deleteToken,
 	getGps,
-	getRoomReserves
+	getRoomReserves,
+	postReserva
 };
 
 
