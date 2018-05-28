@@ -28,7 +28,7 @@ app.get('/', function(req,res){
     var f = roomingApi.getAllFoto();
     var c = roomingApi.getAllCategoria();
     var cookieBow = req.cookies;
-
+    desordenarArray(r);
     if (cookieBow.nick) {
         res.render('index', {'rooms':r, 'fotos':f,'categories':c, 'nick':cookieBow.nick, 'token':cookieBow.token});        
     }else    
@@ -132,7 +132,7 @@ app.post('/establiment/new', upload.array('foto',10),function(req,res){
             var finalPath = "/images/e/"+e.id+"/"+req.files[x].originalname;
             var principal = true;
             fs.unlink('/uploads/'+req.files[x].filename);
-            if (x>1){
+            if (x>0){
                 principal = false;
             }
             roomingApi.postFoto(finalPath, e.id, null, null, principal);
@@ -240,9 +240,27 @@ app.get('/room/new/:id', function(req,res){
     res.render('new-room',{'categories':c, 'establiment':e, 'nick':req.cookies.nick});
 });
 
-app.post('/room/new', function(req,res){
-    var r = roomingApi.postRoom(req.body);
-    res.redirect('/room/'+r.id);
+app.post('/room/new', upload.array('foto',10), function(req,res){
+    if (req.cookies.nick) {
+        var r = roomingApi.postRoom(req.body);
+        var path = './public/images/r/' + r.id + '/';
+        fs.mkdir(path);
+        for(var x=0; x<req.files.length; x++){
+            //copiamos el archivo a la carpeta definitiva de fotos
+            fs.createReadStream('/uploads/'+req.files[x].filename).pipe(fs.createWriteStream(path+req.files[x].originalname)); 
+            //borramos el archivo temporal creado
+            var finalPath = "/images/r/"+r.id+"/"+req.files[x].originalname;
+            var principal = true;
+            fs.unlink('/uploads/'+req.files[x].filename);
+            if (x>0){
+                principal = false;
+            }
+            roomingApi.postFoto(finalPath, null, null, r.id, principal);
+        }
+        res.redirect('/room/'+r.id);
+    }else{
+        res.redirect('/');
+    }
 });
 
 app.put('/room/:id', function(req,res){
@@ -485,4 +503,14 @@ function eliminarRoom(room_id){
             }
         }      
         roomingApi.deleteRoom(room_id);
+}
+
+function desordenarArray(array){ 
+    var i=array.length;
+    while(i--){
+        var j=Math.floor( Math.random() * (i+1) );
+        var tmp=array[i];
+        array[i]=array[j];
+        array[j]=tmp;
+    }
 }
