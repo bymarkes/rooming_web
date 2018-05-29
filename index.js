@@ -132,7 +132,7 @@ app.post('/establiment/new', upload.array('foto',10),function(req,res){
             var finalPath = "/images/e/"+e.id+"/"+req.files[x].originalname;
             var principal = true;
             fs.unlink('/uploads/'+req.files[x].filename);
-            if (x>0){
+            if (req.files[x].filename!="Portada"){
                 principal = false;
             }
             roomingApi.postFoto(finalPath, e.id, null, null, principal);

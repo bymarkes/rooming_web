@@ -289,7 +289,13 @@ section#hotel-offers.section-padding
                   // end arrow
                   .main-title.hotel-title
                     a(href='/room/'+room.id) #{room.Nom}
-                    p #{room.Descripcio}
+                    p(id="room-"+room.id)
+                    |
+                    script.
+                      var id = "#{room.id}";
+                      var cadena = "#{room.Descripcio}";
+                      var subcadena = cadena.substring(0, 200);
+                      document.getElementById("room-"+id).innerHTML = subcadena;  
                   // end hotel-title
                 // end hotel-info
               // end hotel-block
