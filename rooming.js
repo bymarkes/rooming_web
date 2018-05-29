@@ -504,8 +504,7 @@ function deleteFoto(id){ // DELETE FOTO show
 
 		if (httpRequest.readyState == 4 && httpRequest.status == 200 ) {
 
-			var jsonParsed = JSON.parse(httpRequest.responseText);
-			result = jsonParsed;
+
 		}
 
 	};
@@ -640,8 +639,6 @@ function deleteRoom(id){
 
 		if (httpRequest.readyState == 4 && httpRequest.status == 204 ) {
 
-			var jsonParsed = JSON.parse(httpRequest.responseText);
-			result = jsonParsed;
 		}
 
 	};
@@ -649,7 +646,6 @@ function deleteRoom(id){
 	httpRequest.open('DELETE', URL+"room/"+id, false);
 
 	httpRequest.send();
-	return result;
 }
 
 function getRoomAllComentari(id){ //GET ALL COMENTARIS from ROOM

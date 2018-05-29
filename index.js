@@ -230,7 +230,8 @@ app.get('/plantilla', function(req,res){
 
 app.get('/rooms', function(req,res){
     var r = roomingApi.getAllRoom();  
-    var f = roomingApi.getAllFoto();      
+    var f = roomingApi.getAllFoto();
+    desordenarArray(r);      
     res.render('rooms',{'rooms':r, 'fotos':f, 'nick':req.cookies.nick});
 });
 
