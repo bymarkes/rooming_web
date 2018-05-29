@@ -510,8 +510,7 @@ function deleteFoto(id){ // DELETE FOTO show
 	};
 
 	httpRequest.open('DELETE', URL+"foto/"+id, false);
-
-	httpRequest.send(JSON);
+	httpRequest.send();
 }
 
 /** END FOTO **/
