@@ -412,25 +412,29 @@ app.get('/map', function(req,res){
 
 app.get('/profile/reserves',function(req,res){
     var u = roomingApi.getUsuari(req.cookies.nick);
-    var establiment;
+    var establiments = [];
     if(u){
         if(u.Tipus == 1){
             var e = roomingApi.getAllEstabliment();
             for (let index = 0; index < e.length; index++) {
                 const element = e[index];
                     if (element.usuari_id == u.id){
-                        establiment = element;
-                        break;
+                        establiments.push(element);
                     }
             }
+            var rAll = [];
+            for (let z = 0; z < establiments.length; z++) {
+                const establiment = establiments[z];
+                var r  = roomingApi.getEstablimentRooms(establiment.id);
     
-            var r  = roomingApi.getEstablimentRooms(establiment.id);
-    
-            for (let index = 0; index < r.length; index++) {
-                var reserves = roomingApi.getRoomReserves(r[index].id);
-                r[index].Reserves = reserves;
+                for (let index = 0; index < r.length; index++) {
+                    var reserves = roomingApi.getRoomReserves(r[index].id);
+                    r[index].Reserves = reserves;
+                }
+                rAll.push(r);
             }
-            res.render("reserves",{"rooms":r,'nick':req.cookies.nick})
+            
+            res.render("reserves",{"rooms":rAll,'nick':req.cookies.nick})
         }
             
     }else{
