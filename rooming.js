@@ -673,11 +673,14 @@ function postRoomComentari(id, dades){ //POST COMENTARIS from ROOM
 
 	var httpRequest = new XMLHttpRequest();
 	var result;
+	console.log(dades.Valoracio);
+	console.log('hola');
 	
 	var data = {};
 		data.Text = dades.Text;
 		data.Titol = dades.Titol;
 		data.Usuari = dades.Usuari;
+		data.Valoracio = dades.Valoracio;
 		data.Data = new Date().toISOString().replace(/T/, ' ').replace(/\..+/, '');  
 		data.room_id = dades.room_id;
 		

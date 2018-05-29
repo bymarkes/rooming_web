@@ -255,14 +255,20 @@ section.innerpage-wrapper(style='background-color: #f1f2f2;')
               .tab-content
                 #car-information.tab-pane.in.active(style='background-color: white; margin-top:20px;')
                   h2 Deixa el teu comentari
-                  form(method='post', action='/comentari')
+                  form#comentForm(method='post', action='/comentari')
                     .form-group
                       .input-group
                         input.form-control.input-lg(type="hidden" name="Usuari" value=nick style='color:black; margin-bottom:10px;') 
                         input.form-control.input-lg(type="hidden" name="room_id" value=room.id style='margin-bottom:10px;')                       
                         input.form-control.input-lg(name="Titol" value="" style='margin-bottom:10px;' placeholder='Titol' required='')                       
                         textarea.form-control.input-lg(name="Text", cols="100", rows="4", type='text', placeholder='Escriu el teu comentari', required='')
-                        button.btn.btn-orange(type='submit' style="margin-top:20px") ENVIA
+                        br
+                        br
+                        br
+                      br                      
+                      #ratingbarComentari
+                      input#inputVal(type='hidden',name='Valoracio')
+                      button.btn.btn-orange(type='submit' style="margin-top:20px") ENVIA
                   // end columns
                 // end row
               // end car-information
@@ -298,7 +304,7 @@ section.innerpage-wrapper(style='background-color: #f1f2f2;')
               option(selected='', value='16:00') 16:00
               option(value='18:00') 18:00
               option(value='20:00') 20:00
-            input(type="hidden", value=room.id, name='idUsuari')
+            input#inputVal(type="hidden", value=room.id, name='idUsuari')
           // end form-group
           button#btnForm.btn.btn-orange.btn-block(type='submit') Reserva
       // end modal-bpdy
@@ -349,6 +355,11 @@ script(src='https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.mi
 // Page Scripts Ends
 script.
   $(function (){
+    $('#ratingbarComentari').rateYo({
+      rating: 0,
+      starWidth: "20px",
+      fullStar: true
+    });
     $('#ratingbar').rateYo({
       rating: 0,
       readOnly: true,
@@ -388,4 +399,9 @@ script.
     $('#data').click(function (){
       $('.datepicker').css('z-index',32767);
     });
+    $('#comentForm').submit(function(){
+      var val = $('#ratingbarComentari').rateYo('rating');
+      alert(val);
+      $('#inputVal').val(val);
+    })
   });
