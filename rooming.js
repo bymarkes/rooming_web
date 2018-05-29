@@ -470,11 +470,11 @@ function getFoto(id){ // GET FOTO show
 
 	httpRequest.open('GET', URL+"foto/"+id, false);
 
-	httpRequest.send(JSON);
+	httpRequest.send();
 	return result;
 }
 
-function putFoto(id, JSON){ // PUT FOTO 
+function putFoto(id){ // PUT FOTO 
 
 	var httpRequest = new XMLHttpRequest();
 	var result;
@@ -491,7 +491,7 @@ function putFoto(id, JSON){ // PUT FOTO
 
 	httpRequest.open('PUT', URL+"foto/"+id, false);
 
-	httpRequest.send(JSON);
+	httpRequest.send();
 	return result;
 }
 
@@ -502,7 +502,7 @@ function deleteFoto(id){ // DELETE FOTO show
 
 	httpRequest.onreadystatechange = function (){
 
-		if (httpRequest.readyState == 4 && httpRequest.status == 204 ) {
+		if (httpRequest.readyState == 4 && httpRequest.status == 200 ) {
 
 			var jsonParsed = JSON.parse(httpRequest.responseText);
 			result = jsonParsed;
@@ -512,7 +512,7 @@ function deleteFoto(id){ // DELETE FOTO show
 
 	httpRequest.open('DELETE', URL+"foto/"+id, false);
 
-	httpRequest.send(JSON);
+	httpRequest.send();
 	return result;
 }
 
